@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jimi.atm.mapper.ClientMapper">
+    <resultMap id="clientDOMap" type="com.jimi.atm.domain.entity.ClientDO">
+        <!--<id property="id" javaType="java.lang.Long" column="id"/>-->
+        <result property="clientIdNumber" javaType="String" column="client_id_number"/>
+        <result property="clientName" javaType="String" column="client_name"/>
+        <result property="clientPhone" javaType="String" column="client_phone"/>
+        <result property="clientAccount" javaType="String" column="client_account"/>
+        <result property="clientMonye" javaType="String" column="client_monye"/>
+        <result property="clientPassword" javaType="String" column="client_password"/>
+    </resultMap>
+    <!--Client单表字段-->
+    <sql id="clientColumn">
+        id,client_id_number,client_name,client_phone,client_account,client_monye,client_password
+    </sql>
+
+    <!--用户登录-->
+    <select id="get"  resultMap="clientDOMap">
+        SELECT
+        <include refid="clientColumn"/>
+        FROM client WHERE
+        client_id_number = #{clientIdNumber} AND client_password = #{clientPassword}
+    </select>
+
+    <!--管理员使用begin-->
+    <select id="ListAllClient" resultMap="clientDOMap">
+        SELECT
+        <include refid="clientColumn"/>
+        FROM client
+    </select>
+    <!--根据身份证号码删除用户 删除的时候不应该判断是否为空  提供给管理员使用-->
+    <delete id="deleteClient" parameterType="String">
+        DELETE FROM client
+        WHERE
+       client_id_number = #{clientIdNumber}
+    </delete>
+    <!--管理员使用end-->
+
+
+    <!--根据身份证号码修改密码和姓名-->
+    <update id="updateClient" >
+        UPDATE  client
+        <set>
+            <if test="clientName"> client_name = #{clientName},</if>
+            <if test="clientPassword"> client_password = #{clientPassword}</if>
+        </set>
+        WHERE
+        client_id_number = #{clientIdNumber}
+    </update>
+
+    <!--客户金额操作-->
+    <!--根据身份证查询余额-->
+    <select id="selectMoney" parameterType="String" resultType="String">
+      SELECT  client_monye FROM client
+      WHERE
+      client_id_number = #{clientIdNumber}
+    </select>
+
+    <!--存钱操作，判断在业务层操作-->
+    <update id="addMoney">
+        UPDATE client
+        SET client_monye= #{clientMoney}
+        WHERE
+          client_id_number = #{clientIdNumber}
+    </update>
+    <!--&lt;!&ndash;取钱操作&ndash;&gt;-->
+    <!--<update id="getMoney" >-->
+        <!--UPDATE client-->
+        <!--SET client_monye= #{clientMonye}-->
+        <!--WHERE-->
+          <!--client_id_number = #{clientIdNumber}-->
+    <!--</update>-->
+
+    <insert id="regist">
+        INSERT
+        INTO client (client_id_number,client_name,client_phone,client_account,client_password)
+        VALUE (#{clientIdNumber},#{clientName},#{clientPhone},#{clientAccount},#{clientPassword})
+    </insert>
+</mapper>
