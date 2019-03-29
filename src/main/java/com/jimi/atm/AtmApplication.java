@@ -13,7 +13,7 @@ public class AtmApplication {
     public static void main(String[] args) {
         Logger logger = LoggerFactory.getLogger(AtmApplication.class);
         SpringApplication.run(AtmApplication.class,args);
-        logger.info("............JIMI ATM WEB 启动成功.......");
+        logger.info("............My ByName 启动成功.......");
     }
 
 }
