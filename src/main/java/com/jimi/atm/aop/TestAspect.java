@@ -51,7 +51,12 @@ public class TestAspect {
     public void addAdvice(){
 
     }  
-    //环绕通知
+    /**
+     * 环绕通知 电话号码验证
+     * @author Tanlianwang
+     * @version 1.0
+     * @date 2019/3/30 10:23
+     */
     @Around("addAdvice()")
     public Object InterCeptor(ProceedingJoinPoint pJoinPoint){
         //返回结果
