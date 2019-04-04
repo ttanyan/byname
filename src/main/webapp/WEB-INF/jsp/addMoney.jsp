@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>JIMI ATM   ${clientName },欢迎您!</title>
+    <title>ByName   ${clientName },欢迎您!</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/layui/css/layui.css" media="all">
 </head>
 <body class="layui-layout-body">
@@ -40,7 +40,7 @@
                     <a class="" href="javascript:;">存取款</a>
                     <dl class="layui-nav-child">
                         <dd><a href="/client/skpAddMoney">存钱</a></dd>
-                        <dd><a href="/client/skpGetMoney"取钱</a></dd>
+                        <dd><a href="/client/skpGetMoney">取钱</a></dd>
                         <dd><a href="/client/selectMoney">余额</a></dd>
                         <dd><a href="">明细</a></dd>
                     </dl>
@@ -80,7 +80,7 @@
     </div>
 
     <div class="layui-footer">
-        © www.jimi.com - ATM系统
+        © www.dlnu.edu.cn----- By Name 教师点名系统
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/resources/layui/layui.all.js" charset="utf-8"></script>

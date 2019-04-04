@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>JIMI ATM   ${clientName },欢迎您!</title>
+    <title>ByName123  ${clientName },欢迎您!</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/layui/css/layui.css" media="all">
 </head>
 <body class="layui-layout-body">
@@ -31,7 +31,6 @@
             </li>
         </ul>
     </div>
-
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
