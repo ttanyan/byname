@@ -42,7 +42,7 @@
                         <dd><a href="/client/skpAddMoney">存钱</a></dd>
                         <dd><a href="/client/skpGetMoney">取钱</a></dd>
                         <dd><a href="/client/selectMoney">余额</a></dd>
-                        <dd><a href="">明细</a></dd>
+                        <dd><a href="">明细1</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="http://www.jimicloud.com">关于</a></li>
