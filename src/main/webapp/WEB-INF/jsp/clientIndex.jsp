@@ -16,11 +16,14 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo">JIMI ATM </div>
+        <div class="layui-logo">
+            大连民族大学-点名系统
+        </div>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    <img src="${pageContext.request.contextPath}/resources/layui/images/logo/dlnu1.jpg"
+                         class="layui-nav-img">
                     ${clientName}
                 </a>
                 <dl class="layui-nav-child">
