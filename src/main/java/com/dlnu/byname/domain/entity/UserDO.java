@@ -1,5 +1,5 @@
 /*
- * COPYRIGHT. ShenZhen JiMi Technology Co., Ltd. 2018.
+ * COPYRIGHT. ShenZhen JiMi Technology Co., Ltd. 2019.
  * ALL RIGHTS RESERVED.
  *
  * No part of this publication may be reproduced, stored in a retrieval system, or transmitted,
@@ -10,18 +10,18 @@
  *
  * Date                   By              Description
  * -------------------    -----------     -------------------------------------------
- * 2018/12/26    Tanlianwang         Create the class
+ * 2019/4/10    Tanlianwang         Create the class
  * http://www.jimilab.com/
  */
 
 
-package com.dlnu.byname.domain.bo;
+package com.dlnu.byname.domain.entity;
 
 /**
+ * 用户实体类
  * @author Tanlianwang
  * @version 1.0
- * @date 2018/12/26 10:14
+ * @date 2019/4/10 17:44
  */
-public class ClientBO {
-
+public class UserDO {
 }

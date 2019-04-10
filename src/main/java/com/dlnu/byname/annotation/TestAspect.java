@@ -14,7 +14,7 @@
  * http://www.jimilab.com/
 */
 
-package com.dlnu.byname.aop;
+package com.dlnu.byname.annotation;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,8 +45,8 @@ public class TestAspect {
     /**
          * 切到Controller层  匹配HelloController下的所有带有（add的公共方法名 ）并且带有(自定义注解的方法)
      */
-    @Pointcut("execution(* com.dlnu.byname.controller.AdminController.*(..)) && @annotation(com.dlnu.byname.aop" +
-            ".MyAnnotation)")
+    @Pointcut("execution(* com.dlnu.byname.controller.AdminController.*(..)) && @annotation(com.dlnu.byname." +
+            "annotation.MyAnnotation)")
    
     public void addAdvice(){
 

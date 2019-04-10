@@ -14,35 +14,25 @@
  * http://www.jimilab.com/
 */
 
-package com.dlnu.byname.aop;
+package com.dlnu.byname.annotation;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * @FileName HelloController.java
+ * @FileName MyAnnotation.java
  * @Description: 
- * demo1
- * @Date 2018年12月19日 上午11:43:37
+ *
+ * @Date 2018年12月19日 下午3:17:39
  * @author TanLianWang
  * @version 1.0
  */
-@RestController
-public class HelloController {
-    
-    @RequestMapping("/add1")  
-    public String qwe1(String deviceId ) {
-        return "执行成功";
-    }
-    
-    @RequestMapping("/add2")  
-    public String addData2(String deviceId,String x,String y) {
-        return "success";
-    }
-    
-    @RequestMapping("/add3")  
-    public String addData3(String deviceId) {
-        return "success";
-    }
-    
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface MyAnnotation {
+
 }

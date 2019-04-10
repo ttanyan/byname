@@ -21,7 +21,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import com.dlnu.byname.aop.MyAnnotation;
+import com.dlnu.byname.annotation.MyAnnotation;
 import com.dlnu.byname.domain.entity.ClientDO;
 import com.dlnu.byname.domain.entity.User;
 import com.dlnu.byname.mapper.UserMapper;
