@@ -1,4 +1,4 @@
-package com.jimi.atm;
+package com.dlnu.byname;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AtmApplicationTests {
+public class ByNameApplicationTests {
 
     @Test
     public void contextLoads() {

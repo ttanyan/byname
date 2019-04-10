@@ -14,7 +14,7 @@
  * http://www.jimilab.com/
 */
 
-package com.jimi.atm.util;
+package com.dlnu.byname.util;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

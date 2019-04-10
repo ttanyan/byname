@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jimi.atm.mapper.ClientMapper">
-    <resultMap id="clientDOMap" type="com.jimi.atm.domain.entity.ClientDO">
+<mapper namespace="com.dlnu.byname.mapper.ClientMapper">
+    <resultMap id="clientDOMap" type="com.dlnu.byname.domain.entity.ClientDO">
         <!--<id property="id" javaType="java.lang.Long" column="id"/>-->
         <result property="clientIdNumber" javaType="String" column="client_id_number"/>
         <result property="clientName" javaType="String" column="client_name"/>

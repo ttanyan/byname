@@ -15,7 +15,7 @@
  */
 
 
-package com.jimi.atm;
+package com.dlnu.byname;
 
 import org.junit.After;
 import org.junit.Before;
@@ -31,7 +31,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @date 2018/12/26 14:46
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = AtmApplication.class,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = ByNameApplication.class,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class BaseTest {
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 

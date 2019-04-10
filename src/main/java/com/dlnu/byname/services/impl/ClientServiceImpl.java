@@ -15,11 +15,11 @@
  */
 
 
-package com.jimi.atm.services.impl;
+package com.dlnu.byname.services.impl;
 
-import com.jimi.atm.domain.entity.ClientDO;
-import com.jimi.atm.mapper.ClientMapper;
-import com.jimi.atm.services.ClientService;
+import com.dlnu.byname.domain.entity.ClientDO;
+import com.dlnu.byname.mapper.ClientMapper;
+import com.dlnu.byname.services.ClientService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -32,7 +32,7 @@ import java.util.List;
  * 对应的逻辑，使用Mapper里面基本的数据库操作实现Service对应的接口
  */
 @Service
-public class ClientServiceImpl implements  ClientService{
+public class ClientServiceImpl implements ClientService {
     @Resource
     ClientMapper clientMapper;
 

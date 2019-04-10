@@ -15,7 +15,7 @@
  */
 
 
-package com.jimi.atm.domain.bo;
+package com.dlnu.byname.domain.bo;
 
 /**
  * @author Tanlianwang

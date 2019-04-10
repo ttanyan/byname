@@ -15,10 +15,10 @@
  */
 
 
-package com.jimi.atm;
+package com.dlnu.byname;
 
-import com.jimi.atm.domain.entity.ClientDO;
-import com.jimi.atm.mapper.ClientMapper;
+import com.dlnu.byname.domain.entity.ClientDO;
+import com.dlnu.byname.mapper.ClientMapper;
 import org.junit.Test;
 
 import javax.annotation.Resource;

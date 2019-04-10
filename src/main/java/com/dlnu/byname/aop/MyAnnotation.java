@@ -14,7 +14,7 @@
  * http://www.jimilab.com/
 */
 
-package com.jimi.atm.aop;
+package com.dlnu.byname.aop;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

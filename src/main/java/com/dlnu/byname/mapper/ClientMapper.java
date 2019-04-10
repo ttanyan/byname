@@ -15,10 +15,9 @@
  */
 
 
-package com.jimi.atm.mapper;
+package com.dlnu.byname.mapper;
 
-import com.jimi.atm.domain.entity.ClientDO;
-import org.apache.ibatis.annotations.Mapper;
+import com.dlnu.byname.domain.entity.ClientDO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

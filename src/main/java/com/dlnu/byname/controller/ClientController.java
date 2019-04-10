@@ -15,12 +15,12 @@
  */
 
 
-package com.jimi.atm.controller;
+package com.dlnu.byname.controller;
 
-import com.jimi.atm.domain.entity.ClientDO;
-import com.jimi.atm.services.ClientService;
-import com.jimi.atm.util.MD5;
-import com.jimi.atm.util.ProduceNumber;
+import com.dlnu.byname.domain.entity.ClientDO;
+import com.dlnu.byname.services.ClientService;
+import com.dlnu.byname.util.MD5;
+import com.dlnu.byname.util.ProduceNumber;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

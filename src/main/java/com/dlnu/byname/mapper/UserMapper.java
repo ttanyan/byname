@@ -14,18 +14,16 @@
  * http://www.jimilab.com/
 */
 
-package com.jimi.atm.mapper;
+package com.dlnu.byname.mapper;
 
 import java.util.List;
 
+import com.dlnu.byname.domain.entity.User;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-
-import com.jimi.atm.domain.entity.User;
 
 /**
  * @FileName UserMapper.java

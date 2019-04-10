@@ -1,4 +1,4 @@
-package com.jimi.atm;
+package com.dlnu.byname;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
@@ -7,12 +7,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.jimi.atm.mapper")
-public class AtmApplication {
+@MapperScan(basePackages = "com.dlnu.byname.mapper")
+public class ByNameApplication {
 
     public static void main(String[] args) {
-        Logger logger = LoggerFactory.getLogger(AtmApplication.class);
-        SpringApplication.run(AtmApplication.class,args);
+        Logger logger = LoggerFactory.getLogger(ByNameApplication.class);
+        SpringApplication.run(ByNameApplication.class,args);
         logger.info("............My ByName 启动成功.......");
     }
 

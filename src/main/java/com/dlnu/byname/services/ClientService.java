@@ -15,9 +15,9 @@
  */
 
 
-package com.jimi.atm.services;
+package com.dlnu.byname.services;
 
-import com.jimi.atm.domain.entity.ClientDO;
+import com.dlnu.byname.domain.entity.ClientDO;
 
 import java.util.List;
 

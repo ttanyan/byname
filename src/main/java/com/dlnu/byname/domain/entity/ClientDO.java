@@ -15,7 +15,7 @@
  */
 
 
-package com.jimi.atm.domain.entity;
+package com.dlnu.byname.domain.entity;
 
 import java.util.StringJoiner;
 
