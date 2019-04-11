@@ -1,55 +1,67 @@
 /*
- * COPYRIGHT. ShenZhen JiMi Technology Co., Ltd. 2018.
+ * COPYRIGHT. ShenZhen JiMi Technology Co., Ltd. 2019.
  * ALL RIGHTS RESERVED.
  *
  * No part of this publication may be reproduced, stored in a retrieval system, or transmitted,
- * on any form or by any means, electronic, mechanical, photocopying, recording, 
+ * on any form or by any means, electronic, mechanical, photocopying, recording,
  * or otherwise, without the prior written permission of ShenZhen JiMi Network Technology Co., Ltd.
  *
  * Amendment History:
- * 
+ *
  * Date                   By              Description
  * -------------------    -----------     -------------------------------------------
- * 2018年12月16日    TanLianWang         Create the class
+ * 2019/4/11    Tanlianwang         Create the class
  * http://www.jimilab.com/
-*/
+ */
+
 
 package com.dlnu.byname.mapper;
 
+import com.dlnu.byname.domain.entity.UserDO;
+
 import java.util.List;
 
-import com.dlnu.byname.domain.entity.User;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
-
 /**
- * @FileName UserMapper.java
- * @Description:
- *
- * @Date 2018年12月16日 下午9:32:05
- * @author TanLianWang
+ * @author Tanlianwang
  * @version 1.0
+ * @date 2019/4/11 10:23
  */
 public interface UserMapper {
+
     /**
-     * 登录查询
+     * 新增用户
+     * @param userDO
+     * @return
      */
-    @Select("SELECT name,password FROM user WHERE name = #{name} AND password=#{password}")
-    public User selectUser(@Param("name") String name, @Param("password") String password);
+    int insert(UserDO userDO);
 
-    @Select("SELECT name,password FROM user")
-    public List<User> selectAllUser();
+    /**
+     * 删除用户
+     * @param id
+     * @return
+     */
+    int delete(Integer id);
 
-    @Delete("DELETE FROM user WHERE id = #{id}")
-    void deleteUser(int id);
+    /**
+     * 更新用户
+     * @param userDO
+     * @return
+     */
+    int update(UserDO userDO);
 
-    @Update("UPDATE user SET name = #{name}, password = #{password} WHERE id = #{id}")
-    void update(User User);
+    /**
+     * 获取单个用户
+     * @param id
+     * @return
+     */
+    UserDO get(Integer id);
 
-    @Insert("INSERT INTO user(name, password,phone) VALUES(#{name}, #{password},#{phone})")
-    public boolean insert(@Param("name") String userName, @Param("password") String password,
-                          @Param("phone") String userPhone);
+    /**
+     * 获取所有用户
+     * @return
+     */
+    List<UserDO> listUser();
+
+
+
 }

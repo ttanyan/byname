@@ -21,6 +21,11 @@ import com.dlnu.byname.filter.URLPathMatchingFilter;
 import com.dlnu.byname.realm.DatabaseRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.session.SessionException;
+import org.apache.shiro.session.mgt.SessionContext;
+import org.apache.shiro.session.mgt.SessionKey;
+import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -115,9 +120,9 @@ public class ShiroConfiguration {
     }
 
     /**
-     * 开启shiro aop支持
+     * 开启 shiro 注解支持
      * @param securityManager
-     * @return
+     * @return authorizationAttributeSourceAdvisor
      */
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager){

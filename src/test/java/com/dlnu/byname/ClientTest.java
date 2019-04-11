@@ -18,7 +18,6 @@
 package com.dlnu.byname;
 
 import com.dlnu.byname.domain.entity.ClientDO;
-import com.dlnu.byname.mapper.ClientMapper;
 import org.junit.Test;
 
 import javax.annotation.Resource;
