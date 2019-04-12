@@ -37,12 +37,12 @@ public class BaseTest {
 
     @Before
     public void init() {
-        System.out.println("开始测试-----------------");
+        System.out.println("===================TestBegin===================");
     }
 
     @After
     public void after() {
-        System.out.println("测试结束-----------------");
+        System.out.println("===================TestEnd===================");
     }
 
 }

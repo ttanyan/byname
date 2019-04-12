@@ -10,57 +10,52 @@
  *
  * Date                   By              Description
  * -------------------    -----------     -------------------------------------------
- * 2019/4/11    Tanlianwang         Create the class
+ * 2019/4/12    Tanlianwang         Create the class
  * http://www.jimilab.com/
  */
 
 
 package com.dlnu.byname.mapper;
 
-import com.dlnu.byname.domain.entity.UserDO;
+import com.dlnu.byname.domain.entity.RoleDO;
 
 import java.util.List;
 
 /**
  * @author Tanlianwang
  * @version 1.0
- * @date 2019/4/11 10:23
+ * @date 2019/4/12 15:35
  */
-public interface UserMapper {
+public interface RoleMapper {
+
     /**
-     * 新增用户
-     * @param userDO {@link UserDO}
+     * 增加角色
+     * @param roleDO {@link RoleDO}
      * @return java.Integer
      */
-    int insert(UserDO userDO);
-
+    int insert(RoleDO roleDO);
     /**
-     * 删除用户
-     * @param number 用户编号
-     * @return  java.Integer
+     * 删除角色
+     * @param id  角色id
+     * @return
      */
-    int delete(String number);
-
+    int delete(Long id);
     /**
-     * 更新用户
-     * @param userDO {@link UserDO}
+     * 修改角色
+     * @param roleDO {@link RoleDO}
      * @return java.Integer
      */
-    int update(UserDO userDO);
+    int update(RoleDO roleDO);
+    /**
+     * 获取单个角色
+     * @param id 角色id
+     * @return java.Integer
+     */
+    RoleDO get(Long id);
 
     /**
-     * 获取单个用户
-     * @param number 用户编号
-     * @return UserDO
+     * 获取所有的角色
+     * @return List<RoleDO>
      */
-    UserDO get(String number);
-
-    /**
-     * 获取所有用户
-     * @return List<UserDO)
-     */
-    List<UserDO> listUser();
-
-
-
+    List<RoleDO> listRole();
 }

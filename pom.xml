@@ -8,8 +8,8 @@
         <version>2.1.1.RELEASE</version>
         <relativePath/>
     </parent>
-    <groupId>com.jimi</groupId>
-    <artifactId>atm</artifactId>
+    <groupId>com.dlnu</groupId>
+    <artifactId>byname</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>atm</name>
     <description>Demo project for Spring Boot</description>

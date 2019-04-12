@@ -25,19 +25,19 @@ import java.util.StringJoiner;
  * @version 1.0
  * @date 2019/4/11 10:15
  */
-public class BaseDO {
+public abstract class BaseDO {
     /**
      * 主键id
      */
-    private Long id;
+    protected Long id;
     /**
      * 创建时间
      */
-    private LocalDateTime gmtCreate;
+    protected LocalDateTime gmtCreate;
     /**
      * 修改时间
      */
-    private LocalDateTime gmtModified;
+    protected LocalDateTime gmtModified;
 
     public Long getId() {
         return id;
@@ -71,4 +71,6 @@ public class BaseDO {
                 .add("gmtModified=" + gmtModified)
                 .toString();
     }
+
+
 }

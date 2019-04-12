@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlnu.byname.mapper.UserMapper">
+    <!--单表字段-->
+    <sql id="userField">
+        number,name,college,majory,sex,email,tel,password,salt
+    </sql>
+
+    <!--新增用户-->
+    <insert id="insert" parameterType="UserDO">
+        INSERT
+        INTO user
+        (<include refid="userField"/> )
+        VALUES
+        (#{number},#{name},#{college},#{majory},#{sex},#{email},#{tel},#{password},#{salt})
+    </insert>
+
+    <!--删除用户-->
+    <delete id="delete" parameterType="String">
+        DELETE FROM user WHERE number = #{number}
+    </delete>
+
+    <!--修改用户-->
+    <update id="update" parameterType="UserDO">
+        UPDATE user
+       <set>
+           <if test="name != null and name != ''">name = #{name },</if>
+           <if test="college != null and college != '' ">college = #{college },</if>
+           <if test="majory != null and majory != '' ">majory = #{majory },</if>
+           <if test="sex != null and sex != '' ">sex = #{sex },</if>
+           <if test="email != null and email != '' ">email = #{email },</if>
+           <if test="tel != null and tel != '' ">tel = #{tel },</if>
+           <if test="password != null and password != '' ">password = #{password },</if>
+           <if test="salt != null and salt != '' ">salt = #{salt }</if>
+       </set>
+        WHERE number = #{number}
+    </update>
+
+    <!--查询单个用户-->
+    <select id="get" parameterType="String" resultType="UserDO">
+        SELECT id,
+        <include refid="userField"/>,gmt_create,gmt_modified
+        FROM user
+        WHERE  number = #{number}
+    </select>
+
+    <!--查询所有用户信息-->
+    <select id="listUser" resultType="com.dlnu.byname.domain.entity.UserDO">
+        SELECT id,
+        <include refid="userField"/>,gmt_create,gmt_modified
+        FROM user
+    </select>
+
+</mapper>

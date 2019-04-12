@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlnu.byname.mapper.RoleMapper">
+    <!--SQL字段-->
+    <sql id="roleFiled">
+        id,name,note,gmt_create,gmt_modified
+    </sql>
+    <!--新增角色-->
+    <insert id="insert" parameterType="RoleDO">
+            INSERT
+            INTO role
+            (name,note)
+            VALUES
+            (#{name},#{note})
+    </insert>
+
+    <!--删除角色-->
+    <delete id="delete" parameterType="Long">
+        DELETE
+        FROM role
+        WHERE id = #{id}
+    </delete>
+
+    <!--修改角色-->
+    <update id="update" parameterType="RoleDO">
+        UPDATE role
+        <set>
+            <if test="name != null and name != ''"> name = #{name},</if>
+            <if test="note != null and note != ''"> note = #{note}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!--单个查询角色-->
+    <select id="get" parameterType="Long" resultType="RoleDO">
+        SELECT  <include refid="roleFiled"/>
+        FROM role
+        WHERE
+        id = #{id}
+    </select>
+
+    <!--查询所有角色-->
+    <select id="listRole" resultType="RoleDO">
+        SELECT <include refid="roleFiled"/>
+        FROM role
+    </select>
+</mapper>

@@ -10,21 +10,18 @@
  *
  * Date                   By              Description
  * -------------------    -----------     -------------------------------------------
- * 2019/4/10    Tanlianwang         Create the class
+ * 2019/4/11    Tanlianwang         Create the class
  * http://www.jimilab.com/
  */
 
 
-package com.dlnu.byname.filter;
-
-import org.apache.shiro.web.filter.PathMatchingFilter;
+package com.dlnu.byname.services;
 
 /**
  * @author Tanlianwang
  * @version 1.0
- * @date 2019/4/10 19:54
+ * @date 2019/4/11 16:45
  */
-public class URLPathMatchingFilter extends PathMatchingFilter {
-
+public interface UserService {
 
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlnu.byname.mapper.PermissionMapper">
+
+    <!--SQL字段-->
+    <sql id="permissionFiled">
+        id,name,url,gmt_create,gmt_modified
+    </sql>
+
+    <!--新增权限-->
+    <insert id="insert" parameterType="PermissionDO">
+        INSERT
+        INTO permission
+        (name,url)
+        VALUES (#{name},#{url})
+    </insert>
+
+    <!--删除权限-->
+    <delete id="delete" parameterType="Long">
+        DELETE
+        FROM permission
+        WHERE id = #{id}
+    </delete>
+
+    <!--修改权限-->
+    <update id="update" parameterType="PermissionDO">
+        UPDATE permission
+        <set>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="url != null and url != ''">url = #{url}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!--获取单个权限-->
+    <select id="get"  parameterType="Long" resultType="PermissionDO">
+        SELECT <include refid="permissionFiled"/>
+        FROM permission
+        WHERE
+        id = #{id}
+    </select>
+
+    <!--获取所有权限列表-->
+    <select id="listPermission" resultType="PermissionDO">
+        SELECT <include refid="permissionFiled"/>
+        FROM permission
+    </select>
+
+</mapper>

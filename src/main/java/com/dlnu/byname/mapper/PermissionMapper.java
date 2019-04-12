@@ -10,57 +10,56 @@
  *
  * Date                   By              Description
  * -------------------    -----------     -------------------------------------------
- * 2019/4/11    Tanlianwang         Create the class
+ * 2019/4/12    Tanlianwang         Create the class
  * http://www.jimilab.com/
  */
 
 
 package com.dlnu.byname.mapper;
 
-import com.dlnu.byname.domain.entity.UserDO;
+import com.dlnu.byname.domain.entity.PermissionDO;
 
 import java.util.List;
 
 /**
  * @author Tanlianwang
  * @version 1.0
- * @date 2019/4/11 10:23
+ * @date 2019/4/12 17:57
  */
-public interface UserMapper {
-    /**
-     * 新增用户
-     * @param userDO {@link UserDO}
-     * @return java.Integer
-     */
-    int insert(UserDO userDO);
+public interface PermissionMapper  {
 
     /**
-     * 删除用户
-     * @param number 用户编号
-     * @return  java.Integer
+     * 增加权限
+     * @param permissionDO  {@link PermissionDO}
+     * @return
      */
-    int delete(String number);
+    int insert(PermissionDO permissionDO);
 
     /**
-     * 更新用户
-     * @param userDO {@link UserDO}
-     * @return java.Integer
+     * 删除权限
+     * @param id 权限id
+     * @return
      */
-    int update(UserDO userDO);
+    int delete(Long id);
 
     /**
-     * 获取单个用户
-     * @param number 用户编号
-     * @return UserDO
+     * 修改权限
+     * @param permissionDO
+     * @return
      */
-    UserDO get(String number);
+    int update(PermissionDO permissionDO);
 
     /**
-     * 获取所有用户
-     * @return List<UserDO)
+     * 获取单个权限
+     * @param id 权限id
+     * @return PermissionDO
      */
-    List<UserDO> listUser();
+    PermissionDO get(Long id);
 
-
+    /**
+     * 获取所有的权限列表
+     * @return List<PermissionDO>
+     */
+    List<PermissionDO> listPermission();
 
 }

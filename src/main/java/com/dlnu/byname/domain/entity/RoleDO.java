@@ -1,41 +1,41 @@
 /*
- * COPYRIGHT. ShenZhen JiMi Technology Co., Ltd. 2018.
+ * COPYRIGHT. ShenZhen JiMi Technology Co., Ltd. 2019.
  * ALL RIGHTS RESERVED.
  *
  * No part of this publication may be reproduced, stored in a retrieval system, or transmitted,
- * on any form or by any means, electronic, mechanical, photocopying, recording, 
+ * on any form or by any means, electronic, mechanical, photocopying, recording,
  * or otherwise, without the prior written permission of ShenZhen JiMi Network Technology Co., Ltd.
  *
  * Amendment History:
- * 
+ *
  * Date                   By              Description
  * -------------------    -----------     -------------------------------------------
- * 2018年12月16日    TanLianWang         Create the class
+ * 2019/4/12    Tanlianwang         Create the class
  * http://www.jimilab.com/
-*/
+ */
+
 
 package com.dlnu.byname.domain.entity;
+
+import com.dlnu.byname.common.BaseDO;
 
 import java.util.StringJoiner;
 
 /**
- * @FileName User.java
- * @Description:
- *
- * @Date 2018年12月16日 下午3:02:21
- * @author TanLianWang
+ * 角色实体类
+ * @author Tanlianwang
  * @version 1.0
+ * @date 2019/4/12 15:12
  */
-public class User {
-
+public class RoleDO extends BaseDO {
     /**
-     * 用户姓名
+     * 角色名称
      */
     private String name;
     /**
-     * 密码
+     * 角色描述
      */
-    private String passWord;
+    private String note;
 
     public String getName() {
         return name;
@@ -45,31 +45,19 @@ public class User {
         this.name = name;
     }
 
-    public String getPassWord() {
-        return passWord;
+    public String getNote() {
+        return note;
     }
 
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setNote(String note) {
+        this.note = note;
     }
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", User.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", RoleDO.class.getSimpleName() + "[", "]")
                 .add("name='" + name + "'")
-                .add("passWord='" + passWord + "'")
+                .add("desc='" + note + "'")
                 .toString();
     }
-
-    public User(String name, String passWord) {
-        super();
-
-        this.name = name;
-        this.passWord = passWord;
-    }
-
-    public User() {
-
-    }
-
 }

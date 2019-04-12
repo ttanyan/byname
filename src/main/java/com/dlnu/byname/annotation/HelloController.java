@@ -40,7 +40,8 @@ public class HelloController {
         return "success";
     }
     
-    @RequestMapping("/add3")  
+    @RequestMapping("/add3")
+    @MyAnnotation
     public String addData3(String deviceId) {
         return "success";
     }

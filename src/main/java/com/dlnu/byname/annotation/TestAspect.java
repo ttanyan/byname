@@ -44,8 +44,9 @@ public class TestAspect {
 
     /**
          * 切到Controller层  匹配HelloController下的所有带有（add的公共方法名 ）并且带有(自定义注解的方法)
+     * TODO 增加切点
      */
-    @Pointcut("execution(* com.dlnu.byname.controller.AdminController.*(..)) && @annotation(com.dlnu.byname." +
+    @Pointcut("execution(* com.dlnu.byname.annotation.HelloController.*(..)) && @annotation(com.dlnu.byname." +
             "annotation.MyAnnotation)")
    
     public void addAdvice(){

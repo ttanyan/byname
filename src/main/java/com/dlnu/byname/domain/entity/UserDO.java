@@ -45,9 +45,9 @@ public class UserDO extends BaseDO {
      */
     private String majory;
     /**
-     * 性别：2-表示其他 ，1-表示男生， 0-表示女生
+     * 性别
      */
-    private Boolean sex;
+    private String sex;
     /**
      * 邮箱
      */
@@ -97,11 +97,11 @@ public class UserDO extends BaseDO {
         this.majory = majory;
     }
 
-    public Boolean getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Boolean sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -136,6 +136,7 @@ public class UserDO extends BaseDO {
     public void setSalt(String salt) {
         this.salt = salt;
     }
+
 
     @Override
     public String toString() {
