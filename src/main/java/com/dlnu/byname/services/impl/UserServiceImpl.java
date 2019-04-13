@@ -10,34 +10,36 @@
  *
  * Date                   By              Description
  * -------------------    -----------     -------------------------------------------
- * 2019/4/11    Tanlianwang         Create the class
+ * 2019/4/13    Tanlianwang         Create the class
  * http://www.jimilab.com/
  */
 
 
-package com.dlnu.byname.services;
+package com.dlnu.byname.services.impl;
 
+import com.dlnu.byname.constant.CommonConstant;
 import com.dlnu.byname.domain.entity.UserDO;
+import com.dlnu.byname.mapper.UserMapper;
+import com.dlnu.byname.services.UserService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * @author Tanlianwang
  * @version 1.0
- * @date 2019/4/11 16:45
+ * @date 2019/4/13 16:33
  */
+@Service
+public class UserServiceImpl implements UserService {
+    @Resource
+    UserMapper userMapper;
 
-public interface UserService {
-    /**
-     * 增加 add
-     * 删除 delete
-     * 修改 update
-     * 查询 get list
-     */
-    /**
-     * 用户注册
-     * @return int 成功-1，失败-0
-     * @author  Tanlianwang
-     * @date 2019/4/13 16:30
-     */
-     int addUser(UserDO userDO);
 
+    @Override
+    public int addUser(UserDO userDO) {
+        int status = CommonConstant.RESULT_STATUS;
+        status = userMapper.insert(userDO);
+        return status;
+    }
 }

@@ -17,7 +17,9 @@
 
 package com.dlnu.byname.common;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 /**
@@ -46,6 +48,7 @@ public abstract class BaseDO {
     public void setId(Long id) {
         this.id = id;
     }
+    
 
     public LocalDateTime getGmtCreate() {
         return gmtCreate;

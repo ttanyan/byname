@@ -10,34 +10,39 @@
  *
  * Date                   By              Description
  * -------------------    -----------     -------------------------------------------
- * 2019/4/11    Tanlianwang         Create the class
+ * 2019/4/13    Tanlianwang         Create the class
  * http://www.jimilab.com/
  */
 
 
-package com.dlnu.byname.services;
-
-import com.dlnu.byname.domain.entity.UserDO;
+package com.dlnu.byname.constant;
 
 /**
  * @author Tanlianwang
  * @version 1.0
- * @date 2019/4/11 16:45
+ * @date 2019/4/13 14:19
  */
-
-public interface UserService {
-    /**
-     * 增加 add
-     * 删除 delete
-     * 修改 update
-     * 查询 get list
-     */
-    /**
-     * 用户注册
-     * @return int 成功-1，失败-0
+public class CommonConstant {
+    /** 
+     * 加密次数 2
+     * @param null 
+     * @return null 
      * @author  Tanlianwang
-     * @date 2019/4/13 16:30
+     * @date 2019/4/13 14:21
+     */ 
+    public static final  int ENCRYPTION_TIME = 2;
+    /** 
+     * 加密方法 md5
+     * @return null 
+     * @author  Tanlianwang
+     * @date 2019/4/13 16:28
+     */ 
+    public static final  String ENCRYPTION_METHOD = "md5";
+    /**
+     * 结果状态 0 失败
+     * @return null
+     * @author  Tanlianwang
+     * @date 2019/4/13 16:46
      */
-     int addUser(UserDO userDO);
-
+    public static final  int RESULT_STATUS = 0;
 }
