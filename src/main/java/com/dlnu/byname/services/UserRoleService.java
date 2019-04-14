@@ -10,41 +10,31 @@
  *
  * Date                   By              Description
  * -------------------    -----------     -------------------------------------------
- * 2019/4/11    Tanlianwang         Create the class
+ * 2019/4/14    Tanlianwang         Create the class
  * http://www.jimilab.com/
  */
 
 
 package com.dlnu.byname.services;
 
-import com.dlnu.byname.domain.entity.UserDO;
+import com.dlnu.byname.domain.entity.UserRoleDO;
+
+import java.util.List;
 
 /**
  * @author Tanlianwang
  * @version 1.0
- * @date 2019/4/11 16:45
+ * @date 2019/4/14 15:49
  */
+public interface UserRoleService {
 
-public interface UserService {
     /**
-     * 增加 add
-     * 删除 delete
-     * 修改 update
-     * 查询 get list
+     * 根据用户number查询roleId
+     * @param number 用户编码
+     * @return java.util.Set&lt;com.dlnu.byname.domain.entity.UserRoleDO&gt;
+     * @author Tanlianwang
+     * @date 2019/4/14 16:12
      */
-    /**
-     * 用户注册
-     * @return int 成功-1，失败-0
-     * @author  Tanlianwang
-     * @date 2019/4/13 16:30
-     */
-     int addUser(UserDO userDO);
-     /**
-      * 查询单个用户信息
-      * @return UserDO {@link UserDO}
-      * @author  Tanlianwang
-      * @date 2019/4/14 15:01
-      */
-     UserDO getUser(String number);
+    List<UserRoleDO> listUserRole(String number);
 
 }

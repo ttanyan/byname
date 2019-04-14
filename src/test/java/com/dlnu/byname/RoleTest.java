@@ -23,6 +23,7 @@ import org.junit.Test;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Tanlianwang
@@ -35,7 +36,7 @@ public class RoleTest extends BaseTest {
     @Test
     public void insertRoleTest(){
         RoleDO roleDO = new RoleDO();
-        roleDO.setName("教师");
+        roleDO.setName("管理员");
         roleDO.setNote("具有所有的权限");
         int sign = roleMapper.insert(roleDO);
         logger.info("结果"+sign);
@@ -48,8 +49,9 @@ public class RoleTest extends BaseTest {
     @Test
     public void updateRoleTest(){
         RoleDO roleDO = new RoleDO();
-        roleDO.setNote("具备选课的权限");
-        roleDO.setId(2L);
+        roleDO.setName("教师");
+        roleDO.setNote("具备选课点名的权限");
+        roleDO.setId(3L);
         roleMapper.update(roleDO);
     }
     @Test
@@ -63,5 +65,12 @@ public class RoleTest extends BaseTest {
        roleDOList.forEach(p->{
            logger.info(p.getName()+"\n"+"时间"+p.getGmtCreate());
        });
+    }
+    @Test
+    public void listByUserNumber(){
+        Set<String> listRoleName = roleMapper.listByUserNumber("2015132130");
+        listRoleName.forEach(p->{
+            logger.info(p.toString());
+        });
     }
 }

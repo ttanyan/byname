@@ -20,6 +20,7 @@ package com.dlnu.byname.mapper;
 import com.dlnu.byname.domain.entity.RoleDO;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Tanlianwang
@@ -58,4 +59,12 @@ public interface RoleMapper {
      * @return List<RoleDO>
      */
     List<RoleDO> listRole();
+    /**
+     * 通过Number获取用户角色
+     * @param number  用户编码
+     * @return java.util.List&lt;java.lang.String&gt;
+     * @author  Tanlianwang
+     * @date 2019/4/14 19:06
+     */
+    Set<String> listByUserNumber(String number);
 }

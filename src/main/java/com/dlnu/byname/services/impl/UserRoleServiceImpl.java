@@ -10,7 +10,7 @@
  *
  * Date                   By              Description
  * -------------------    -----------     -------------------------------------------
- * 2019/4/13    Tanlianwang         Create the class
+ * 2019/4/14    Tanlianwang         Create the class
  * http://www.jimilab.com/
  */
 
@@ -19,35 +19,35 @@ package com.dlnu.byname.services.impl;
 
 import com.dlnu.byname.constant.CommonConstant;
 import com.dlnu.byname.domain.entity.UserDO;
+import com.dlnu.byname.domain.entity.UserRoleDO;
 import com.dlnu.byname.mapper.UserMapper;
-import com.dlnu.byname.services.UserService;
+import com.dlnu.byname.mapper.UserRoleMapper;
+import com.dlnu.byname.services.UserRoleService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author Tanlianwang
  * @version 1.0
- * @date 2019/4/13 16:33
+ * @date 2019/4/14 15:54
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserRoleServiceImpl implements UserRoleService {
+    @Resource
+    UserRoleMapper userRoleMapper;
     @Resource
     UserMapper userMapper;
 
 
     @Override
-    public int addUser(UserDO userDO) {
-        int status = CommonConstant.RESULT_STATUS;
-        status = userMapper.insert(userDO);
-        return status;
-    }
-
-    @Override
-    public UserDO getUser(String number) {
-        if(number.trim().length() == CommonConstant.STRING_LENGTH){
-        UserDO userDO = userMapper.get(number);
-        return userDO;
+    public List<UserRoleDO> listUserRole(String number) {
+        if(number.trim().length() == CommonConstant.STRING_LENGTH) {
+            UserDO userDO = userMapper.get(number);
+            System.out.println(userDO.getId());
+            List<UserRoleDO> listUserRole = userRoleMapper.get(userDO.getId());
+            return listUserRole;
         }else {
             return null;
         }

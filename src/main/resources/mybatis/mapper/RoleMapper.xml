@@ -25,15 +25,16 @@
     <update id="update" parameterType="RoleDO">
         UPDATE role
         <set>
-            <if test="name != null and name != ''"> name = #{name},</if>
-            <if test="note != null and note != ''"> note = #{note}</if>
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="note != null and note != ''">note = #{note}</if>
         </set>
         WHERE id = #{id}
     </update>
 
     <!--单个查询角色-->
     <select id="get" parameterType="Long" resultType="RoleDO">
-        SELECT  <include refid="roleFiled"/>
+        SELECT
+        <include refid="roleFiled"/>
         FROM role
         WHERE
         id = #{id}
@@ -41,7 +42,17 @@
 
     <!--查询所有角色-->
     <select id="listRole" resultType="RoleDO">
-        SELECT <include refid="roleFiled"/>
+        SELECT
+        <include refid="roleFiled"/>
         FROM role
     </select>
+
+    <!--根据用户number获取角色-->
+    <select id="listByUserNumber" resultType="String">
+        SELECT r.name
+        FROM role r,user_role ur,user u
+        WHERE
+        u.number = #{number} AND u.id = ur.user_id AND ur.role_id = r.id
+    </select>
+
 </mapper>

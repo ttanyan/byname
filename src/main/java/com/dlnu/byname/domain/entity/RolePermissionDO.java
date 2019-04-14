@@ -30,25 +30,25 @@ public class RolePermissionDO extends BaseDO {
     /**
      * 权限id
      */
-    private Integer permissionId;
+    private Long permissionId;
     /**
      * 角色id
      */
-    private Integer roleId;
+    private Long roleId;
 
-    public Integer getPermissionId() {
+    public Long getPermissionId() {
         return permissionId;
     }
 
-    public void setPermissionId(Integer permissionId) {
+    public void setPermissionId(Long permissionId) {
         this.permissionId = permissionId;
     }
 
-    public Integer getRoleId() {
+    public Long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Integer roleId) {
+    public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
 

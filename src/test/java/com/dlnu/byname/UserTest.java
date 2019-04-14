@@ -65,7 +65,7 @@ public class UserTest extends  BaseTest{
     public void getUserTest(){
 
         UserDO userDO = userMapper.get("2015132114");
-       logger.info(userDO.getName());
+       logger.info(userDO.getName()+userDO.getId());
     }
     @Test
     public void listUserTest(){

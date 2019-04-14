@@ -10,46 +10,37 @@
  *
  * Date                   By              Description
  * -------------------    -----------     -------------------------------------------
- * 2019/4/13    Tanlianwang         Create the class
+ * 2019/4/14    Tanlianwang         Create the class
  * http://www.jimilab.com/
  */
 
 
 package com.dlnu.byname.services.impl;
 
-import com.dlnu.byname.constant.CommonConstant;
-import com.dlnu.byname.domain.entity.UserDO;
-import com.dlnu.byname.mapper.UserMapper;
-import com.dlnu.byname.services.UserService;
+import com.dlnu.byname.mapper.RoleMapper;
+import com.dlnu.byname.services.RoleService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Set;
 
 /**
  * @author Tanlianwang
  * @version 1.0
- * @date 2019/4/13 16:33
+ * @date 2019/4/14 19:02
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class RoleServiceImpl implements RoleService {
     @Resource
-    UserMapper userMapper;
-
-
+    RoleMapper roleMapper;
     @Override
-    public int addUser(UserDO userDO) {
-        int status = CommonConstant.RESULT_STATUS;
-        status = userMapper.insert(userDO);
-        return status;
-    }
-
-    @Override
-    public UserDO getUser(String number) {
-        if(number.trim().length() == CommonConstant.STRING_LENGTH){
-        UserDO userDO = userMapper.get(number);
-        return userDO;
-        }else {
+    public Set<String> listRoleName(String number) {
+        Set<String> listRoleName = roleMapper.listByUserNumber(number);
+        if(listRoleName.isEmpty()){
             return null;
+        }else{
+        return listRoleName;
+
         }
     }
 }

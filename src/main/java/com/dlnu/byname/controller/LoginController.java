@@ -19,10 +19,14 @@ package com.dlnu.byname.controller;
 
 import com.dlnu.byname.constant.CommonConstant;
 import com.dlnu.byname.domain.entity.UserDO;
-import com.dlnu.byname.mapper.UserMapper;
 import com.dlnu.byname.services.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,7 +41,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("")
-public class UserController {
+public class LoginController {
     @Resource
     UserService userService;
 
@@ -48,8 +52,27 @@ public class UserController {
         String encodedPassword = new SimpleHash(CommonConstant.ENCRYPTION_METHOD, userDO.getPassword(), salt, CommonConstant.ENCRYPTION_TIME).toString();
         userDO.setSalt(salt);
         userDO.setPassword(encodedPassword);
-        userService.addUser(userDO);
-        return "index";
+        int status = CommonConstant.RESULT_STATUS;
+        status = userService.addUser(userDO);
+         if(status == CommonConstant.RESULT_STATUS){
+             return "register";
+         }
+        return "/login";
+    }
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(Model model, String name, String password){
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(name,password);
+        try{
+            subject.login(token);
+            Session session = subject.getSession();
+            session.setAttribute("subject",subject);
+            return "index";
+
+        }catch (AuthenticationException e){
+            model.addAttribute("error", "用户名或密码错误，请重新登录");
+            return "login";
+        }
 
     }
 

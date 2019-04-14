@@ -45,4 +45,11 @@ public class CommonConstant {
      * @date 2019/4/13 16:46
      */
     public static final  int RESULT_STATUS = 0;
+    /** 
+     * 用户编号的长度
+     * @return null 
+     * @author  Tanlianwang
+     * @date 2019/4/14 15:19
+     */ 
+    public static final  int STRING_LENGTH = 10;
 }

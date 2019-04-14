@@ -17,9 +17,11 @@
 
 package com.dlnu.byname.mapper;
 
+import com.dlnu.byname.domain.bo.UserPermissionBO;
 import com.dlnu.byname.domain.entity.PermissionDO;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Tanlianwang
@@ -61,5 +63,13 @@ public interface PermissionMapper  {
      * @return List<PermissionDO>
      */
     List<PermissionDO> listPermission();
+    /** 
+     * 根据roleId获取权限名称
+     * @param roleId  角色id
+     * @return java.util.Set&lt;java.lang.String&gt; 
+     * @author  Tanlianwang
+     * @date 2019/4/14 19:25
+     */ 
+    Set<UserPermissionBO> listByRoleId(Long roleId);
 
 }

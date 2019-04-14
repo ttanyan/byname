@@ -17,12 +17,15 @@
 
 package com.dlnu.byname;
 
+import com.dlnu.byname.domain.bo.UserPermissionBO;
 import com.dlnu.byname.domain.entity.PermissionDO;
 import com.dlnu.byname.mapper.PermissionMapper;
+import com.dlnu.byname.services.PermissionService;
 import org.junit.Test;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Tanlianwang
@@ -32,6 +35,8 @@ import java.util.List;
 public class PermissionTest extends BaseTest{
     @Resource
     PermissionMapper permissionMapper;
+    @Resource
+    PermissionService permissionService;
     @Test
     public void insetPermissionTest(){
         PermissionDO permissionDO = new PermissionDO();
@@ -60,6 +65,13 @@ public class PermissionTest extends BaseTest{
         List<PermissionDO> permissionDOList = permissionMapper.listPermission();
         permissionDOList.forEach(p->{
             logger.info("权限名称"+p.getName()+"\n"+"创建时间"+p.getGmtCreate());
+        });
+    }
+    @Test
+    public void listByUserNumberTest(){
+        Set<UserPermissionBO> listNumber = permissionService.listByUserNumber("2015132114");
+        listNumber.forEach(p->{
+            logger.info(p.toString());
         });
     }
 

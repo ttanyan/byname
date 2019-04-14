@@ -36,7 +36,7 @@
         WHERE number = #{number}
     </update>
 
-    <!--查询单个用户-->
+    <!--根据用户编号查询单个用户-->
     <select id="get" parameterType="String" resultType="UserDO">
         SELECT id,
         <include refid="userField"/>,gmt_create,gmt_modified
@@ -45,7 +45,7 @@
     </select>
 
     <!--查询所有用户信息-->
-    <select id="listUser" resultType="com.dlnu.byname.domain.entity.UserDO">
+    <select id="listUser" resultType="UserDO">
         SELECT id,
         <include refid="userField"/>,gmt_create,gmt_modified
         FROM user
