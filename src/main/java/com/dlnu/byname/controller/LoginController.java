@@ -52,8 +52,7 @@ public class LoginController {
         String encodedPassword = new SimpleHash(CommonConstant.ENCRYPTION_METHOD, userDO.getPassword(), salt, CommonConstant.ENCRYPTION_TIME).toString();
         userDO.setSalt(salt);
         userDO.setPassword(encodedPassword);
-        int status = CommonConstant.RESULT_STATUS;
-        status = userService.addUser(userDO);
+        int status = userService.addUser(userDO);
          if(status == CommonConstant.RESULT_STATUS){
              return "register";
          }

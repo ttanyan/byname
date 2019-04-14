@@ -41,7 +41,7 @@ import java.util.Map;
  * @version 1.0
  * @date 2019/4/10 18:13
  */
-//@Configuration
+@Configuration
 public class ShiroConfiguration {
     @Bean
     public static LifecycleProcessor getLifecycleProcessor(){
@@ -63,17 +63,17 @@ public class ShiroConfiguration {
         // 拦截器
         Map<String,String> filterChainDefinitionMap = new LinkedHashMap<>();
         //自定义拦截器
-//        Map<String, Filter>  customizationFilter = new HashMap<>();
-//        customizationFilter.put("url",getUrlPathMatchingFilter());
-//
-//        /**
-//         * 配置映射关系
-//         * anon 表示不需要任何权限都可以访问
-//         */
-//        filterChainDefinitionMap.put("/login","anon");
-//        filterChainDefinitionMap.put("/index","anon");
-//        filterChainDefinitionMap.put("/resources/**","anon");
-//        shiroFilterFactoryBean.setFilters(customizationFilter);
+        Map<String, Filter>  customizationFilter = new HashMap<>();
+        customizationFilter.put("url",getUrlPathMatchingFilter());
+
+        /**
+         * 配置映射关系
+         * anon 表示不需要任何权限都可以访问
+         */
+        filterChainDefinitionMap.put("/login","anon");
+        filterChainDefinitionMap.put("/index","anon");
+        filterChainDefinitionMap.put("/resources/**","anon");
+        shiroFilterFactoryBean.setFilters(customizationFilter);
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }

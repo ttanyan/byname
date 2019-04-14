@@ -57,31 +57,32 @@ public class UrlPathMatchingFilter extends PathMatchingFilter {
             WebUtils.issueRedirect(request, response, "/login");
             return false;
         }
-        // 判断是否需要认证
+        // 判断访问的注释是否需要认证
         boolean needInterceptor = permissionService.needInterceptor(requestURI);
         //不需要认证--放行（可以考虑拦截？）
         if (!needInterceptor) {
             return true;
         } else {
+            //需要优化逻辑
             boolean hasPermission = false;
             String number = subject.getPrincipal().toString();
             Set<UserPermissionBO> userPermissionBO = permissionService.listByUserNumber(number);
 
-            //通过迭代将权限URL提取出来
+            //通过迭代将用户URL提取出来
             Set<String> permissionUrls = new HashSet<>();
             Iterator it = userPermissionBO.iterator();
             while (it.hasNext()) {
                 UserPermissionBO str = (UserPermissionBO) it.next();
                 permissionUrls.add(str.getPermissionURL());
             }
+
+            //判断当前用户是否具有访问权限
             for (String url : permissionUrls) {
-                // 这就表示当前用户有这个权限
                 if (url.equals(requestURI)) {
                     hasPermission = true;
                     break;
                 }
             }
-
             if (hasPermission) {
                 return true;
             }
@@ -93,7 +94,6 @@ public class UrlPathMatchingFilter extends PathMatchingFilter {
                 WebUtils.issueRedirect(request, response, "/unauthorized");
                 return false;
             }
-
         }
 
     }
