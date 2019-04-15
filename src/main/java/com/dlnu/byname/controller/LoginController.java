@@ -17,6 +17,7 @@
 
 package com.dlnu.byname.controller;
 
+import com.dlnu.byname.annotation.MyAnnotation;
 import com.dlnu.byname.constant.CommonConstant;
 import com.dlnu.byname.domain.entity.UserDO;
 import com.dlnu.byname.services.UserService;
@@ -51,6 +52,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
+    @MyAnnotation
     public String register(UserDO userDO){
         // 密钥
         String salt = new SecureRandomNumberGenerator().nextBytes().toString();

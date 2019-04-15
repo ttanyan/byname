@@ -43,10 +43,10 @@ import java.util.regex.Matcher;
 public class TestAspect {
 
     /**
-         * 切到Controller层  匹配HelloController下的所有带有（add的公共方法名 ）并且带有(自定义注解的方法)
+         * 切到Controller层  匹配LoginController下的所有带有自定义注解的方法
      * TODO 增加切点
      */
-    @Pointcut("execution(* com.dlnu.byname.annotation.HelloController.*(..)) && @annotation(com.dlnu.byname." +
+    @Pointcut("execution(* com.dlnu.byname.controller.LoginController.*(..)) && @annotation(com.dlnu.byname." +
             "annotation.MyAnnotation)")
    
     public void addAdvice(){
@@ -70,17 +70,17 @@ public class TestAspect {
         }
         String phone = (String) args[2];
         String regex = "^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(166)|(17[0,1,3,5,6,7,8])|(18[0-9])|(19[8|9]))\\d{8}$";
-        if (phone.length() != 11) {
-            request.getSession().setAttribute("registMessage", "请输入正确的手机号码");
-            return "regist";
+        if (phone.length() != 10) {
+            request.getSession().setAttribute("registerMessage", "请输入学号");
+            return "register";
         } 
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(phone);
             boolean isMatch = matcher.matches();
             
             if (!isMatch) {
-                request.getSession().setAttribute("registMessage", "请输入正确的手机号码");
-                return "regist";
+                request.getSession().setAttribute("registerMessage", "请输入正确的手机号码");
+                return "register";
             }try {
 
             //执行调用目标方法。否则目标方法本身的执行就会被跳过

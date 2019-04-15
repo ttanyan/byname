@@ -66,7 +66,7 @@
 <body>
 <form class="layui-form form" method="post" action="/register" onsubmit="return check()">
     <div class="user">用户注册</div>
-    <div class="message">${registMessage }</div>
+    <div class="message">${registerMessage }</div>
     <div class="layui-form-item">
         <label class="layui-form-label label">学号</label>
         <div class="layui-input-block">
@@ -141,7 +141,7 @@
 
     </div>
     <div class="layui-form-item">
-        <a href="/admin/login">已有账号，返回登录</a>
+        <a href="/skpLogin">已有账号，返回登录</a>
     </div>
 </form>
 
