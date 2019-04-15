@@ -38,8 +38,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int addUser(UserDO userDO) {
-        int status = CommonConstant.RESULT_STATUS;
-        status = userMapper.insert(userDO);
+        int status = userMapper.insert(userDO);
         return status;
     }
 

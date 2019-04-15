@@ -39,12 +39,12 @@ public class CommonConstant {
      */ 
     public static final  String ENCRYPTION_METHOD = "md5";
     /**
-     * 结果状态 0 失败
+     * 结果状态 1 成功
      * @return null
      * @author  Tanlianwang
      * @date 2019/4/13 16:46
      */
-    public static final  int RESULT_STATUS = 0;
+    public static final  int RESULT_STATUS = 1;
     /** 
      * 用户编号的长度
      * @return null 

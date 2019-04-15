@@ -70,7 +70,7 @@ public class ShiroConfiguration {
          * 配置映射关系
          * anon 表示不需要任何权限都可以访问
          */
-        filterChainDefinitionMap.put("/login","anon");
+//        filterChainDefinitionMap.put("/login","anon");
         filterChainDefinitionMap.put("/index","anon");
         filterChainDefinitionMap.put("/resources/**","anon");
         shiroFilterFactoryBean.setFilters(customizationFilter);
@@ -99,7 +99,7 @@ public class ShiroConfiguration {
     @Bean
     public DatabaseRealm getDatabaseRealm(){
         DatabaseRealm myShiroRealm = new DatabaseRealm();
-//        myShiroRealm.setCreadn
+        myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return myShiroRealm;
     }
 

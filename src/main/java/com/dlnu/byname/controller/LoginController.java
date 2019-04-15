@@ -27,10 +27,10 @@ import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
@@ -39,11 +39,16 @@ import javax.annotation.Resource;
  * @version 1.0
  * @date 2019/4/13 14:26
  */
-@RestController
+@Controller
 @RequestMapping("")
 public class LoginController {
     @Resource
     UserService userService;
+
+    @RequestMapping(value = "/byname")
+    public String skpLogin(){
+        return "register";
+    }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public String register(UserDO userDO){
@@ -54,14 +59,14 @@ public class LoginController {
         userDO.setPassword(encodedPassword);
         int status = userService.addUser(userDO);
          if(status == CommonConstant.RESULT_STATUS){
-             return "register";
+             return "login";
          }
-        return "/login";
+        return "register";
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(Model model, String name, String password){
+    public String login(Model model, String number, String password){
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(name,password);
+        UsernamePasswordToken token = new UsernamePasswordToken(number,password);
         try{
             subject.login(token);
             Session session = subject.getSession();
