@@ -19,10 +19,16 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.dlnu.byname.constant.CommonConstant;
+import com.dlnu.byname.domain.entity.UserDO;
+import org.apache.catalina.User;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -48,12 +54,11 @@ public class TestAspect {
      */
     @Pointcut("execution(* com.dlnu.byname.controller.LoginController.*(..)) && @annotation(com.dlnu.byname." +
             "annotation.MyAnnotation)")
-   
     public void addAdvice(){
 
     }  
     /**
-     * 环绕通知 电话号码验证
+     * 环绕通知 学号验证
      * @author Tanlianwang
      * @version 1.0
      * @date 2019/3/30 10:23
@@ -62,27 +67,25 @@ public class TestAspect {
     public Object InterCeptor(ProceedingJoinPoint pJoinPoint){
         //返回结果
         HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
-        Object result = null; 
-        //ProceedingJoinPoint 获取切点方法的参数对象，将值传入进来，以数组的形式保存
-        Object[] args = pJoinPoint.getArgs();
-        for(int i=0;i<args.length;i++) {
-            System.out.println(args[i]);
-        }
-        String phone = (String) args[2];
-        String regex = "^((13[0-9])|(14[5,7,9])|(15([0-3]|[5-9]))|(166)|(17[0,1,3,5,6,7,8])|(18[0-9])|(19[8|9]))\\d{8}$";
-        if (phone.length() != 10) {
-            request.getSession().setAttribute("registerMessage", "请输入学号");
-            return "register";
-        } 
+        Object result = null;
+        String number = null;
+        Object[] object = pJoinPoint.getArgs();
+        for(Object o:object){
+            if(o instanceof UserDO){
+               UserDO  userDO = (UserDO) o;
+               number = userDO.getNumber();
+                }
+            }
+
+
+        String regex = "^[2-9]([0-9]){9}$";
             Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(phone);
+            Matcher matcher = pattern.matcher(number);
             boolean isMatch = matcher.matches();
-            
             if (!isMatch) {
-                request.getSession().setAttribute("registerMessage", "请输入正确的手机号码");
+                request.getSession().setAttribute("registerMessage", "请检查学号输入是否正确！");
                 return "register";
             }try {
-
             //执行调用目标方法。否则目标方法本身的执行就会被跳过
             result =pJoinPoint.proceed();
         } catch (Throwable e) {

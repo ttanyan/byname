@@ -33,8 +33,10 @@
             height: 50px;
             line-height: 50px;
             text-align: center;
-            font-size: 19px;
+            font-size: 23px;
             font-weight: 600;
+            font-family: 楷体;
+            color: red;
         }
 
         body {
@@ -112,7 +114,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">手机号</label>
         <div class="layui-input-block">
-            <input type="tel" name="tel" lay-verify="required|phone"  placeholder="请输入正确的手机号码" autocomplete="off"
+            <input type="tel" name="tel" lay-verify="required|phone"  placeholder="请输入手机号码" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
@@ -137,7 +139,6 @@
 
             <button  class="layui-btn layui-btn-radius" lay-filter="demo1"  lay-submit="">立即提交</button>
             <button  type="reset" class="layui-btn layui-btn-primary layui-btn-radius">重置</button>
-
 
     </div>
     <div class="layui-form-item">
