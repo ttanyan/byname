@@ -136,13 +136,11 @@
         </div>
     </div>
     <div class="user">
-
             <button  class="layui-btn layui-btn-radius" lay-filter="demo1"  lay-submit="">立即提交</button>
             <button  type="reset" class="layui-btn layui-btn-primary layui-btn-radius">重置</button>
-
     </div>
     <div class="layui-form-item">
-        <a href="/skpLogin">已有账号，返回登录</a>
+        <a href="/byname">已有账号，返回登录</a>
     </div>
 </form>
 

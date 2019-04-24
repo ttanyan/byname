@@ -38,6 +38,7 @@ public interface PermissionService {
    */ 
     Set<UserPermissionBO> listByUserNumber(String number);
     /**
+     * ？？？？需要优化，不能判断一次就查询一次
      * 判断url是否需要拦截 true:需要拦截 false:不要拦截
      * @param url url地址
      * @return java.util.List&lt;com.dlnu.byname.domain.entity.PermissionDO&gt;
@@ -45,6 +46,38 @@ public interface PermissionService {
      * @date 2019/4/14 20:59
      */
     Boolean needInterceptor(String url);
+   /**
+    * 增加权限
+    * @param permissionDO  {@link PermissionDO}
+    * @return int
+    * @author  TanLianWang
+    * @date 2019/4/24 9:20
+    */
+    int insertPermission(PermissionDO permissionDO);
+    /**
+     * 删除单个权限
+     * @param id  权限id
+     * @return int
+     * @author  TanLianWang
+     * @date 2019/4/24 9:22
+     */
+    int deletePermission(Long id);
+    /**
+     * 修改权限
+     * @param permissionDO  {@link PermissionDO}
+     * @return int
+     * @author  TanLianWang
+     * @date 2019/4/24 9:23
+     */
+    int updatePermission(PermissionDO permissionDO);
+    /** 
+     * 获取所有权限 
+     * @return java.util.List&lt;com.dlnu.byname.domain.entity.PermissionDO&gt; 
+     * @author  TanLianWang
+     * @date 2019/4/24 9:14
+     */ 
+    List<PermissionDO> listPermission();
+
 
 
 }

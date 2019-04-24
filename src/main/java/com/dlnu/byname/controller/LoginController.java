@@ -39,17 +39,13 @@ import javax.annotation.Resource;
  * @author Tanlianwang
  * @version 1.0
  * @date 2019/4/13 14:26
+ * 用户登录以及注册
  */
 @Controller
 @RequestMapping("")
 public class LoginController {
     @Resource
     UserService userService;
-
-    @RequestMapping(value = "/byname")
-    public String skpLogin(){
-        return "register";
-    }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     @MyAnnotation
@@ -60,7 +56,7 @@ public class LoginController {
         userDO.setSalt(salt);
         userDO.setPassword(encodedPassword);
         int status = userService.addUser(userDO);
-         if(status == CommonConstant.RESULT_STATUS){
+         if(status == CommonConstant.RESULT_STATUS_SUCCESS){
              return "login";
          }
         return "register";
@@ -73,10 +69,12 @@ public class LoginController {
             subject.login(token);
             Session session = subject.getSession();
             session.setAttribute("subject",subject);
+            UserDO userDO = userService.getUser(number);
+            model.addAttribute("loginUser",userDO);
             return "index";
 
         }catch (AuthenticationException e){
-            model.addAttribute("error", "用户名或密码错误，请重新登录");
+            model.addAttribute("loginMessage", "用户名或密码错误，请重新登录");
             return "login";
         }
 

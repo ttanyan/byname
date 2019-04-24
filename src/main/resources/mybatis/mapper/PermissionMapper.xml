@@ -50,6 +50,7 @@
         SELECT <include refid="permissionFiled"/>
         FROM permission
     </select>
+
     <!--根据roleId获取UserPermissionBO-->
     <select id="listByRoleId" parameterType="Long" resultMap="UserPermission">
       SELECT p.id, p.name,p.url

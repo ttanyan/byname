@@ -35,8 +35,10 @@
 	height: 50px;
 	line-height: 50px;
 	text-align: center;
-	font-size: 19px;
+	font-size: 23px;
 	font-weight: 600;
+	font-family: 楷体;
+	color: red;
 }
 
 body {
@@ -46,20 +48,20 @@ body {
 </head>
 
 <body>
-	<form class="layui-form form" action="/admin/home" method="post">
-		<div class="user">JIMI admin</div>
+	<form class="layui-form form" action="/login" method="post">
+		<div class="user">DLNU ByName System</div>
 		<div class="message">${loginMessage }</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label label">姓名：</label>
 			<div class="layui-input-block">
-				<input type="text" name="userName" required lay-verify="required"
+				<input type="text" name="number" required lay-verify="required"
 					placeholder="请输入账号" autocomplete="off" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">密码：</label>
 			<div class="layui-input-block">
-				<input type="password" name="passWrod" lay-verify="pass" required
+				<input type="password" name="password" lay-verify="pass" required
 					placeholder="请输入密码" autocomplete="off" class="layui-input">
 			</div>
 		</div>
@@ -71,7 +73,7 @@ body {
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<a href="/admin/skp">没有账号？前往注册</a>
+			<a href="/jump-register">没有账号？前往注册</a>
 		</div>
 	</form>
 	<script src="${pageContext.request.contextPath}/resources/layui/layui.all.js"></script>

@@ -17,6 +17,7 @@
 
 package com.dlnu.byname.services.impl;
 
+import com.dlnu.byname.constant.CommonConstant;
 import com.dlnu.byname.domain.bo.UserPermissionBO;
 import com.dlnu.byname.domain.entity.PermissionDO;
 import com.dlnu.byname.domain.entity.UserRoleDO;
@@ -42,10 +43,7 @@ public class PermissionServiceImpl implements PermissionService {
     PermissionMapper permissionMapper;
     @Resource
     UserRoleService userRoleService;
-    @Resource
-    RolePermissionService rolePermissionService;
-
-
+    int sign = CommonConstant.RESULT_STATUS_FAIL;
     @Override
     public Set<UserPermissionBO> listByUserNumber(String number) {
         List<UserRoleDO> listUserRole = userRoleService.listUserRole(number);
@@ -66,5 +64,37 @@ public class PermissionServiceImpl implements PermissionService {
             }
         }
         return false;
+    }
+
+    @Override
+    public int insertPermission(PermissionDO permissionDO) {
+        if(permissionDO != null){
+            sign = permissionMapper.insert(permissionDO);
+        }
+        return sign;
+
+    }
+
+    @Override
+    public int deletePermission(Long id) {
+        if(id != null) {
+            sign = permissionMapper.delete(id);
+        }
+        return sign;
+
+    }
+
+    @Override
+    public int updatePermission(PermissionDO permissionDO) {
+        if(permissionDO != null){
+            sign = permissionMapper.update(permissionDO);
+        }
+        return sign;
+    }
+
+    @Override
+    public List<PermissionDO> listPermission() {
+        List<PermissionDO> permissionDOList = permissionMapper.listPermission();
+        return permissionDOList;
     }
 }

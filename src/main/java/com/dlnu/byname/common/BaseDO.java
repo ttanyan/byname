@@ -26,6 +26,7 @@ import java.util.StringJoiner;
  * @author Tanlianwang
  * @version 1.0
  * @date 2019/4/11 10:15
+ * 所有的DO都应该继承此类
  */
 public abstract class BaseDO {
     /**
