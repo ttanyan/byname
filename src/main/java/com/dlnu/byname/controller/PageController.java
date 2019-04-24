@@ -35,9 +35,12 @@ public class PageController {
     public String jumpLogin(){
         return "login";
     }
-
-    @RequestMapping(value = "/jump-register")
+    @RequestMapping(value = "jump-register")
     public String jumpRegister(){
         return "register";
+    }
+    @RequestMapping("jump-listPermission")
+    public String jumpListPermission(){
+        return "listPermission";
     }
 }

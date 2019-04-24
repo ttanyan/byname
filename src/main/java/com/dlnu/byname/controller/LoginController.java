@@ -77,7 +77,13 @@ public class LoginController {
             model.addAttribute("loginMessage", "用户名或密码错误，请重新登录");
             return "login";
         }
-
+    }
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
+    public String logout(Model model){
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        model.addAttribute("loginMessage","已安全退出");
+        return "login";
     }
 
 

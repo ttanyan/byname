@@ -29,7 +29,7 @@
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
                     <dd><a href="">安全设置</a></dd>
-                    <dd><a href="/exit">安全退出</a></dd>
+                    <dd><a href="/logout">安全退出</a></dd>
                 </dl>
             </li>
         </ul>
@@ -40,7 +40,7 @@
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item"><a href="/client/skpAddMoney">权限管理</a></li>
                 <li class="layui-nav-item"><a href="/client/skpGetMoney">角色管理</a></li>
-                <li class="layui-nav-item"><a href="/client/selectMoney">用户管理</a></li>
+                <li class="layui-nav-item"><a href="/jump-listPermission">用户管理</a></li>
                 <li class="layui-nav-item"><a href="javascript:;">明细</a></li>
                 <li class="layui-nav-item"><a href="https://blog.csdn.net/tingfengqianqu">关于作者</a></li>
             </ul>
@@ -59,11 +59,5 @@
     </div>
 </div>
 <script src="${pageContext.request.contextPath}/resources/layui/layui.all.js" charset="utf-8"></script>
-<script>
-    layui.use('element', function () {
-        var element = layui.element;
-
-    });
-</script>
 </body>
 </html>
