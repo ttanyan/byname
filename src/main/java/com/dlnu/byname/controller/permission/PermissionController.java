@@ -17,13 +17,16 @@
 
 package com.dlnu.byname.controller.permission;
 
-import com.dlnu.byname.constant.CommonConstant;
+import com.dlnu.byname.constant.JsonResult;
 import com.dlnu.byname.domain.entity.PermissionDO;
 import com.dlnu.byname.mapper.PermissionMapper;
 import com.dlnu.byname.services.PermissionService;
+import com.dlnu.byname.util.PageBean;
+import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -40,6 +43,8 @@ import java.util.List;
 public class PermissionController {
     @Resource
     PermissionService permissionService;
+    @Resource
+    PermissionMapper permissionMapper;
 
     @RequestMapping("insertPermission")
     public String insertPermission(Model model,PermissionDO permissionDO){
@@ -72,10 +77,14 @@ public class PermissionController {
         return "listPermission";
     }
     @RequestMapping("listPermission")
-    public String getListPermission(Model model){
+    @ResponseBody
+    public JsonResult<List> getListPermission(int page,int limit){
+        PageHelper.startPage(page,limit);
         List<PermissionDO> permissionDOList = permissionService.listPermission();
-        model.addAttribute("pList",permissionDOList);
-        return  "listPermission";
+        int count = permissionMapper.getCount();
+        PageBean<PermissionDO> pageData = new PageBean<>(page,limit,count);
+        pageData.setItems(permissionDOList);
+        return new JsonResult<>(pageData.getItems(), count);
     }
 
 

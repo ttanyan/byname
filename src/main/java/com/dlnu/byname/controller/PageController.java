@@ -19,6 +19,7 @@ package com.dlnu.byname.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author TanLianWang
@@ -32,8 +33,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PageController {
 
     @RequestMapping(value = "byname")
-    public String jumpLogin(){
-        return "login";
+    public ModelAndView jumpLogin(){
+        ModelAndView modelAndView = new ModelAndView("login");
+        return modelAndView;
     }
     @RequestMapping(value = "jump-register")
     public String jumpRegister(){

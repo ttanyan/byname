@@ -46,9 +46,18 @@
     </select>
 
     <!--获取所有权限列表-->
-    <select id="listPermission" resultType="PermissionDO">
+    <select id="listPermission"  resultType="PermissionDO">
         SELECT <include refid="permissionFiled"/>
         FROM permission
+    </select>
+
+    <!--获取总数tetol-->
+    <select id="getCount" resultType="Integer">
+        SELECT COUNT(*) FROM permission
+    </select>
+    <!--获取所有的url-->
+    <select id="listUrl" resultType="String">
+        SELECT url FROM permission
     </select>
 
     <!--根据roleId获取UserPermissionBO-->

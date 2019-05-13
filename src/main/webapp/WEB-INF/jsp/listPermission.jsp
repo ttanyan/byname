@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>JIMI ATM ${ },欢迎您!</title>
+    <title>JIMI ATM ${loginUser.name},欢迎您!</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/layui/css/layui.css" media="all">
 </head>
 <body class="layui-layout-body">
@@ -42,7 +42,6 @@
                         <dd><a href="/client/skpAddMoney">存钱</a></dd>
                         <dd><a href="/client/skpGetMoney">取钱</a></dd>
                         <dd><a href="/client/selectMoney">余额</a></dd>
-                        <dd><a href="">明细</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="http://www.jimicloud.com">关于</a></li>
@@ -52,30 +51,7 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <table class="layui-table" lay-data="{width: 892, height:332, url:'/demo/table/user/', page:true, id:'idTest'}"
-               lay-filter="demo">
-            <thead>
-            <tr>
-                <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
-                <th lay-data="{field:'id', width:80, sort: true, fixed: true}">ID</th>
-                <th lay-data="{field:'username', width:80}">用户名</th>
-                <th lay-data="{field:'sex', width:80, sort: true}">性别</th>
-                <th lay-data="{field:'city', width:80}">城市</th>
-                <th lay-data="{field:'sign', width:160}">签名</th>
-                <th lay-data="{field:'experience', width:80, sort: true}">积分</th>
-
-                <th lay-data="{field:'classify', width:80}">职业</th>
-                <th lay-data="{field:'wealth', width:135, sort: true}">财富</th>
-                <th lay-data="{field:'score', width:80, sort: true, fixed: 'right'}">评分</th>
-                <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
-            </tr>
-            </thead>
-        </table>
-        <script type="text/html" id="barDemo">
-            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-        </script>
+        <table id="demo" lay-filter="test"></table>
     </div>
 
     <div class="layui-footer">
@@ -85,34 +61,26 @@
 
 <script src="${pageContext.request.contextPath}/resources/layui/layui.all.js" charset="utf-8"></script>
 <script>
-    layui.use('table', function () {
+    layui.use('table', function(){
         var table = layui.table;
-        //监听表格复选框选择
-        table.on('checkbox(demo)', function (obj) {
-            console.log(obj)
-        });
-        //监听工具条
-        table.on('tool(demo)', function (obj) {
-            var data = obj.data;
-            if (obj.event === 'detail') {
-                layer.msg('ID：' + data.id + ' 的查看操作');
-            } else if (obj.event === 'del') {
-                layer.confirm('真的删除行么', function (index) {
-                    obj.del();
-                    layer.close(index);
-                });
-            } else if (obj.event === 'edit') {
-                layer.alert('编辑行：<br>' + JSON.stringify(data))
-            }
+
+        //第一个实例
+        table.render({
+            elem: '#demo'
+            ,height: 312
+            ,url: '/config/listPermission' //数据接口
+            ,page: true //开启分页
+            ,cols: [[ //表头
+                {field: 'id', title: '权限ID', width:80, sort: true, fixed: 'left'}
+                ,{field: 'name', title: '权限名称', width:80}
+                ,{field: 'url', title: '权限路径', width:80, sort: true}
+                ,{field: 'gmtCreate', title: '创建时间', width:80}
+                ,{field: 'gmtModified', title: '修改时间', width: 177}
+            ]]
         });
 
-
-        $('.demoTable .layui-btn').on('click', function () {
-            var type = $(this).data('type');
-            active[type] ? active[type].call(this) : '';
-        });
     });
-</script>
 
+</script>
 </body>
 </html>

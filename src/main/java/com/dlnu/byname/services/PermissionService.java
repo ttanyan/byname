@@ -70,13 +70,13 @@ public interface PermissionService {
      * @date 2019/4/24 9:23
      */
     int updatePermission(PermissionDO permissionDO);
-    /** 
-     * 获取所有权限 
-     * @return java.util.List&lt;com.dlnu.byname.domain.entity.PermissionDO&gt; 
-     * @author  TanLianWang
-     * @date 2019/4/24 9:14
-     */ 
+
+    /**
+     * 获取权限
+     * @return
+     */
     List<PermissionDO> listPermission();
+
 
 
 

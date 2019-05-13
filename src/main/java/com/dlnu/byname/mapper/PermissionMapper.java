@@ -59,10 +59,11 @@ public interface PermissionMapper  {
     PermissionDO get(Long id);
 
     /**
-     * 获取所有的权限列表
-     * @return List<PermissionDO>
+     * 获取权限列表
+     * @return
      */
     List<PermissionDO> listPermission();
+
     /** 
      * 根据roleId获取权限名称
      * @param roleId  角色id
@@ -72,4 +73,15 @@ public interface PermissionMapper  {
      */ 
     Set<UserPermissionBO> listByRoleId(Long roleId);
 
+    /**
+     * 获取所有的url
+     * @return
+     */
+    List<String> listUrl();
+
+    /**
+     * 获取总数
+     * @return
+     */
+    Integer getCount();
 }

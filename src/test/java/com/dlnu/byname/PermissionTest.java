@@ -74,6 +74,10 @@ public class PermissionTest extends BaseTest{
             logger.info(p.toString());
         });
     }
+    @Test
+    public void getCount(){
+        System.out.println(permissionMapper.getCount());
+    }
 
 
 

@@ -57,9 +57,9 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Override
     public Boolean needInterceptor(String url) {
-        List<PermissionDO> listPermission = permissionMapper.listPermission();
-        for(PermissionDO permissionDO:listPermission){
-            if(permissionDO.getUrl().equals(url)){
+        List<String> listUrl = permissionMapper.listUrl();
+        for(String Purl:listUrl){
+            if(Purl.equals(url)){
                 return true;
             }
         }
