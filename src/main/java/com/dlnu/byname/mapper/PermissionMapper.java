@@ -39,10 +39,10 @@ public interface PermissionMapper  {
 
     /**
      * 删除权限
-     * @param id 权限id
+     * @param ids 权限id
      * @return
      */
-    int delete(Long id);
+    int delete(Set<Long> ids);
 
     /**
      * 修改权限

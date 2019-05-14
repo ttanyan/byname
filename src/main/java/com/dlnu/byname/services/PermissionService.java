@@ -56,12 +56,12 @@ public interface PermissionService {
     int insertPermission(PermissionDO permissionDO);
     /**
      * 删除单个权限
-     * @param id  权限id
+     * @param  ids 权限id
      * @return int
      * @author  TanLianWang
      * @date 2019/4/24 9:22
      */
-    int deletePermission(Long id);
+    int deletePermission(Set<Long> ids);
     /**
      * 修改权限
      * @param permissionDO  {@link PermissionDO}

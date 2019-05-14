@@ -21,10 +21,13 @@
     </insert>
 
     <!--删除权限-->
-    <delete id="delete" parameterType="Long">
+    <delete id="delete" parameterType="java.util.Set">
         DELETE
         FROM permission
-        WHERE id = #{id}
+        WHERE id IN
+        <foreach collection="collection" open="(" separator="," close=")"  item="item">
+                #{item}
+        </foreach>
     </delete>
 
     <!--修改权限-->

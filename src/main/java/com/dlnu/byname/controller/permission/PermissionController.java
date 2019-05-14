@@ -23,13 +23,15 @@ import com.dlnu.byname.mapper.PermissionMapper;
 import com.dlnu.byname.services.PermissionService;
 import com.dlnu.byname.util.PageBean;
 import com.github.pagehelper.PageHelper;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author TanLianWang
@@ -38,7 +40,7 @@ import java.util.List;
  * @Date 2019/4/24 9:08
  * 实现权限的增删改查
  */
-@Controller
+@RestController
 @RequestMapping("config")
 public class PermissionController {
     @Resource
@@ -57,14 +59,16 @@ public class PermissionController {
         return "listPermission";
     }
     @RequestMapping("deletePermission")
-    public String deletePermission(Model model,Long id){
-        if(id != null) {
-            permissionService.deletePermission(id);
-            model.addAttribute("PermissionMessage", "OK");
-        }else{
-            model.addAttribute("PermissionMessage","删除失败");
-        }
-        return "listPermission";
+    public JsonResult<List> deletePermission(@RequestBody List<PermissionDO> list){
+        //TODO 优化
+        //将ID存放在Set数组中,其实可以不用Set，或者不进行提取，直接传递list即可
+        Set<Long> setList = new HashSet<>();
+        //增强for循环
+        list.forEach(p->{
+            setList.add(p.getId());
+        });
+        permissionService.deletePermission(setList);
+        return new JsonResult<>();
     }
     @RequestMapping("updatePermission")
     public String updatePermission(Model model,PermissionDO permissionDO){
@@ -77,7 +81,6 @@ public class PermissionController {
         return "listPermission";
     }
     @RequestMapping("listPermission")
-    @ResponseBody
     public JsonResult<List> getListPermission(int page,int limit){
         PageHelper.startPage(page,limit);
         List<PermissionDO> permissionDOList = permissionService.listPermission();

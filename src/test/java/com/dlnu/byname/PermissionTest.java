@@ -46,8 +46,9 @@ public class PermissionTest extends BaseTest{
     }
     @Test
     public void deletePermissionTest(){
-        Integer i = permissionMapper.delete(1L);
-        logger.info("result"+i);
+//        Set<>
+//        Integer i = permissionMapper.delete(1L);
+//        logger.info("result"+i);
     }
     @Test
     public void updatePermissionTest(){

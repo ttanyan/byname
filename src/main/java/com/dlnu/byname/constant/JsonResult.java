@@ -57,10 +57,11 @@ public class JsonResult<T> {
     public JsonResult( String msg) {
         this.code = "500";
         this.msg = msg;
+        this.count = 0;
     }
 
     /**
-     * 有数据返回时，状态码为 0，默认提示信息为“操作成功！”
+     * 有数据返回时，状态码为 0，默认提示信息为“操作成功！”,总数为0
      * @param data 数据
      */
     public JsonResult(T data) {

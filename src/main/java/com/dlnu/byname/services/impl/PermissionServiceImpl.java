@@ -76,9 +76,9 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public int deletePermission(Long id) {
-        if(id != null) {
-            sign = permissionMapper.delete(id);
+    public int deletePermission(Set<Long> ids) {
+        if(!ids.isEmpty()) {
+            sign = permissionMapper.delete(ids);
         }
         return sign;
 
