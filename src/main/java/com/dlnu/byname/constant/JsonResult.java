@@ -55,7 +55,7 @@ public class JsonResult<T> {
      * @param msg 响应结果
      */
     public JsonResult( String msg) {
-        this.code = "500";
+        this.code = "400";
         this.msg = msg;
         this.count = 0;
     }

@@ -23,7 +23,6 @@ import com.dlnu.byname.domain.entity.PermissionDO;
 import com.dlnu.byname.domain.entity.UserRoleDO;
 import com.dlnu.byname.mapper.PermissionMapper;
 import com.dlnu.byname.services.PermissionService;
-import com.dlnu.byname.services.RolePermissionService;
 import com.dlnu.byname.services.UserRoleService;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +42,9 @@ public class PermissionServiceImpl implements PermissionService {
     PermissionMapper permissionMapper;
     @Resource
     UserRoleService userRoleService;
+    /**
+     * 结果状态
+     */
     int sign = CommonConstant.RESULT_STATUS_FAIL;
     @Override
     public Set<UserPermissionBO> listByUserNumber(String number) {
@@ -76,9 +78,9 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public int deletePermission(Set<Long> ids) {
-        if(!ids.isEmpty()) {
-            sign = permissionMapper.delete(ids);
+    public int deletePermission(List<PermissionDO> list) {
+        if(!list.isEmpty()) {
+            sign = permissionMapper.delete(list);
         }
         return sign;
 

@@ -24,6 +24,8 @@ import com.dlnu.byname.services.PermissionService;
 import org.junit.Test;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -42,13 +44,25 @@ public class PermissionTest extends BaseTest{
         PermissionDO permissionDO = new PermissionDO();
         permissionDO.setName("退出");
         permissionDO.setUrl("/logout");
-        permissionMapper.insert(permissionDO);
+        for(int i = 0;i<= 100;i++) {
+            permissionMapper.insert(permissionDO);
+        }
     }
     @Test
     public void deletePermissionTest(){
-//        Set<>
-//        Integer i = permissionMapper.delete(1L);
-//        logger.info("result"+i);
+        PermissionDO permissionDO = new PermissionDO();
+        permissionDO.setName("退出");
+        permissionDO.setUrl("/logout");
+        permissionDO.setId(19L);
+        PermissionDO permissionDO1 = new PermissionDO();
+        permissionDO1.setName("退出");
+        permissionDO1.setUrl("/logout");
+        permissionDO1.setId(18L);
+        List<PermissionDO> list = new ArrayList<>();
+        list.add(permissionDO);
+        list.add(permissionDO1);
+        Integer i = permissionMapper.delete(list);
+        logger.info("result"+i);
     }
     @Test
     public void updatePermissionTest(){

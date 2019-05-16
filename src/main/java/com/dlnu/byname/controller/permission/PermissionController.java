@@ -17,6 +17,7 @@
 
 package com.dlnu.byname.controller.permission;
 
+import com.dlnu.byname.constant.CommonConstant;
 import com.dlnu.byname.constant.JsonResult;
 import com.dlnu.byname.domain.entity.PermissionDO;
 import com.dlnu.byname.mapper.PermissionMapper;
@@ -29,9 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author TanLianWang
@@ -47,6 +46,10 @@ public class PermissionController {
     PermissionService permissionService;
     @Resource
     PermissionMapper permissionMapper;
+    /**
+     * 结果状态
+     */
+    int sign = CommonConstant.RESULT_STATUS_FAIL;
 
     @RequestMapping("insertPermission")
     public String insertPermission(Model model,PermissionDO permissionDO){
@@ -60,14 +63,11 @@ public class PermissionController {
     }
     @RequestMapping("deletePermission")
     public JsonResult<List> deletePermission(@RequestBody List<PermissionDO> list){
-        //TODO 优化
-        //将ID存放在Set数组中,其实可以不用Set，或者不进行提取，直接传递list即可
-        Set<Long> setList = new HashSet<>();
-        //增强for循环
-        list.forEach(p->{
-            setList.add(p.getId());
-        });
-        permissionService.deletePermission(setList);
+        sign = permissionService.deletePermission(list);
+        //判断是否已经删除
+        if(sign == CommonConstant.RESULT_STATUS_FAIL){
+            return new JsonResult<>("未选择！");
+        }
         return new JsonResult<>();
     }
     @RequestMapping("updatePermission")

@@ -42,7 +42,7 @@ public interface PermissionMapper  {
      * @param ids 权限id
      * @return
      */
-    int delete(Set<Long> ids);
+    int delete(List<PermissionDO> list);
 
     /**
      * 修改权限

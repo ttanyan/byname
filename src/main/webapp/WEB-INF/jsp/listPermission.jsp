@@ -97,11 +97,12 @@
             switch(obj.event){
                 case 'addData':
                     var data = checkStatus.data;
+                    // console.log(data);data是一个对象，无法反序列化成JSON数组！
                     layer.alert(JSON.stringify(data));
                     break;
                 case 'deleteData':
                     var data = checkStatus.data;
-                    // console.log(JSON.stringify(data));
+                    console.log(JSON.stringify(data))
                     layer.confirm('批量删除:'+ data.length+ ' 个？', function(index){
                         layer.close(index);
                         $.ajax({
@@ -112,14 +113,15 @@
                             dataType: "json",
                             success: function(data){
                                 layer.msg(data.msg);
+                                //请求成功后刷新页面
+                                // window.location.reload();
+
                             },
-                            error:function(data){
-                                layer.msg("操作失败！"+data.toString());
+                            error:function(){
+                                layer.msg("网络错误！");
                             }
                         });
                     });
-
-                    // layer.msg(checkStatus.isAll ? '全选': '未全选');
                     break;
             };
         });
@@ -127,11 +129,25 @@
         //监听行工具事件
         table.on('tool(test)', function(obj){
             var data = obj.data;
-            // console.log(obj)
+            console.log(JSON.stringify(data));
             if(obj.event === 'del'){
                 layer.confirm('确定删除？', function(index){
-                    obj.del();
                     layer.close(index);
+                    $.ajax({
+                        type: 'POST',
+                        url: "/config/deletePermission",
+                        contentType: "application/json",
+                        data:"["+JSON.stringify(data)+"]",
+                        dataType: "json",
+                        success: function(data){
+                            location.reload();
+                            layer.msg(data.msg);
+                        },
+                        error:function(){
+                            layer.msg("网络错误！");
+                        }
+                    });
+                    // obj.del();
                 });
             } else if(obj.event === 'edit'){
                 layer.prompt({
