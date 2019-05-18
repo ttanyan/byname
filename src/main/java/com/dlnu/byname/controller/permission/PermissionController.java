@@ -24,7 +24,6 @@ import com.dlnu.byname.mapper.PermissionMapper;
 import com.dlnu.byname.services.PermissionService;
 import com.dlnu.byname.util.PageBean;
 import com.github.pagehelper.PageHelper;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,33 +51,39 @@ public class PermissionController {
     int sign = CommonConstant.RESULT_STATUS_FAIL;
 
     @RequestMapping("insertPermission")
-    public String insertPermission(Model model,PermissionDO permissionDO){
-        if(permissionDO != null){
-            permissionService.insertPermission(permissionDO);
-            model.addAttribute("PermissionMessage","OK");
-        }else{
-            model.addAttribute("PermissionMessage","添加失败");
+    public JsonResult<List> insertPermission(@RequestBody PermissionDO permissionDO){
+        if(permissionDO.getName() != null){
+           sign = permissionService.insertPermission(permissionDO);
         }
-        return "listPermission";
+        if(sign == CommonConstant.RESULT_STATUS_SUCCESS){
+            return new JsonResult<>("添加成功");
+        }else{
+            return new JsonResult<>("添加失败");
+        }
     }
+
     @RequestMapping("deletePermission")
     public JsonResult<List> deletePermission(@RequestBody List<PermissionDO> list){
+        //判断是否选择
+        if(list.isEmpty()){
+            return new JsonResult<>("未勾选！");
+        }
         sign = permissionService.deletePermission(list);
         //判断是否已经删除
         if(sign == CommonConstant.RESULT_STATUS_FAIL){
-            return new JsonResult<>("未选择！");
+            return  new JsonResult<>("不存在！");
         }
-        return new JsonResult<>();
+        return new JsonResult<>("删除成功！");
     }
+
     @RequestMapping("updatePermission")
-    public String updatePermission(Model model,PermissionDO permissionDO){
-        if(permissionDO != null){
+    public JsonResult<List> updatePermission(@RequestBody PermissionDO permissionDO){
+        if(permissionDO.getId() != null){
           permissionService.updatePermission(permissionDO);
-          model.addAttribute("PermissionMessage","OK");
+            return  new JsonResult<>("修改成功！");
         }else{
-            model.addAttribute("PermissionMessage","修改失败");
+            return  new JsonResult<>("修改信息不存在！");
         }
-        return "listPermission";
     }
     @RequestMapping("listPermission")
     public JsonResult<List> getListPermission(int page,int limit){

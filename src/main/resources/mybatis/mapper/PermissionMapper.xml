@@ -58,6 +58,7 @@
     <select id="getCount" resultType="Integer">
         SELECT COUNT(*) FROM permission
     </select>
+
     <!--获取所有的url-->
     <select id="listUrl" resultType="String">
         SELECT url FROM permission

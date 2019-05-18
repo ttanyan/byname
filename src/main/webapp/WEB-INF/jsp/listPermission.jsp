@@ -10,8 +10,18 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>ByName System Config</title>
+    <title>
+        ByName System Config
+    </title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/layui/css/layui.css" media="all">
+    <style>
+        .left{
+            float:left;
+        }
+        .center{
+            float: right;
+        }
+    </style>
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -48,8 +58,34 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
-        <table class="layui-hide" id="test" lay-filter="test"></table>
 
+        <%--<fieldset class="layui-elem-field layui-field-title">--%>
+            <%--<legend>权限列表</legend>--%>
+        <%--</fieldset>--%>
+        <table class="layui-hide" id="test" lay-filter="test"></table>
+        <!--弹出层-->
+        <div class="layui-row"  style="display:none;">
+            <form class="layui-form" id="addPermission" action="##" method="post">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">权限名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="name" lay-verify="required" placeholder="权限名称" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">权限路径</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="url" lay-verify="required" placeholder="权限路径" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit="" lay-filter="demo1" onclick="addPer()">添加</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
     <div class="layui-footer">
@@ -60,34 +96,69 @@
 <script src="${pageContext.request.contextPath}/resources/layui/layui.all.js" charset="utf-8"></script>
 <script src="${pageContext.request.contextPath}/resources/jquery-3.4.1.min.js" charset="utf-8"></script>
 <script type="text/html" id="toolbarDemo">
-    <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="addData">新增权限</button>
-        <button class="layui-btn layui-btn-sm" lay-event="deleteData">批量删除</button>
-    </div>
+
+    <span class="left">
+      <div class="layui-btn-container">
+        <button class="layui-btn " lay-event="addData" data-method="offset" data-type="auto">新增</button>
+        <button class="layui-btn " lay-event="deleteData" >删除</button>
+      </div>
+    </span>
+    <span class="center">
+        <div class="demoTable">
+            搜索ID：
+            <div class="layui-inline">
+                <input class="layui-input " name="id" id="demoReload" autocomplete="off">
+            </div>
+            <button class="layui-btn " data-type="reload">搜索</button>
+        </div>
+    </span>
+
 </script>
 
-<script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-</script>
 <script>
     layui.use('table', function(){
         var table = layui.table;
         table.render({
             elem: '#test'
+            ,cellMinWidth: 80
             ,url:'/config/listPermission'
             ,toolbar: '#toolbarDemo'
             ,title: '权限数据表'
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 ,{field:'id', title:'ID', width:80, fixed: 'left', unresize: true, sort: true}
-                ,{field:'name', title:'权限名称', width:120, edit: 'text'}
-                ,{field:'url', title:'权限路径', width:120, edit: 'text',sort: true}
-                ,{field:'gmtCreate', title:'创建时间', width:200}
-                ,{field:'gmtModified', title:'更新时间', width:200}
-                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+                ,{field:'name', title:'权限名称',  edit: 'text',sort: true}
+                ,{field:'url', title:'权限路径', edit: 'text',sort: true}
+                ,{field:'gmtCreate', title:'创建时间'}
+                ,{field:'gmtModified', title:'更新时间'}
             ]]
             ,page: true
+            ,id:'testTable'
+        });
+
+
+        //监听单元格编辑
+        table.on('edit(test)', function(obj){
+            var value = obj.value //得到修改后的值
+                ,data = obj.data //得到所在行所有键值
+            // console.log(JSON.stringify(data));
+            $.ajax({
+                type: 'POST',
+                url: "/config/updatePermission",
+                contentType: "application/json",
+                data:JSON.stringify(data),
+                dataType: "json",
+                success: function(data){
+                    //TODO 优化提示
+                    layer.msg( data.msg);
+                    //重载表格
+                    table.reload('testTable');
+                },
+                error:function(){
+                    layer.msg("网络错误！");
+                }
+            });
+
         });
 
         //头工具栏事件
@@ -97,13 +168,19 @@
             switch(obj.event){
                 case 'addData':
                     var data = checkStatus.data;
-                    // console.log(data);data是一个对象，无法反序列化成JSON数组！
-                    layer.alert(JSON.stringify(data));
+                    layer.open({
+                        //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+                        type:1,
+                        title:"添加权限",
+                        area: ['35%','35%'],
+                        content:$("#addPermission").html()
+                    });
+
                     break;
                 case 'deleteData':
                     var data = checkStatus.data;
                     console.log(JSON.stringify(data))
-                    layer.confirm('批量删除:'+ data.length+ ' 个？', function(index){
+                    layer.confirm('确定删除:'+ data.length+ ' 个？', function(index){
                         layer.close(index);
                         $.ajax({
                             type: 'POST',
@@ -113,9 +190,8 @@
                             dataType: "json",
                             success: function(data){
                                 layer.msg(data.msg);
-                                //请求成功后刷新页面
-                                // window.location.reload();
-
+                                //重载表格
+                                table.reload('testTable');
                             },
                             error:function(){
                                 layer.msg("网络错误！");
@@ -125,43 +201,26 @@
                     break;
             };
         });
+    });
 
-        //监听行工具事件
-        table.on('tool(test)', function(obj){
-            var data = obj.data;
-            console.log(JSON.stringify(data));
-            if(obj.event === 'del'){
-                layer.confirm('确定删除？', function(index){
-                    layer.close(index);
-                    $.ajax({
-                        type: 'POST',
-                        url: "/config/deletePermission",
-                        contentType: "application/json",
-                        data:"["+JSON.stringify(data)+"]",
-                        dataType: "json",
-                        success: function(data){
-                            location.reload();
-                            layer.msg(data.msg);
-                        },
-                        error:function(){
-                            layer.msg("网络错误！");
-                        }
-                    });
-                    // obj.del();
-                });
-            } else if(obj.event === 'edit'){
-                layer.prompt({
-                    formType: 2
-                    ,value: data.email
-                }, function(value, index){
-                    obj.update({
-                        email: value
-                    });
-                    layer.close(index);
-                });
+    //增加权限
+    function addPer(){
+        console.log( $('#addPermission').serialize().toString());
+        $.ajax({
+            type: "POST",
+            url: "/config/insertPermission" ,
+            contentType: "application/json",
+            data: $('#addPermission').serialize(),
+            dataType: "json",
+            success: function (data) {
+              layer.msg(data.msg);
+              // table.reload('testTable');
+            },
+            error : function() {
+                layer.msg("网络错误！");
             }
         });
-    });
+    }
 
 </script>
 </body>
