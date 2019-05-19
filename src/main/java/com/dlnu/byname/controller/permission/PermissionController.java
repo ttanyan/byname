@@ -51,46 +51,50 @@ public class PermissionController {
     int sign = CommonConstant.RESULT_STATUS_FAIL;
 
     @RequestMapping("insertPermission")
-    public JsonResult<List> insertPermission(@RequestBody PermissionDO permissionDO){
-        if(permissionDO.getName() != null){
-           sign = permissionService.insertPermission(permissionDO);
+    public JsonResult<List> insertPermission(@RequestBody PermissionDO permissionDO) {
+        if (!permissionDO.getName().isEmpty()) {
+            sign = permissionService.insertPermission(permissionDO);
+            if (sign == CommonConstant.RESULT_STATUS_SUCCESS) {
+                return new JsonResult<>("添加成功!");
+            } else {
+                return new JsonResult<>("添加失败!");
+            }
+        } else {
+            return new JsonResult<>("添加失败!");
         }
-        if(sign == CommonConstant.RESULT_STATUS_SUCCESS){
-            return new JsonResult<>("添加成功");
-        }else{
-            return new JsonResult<>("添加失败");
-        }
+
     }
 
     @RequestMapping("deletePermission")
-    public JsonResult<List> deletePermission(@RequestBody List<PermissionDO> list){
+    public JsonResult<List> deletePermission(@RequestBody List<PermissionDO> list) {
         //判断是否选择
-        if(list.isEmpty()){
+        if (list.isEmpty()) {
             return new JsonResult<>("未勾选！");
         }
         sign = permissionService.deletePermission(list);
         //判断是否已经删除
-        if(sign == CommonConstant.RESULT_STATUS_FAIL){
-            return  new JsonResult<>("不存在！");
+        if (sign == CommonConstant.RESULT_STATUS_FAIL) {
+            return new JsonResult<>("不存在！");
         }
         return new JsonResult<>("删除成功！");
     }
 
     @RequestMapping("updatePermission")
-    public JsonResult<List> updatePermission(@RequestBody PermissionDO permissionDO){
-        if(permissionDO.getId() != null){
-          permissionService.updatePermission(permissionDO);
-            return  new JsonResult<>("修改成功！");
-        }else{
-            return  new JsonResult<>("修改信息不存在！");
+    public JsonResult<List> updatePermission(@RequestBody PermissionDO permissionDO) {
+        if (permissionDO.getId() != null) {
+            permissionService.updatePermission(permissionDO);
+            return new JsonResult<>("修改成功！");
+        } else {
+            return new JsonResult<>("修改信息不存在！");
         }
     }
+
     @RequestMapping("listPermission")
-    public JsonResult<List> getListPermission(int page,int limit){
-        PageHelper.startPage(page,limit);
+    public JsonResult<List> getListPermission(int page, int limit) {
+        PageHelper.startPage(page, limit);
         List<PermissionDO> permissionDOList = permissionService.listPermission();
         int count = permissionMapper.getCount();
-        PageBean<PermissionDO> pageData = new PageBean<>(page,limit,count);
+        PageBean<PermissionDO> pageData = new PageBean<>(page, limit, count);
         pageData.setItems(permissionDOList);
         return new JsonResult<>(pageData.getItems(), count);
     }
