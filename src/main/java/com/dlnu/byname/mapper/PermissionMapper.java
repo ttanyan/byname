@@ -39,7 +39,7 @@ public interface PermissionMapper  {
 
     /**
      * 删除权限
-     * @param ids 权限id
+     * @param list 权限id
      * @return
      */
     int delete(List<PermissionDO> list);
@@ -63,6 +63,13 @@ public interface PermissionMapper  {
      * @return
      */
     List<PermissionDO> listPermission();
+
+    /**
+     * 根据关键字进行搜索
+     * @param keyWord
+     * @return
+     */
+    List<PermissionDO> selectKeyPermission(String keyWord);
 
     /** 
      * 根据roleId获取权限名称

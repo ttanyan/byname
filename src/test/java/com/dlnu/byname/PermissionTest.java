@@ -90,8 +90,15 @@ public class PermissionTest extends BaseTest{
         });
     }
     @Test
-    public void getCount(){
+    public void getCountTest(){
         System.out.println(permissionMapper.getCount());
+    }
+    @Test
+    public void selectKeyPermissionTest(){
+        List<PermissionDO> listPermission = permissionMapper.selectKeyPermission("登");
+       listPermission.forEach(p->{
+           logger.info("权限名称:"+p.getName());
+       });
     }
 
 

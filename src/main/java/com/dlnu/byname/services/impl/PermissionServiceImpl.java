@@ -99,4 +99,15 @@ public class PermissionServiceImpl implements PermissionService {
         List<PermissionDO> permissionDOList = permissionMapper.listPermission();
         return permissionDOList;
     }
+
+    @Override
+    public List<PermissionDO> selectKeyPermission(String keyWord) {
+       if(!keyWord.isEmpty()){
+           List<PermissionDO> permissionDOKeyList = permissionMapper.selectKeyPermission(keyWord);
+           return permissionDOKeyList;
+       }else{
+           return null;
+       }
+
+    }
 }

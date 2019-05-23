@@ -19,9 +19,10 @@
             float: left;
         }
 
-        .center {
+        .right {
             float: right;
         }
+
     </style>
 </head>
 <body class="layui-layout-body">
@@ -57,7 +58,7 @@
         </div>
     </div>
 
-    <div class="layui-body">
+    <div class="layui-body" style="bottom: 0px">
 
         <!-- 内容主体区域 -->
         <table class="layui-hide" id="test" lay-filter="test"></table>
@@ -66,7 +67,7 @@
 
     <!--弹出层-->
     <div id="addPermission" style="display:none;">
-        <form class="layui-form"  id="addPermissionForm" action="" >
+        <form class="layui-form" id="addPermissionForm" action="">
             <div class="layui-form-item">
                 <label class="layui-form-label">权限名称</label>
                 <div class="layui-input-inline">
@@ -92,34 +93,35 @@
         </form>
     </div>
 
-    <div class="layui-footer">
-        © www.dlnu.com - 教师点名系统
-    </div>
+    <%--<div class="layui-footer">--%>
+        <%--© www.dlnu.com - 教师点名系统--%>
+    <%--</div>--%>
 </div>
 
 <script src="${pageContext.request.contextPath}/resources/layui/layui.all.js" charset="utf-8"></script>
 <script src="${pageContext.request.contextPath}/resources/jquery-3.4.1.min.js" charset="utf-8"></script>
 <script type="text/html" id="toolbarDemo">
-
     <span class="left">
       <div class="layui-btn-container">
         <button class="layui-btn " lay-event="addData" data-method="offset" data-type="auto">新增</button>
         <button class="layui-btn " lay-event="deleteData">删除</button>
       </div>
     </span>
-    <span class="center">
+    <span class="right">
         <div class="demoTable">
-            搜索ID：
             <div class="layui-inline">
-                <input class="layui-input " name="id" id="demoReload" autocomplete="off">
+                 <i class="layui-icon layui-icon-search" style="position: absolute;top:5px;right: 8px;"/>
+                <input class="layui-input" name="search_value" id="search_value" placeholder="ID/权限名称/权限路径"
+                       autocomplete="off">
+
             </div>
-            <button class="layui-btn " data-type="reload">搜索</button>
+            <button class="layui-btn " lay-event="search" id="search">搜索</button>
         </div>
     </span>
-
 </script>
 
 <script>
+    //初始化渲染表格
     layui.use('table', function () {
         var table = layui.table;
         table.render({
@@ -139,7 +141,6 @@
             , page: true
             , id: 'testTable'
         });
-
 
         //监听单元格编辑
         table.on('edit(test)', function (obj) {
@@ -162,10 +163,9 @@
                     layer.msg("网络错误！");
                 }
             });
-
         });
 
-        //头工具栏事件
+        //头工具栏事件--增加、删除、搜索
         table.on('toolbar(test)', function (obj) {
             // console.log(obj.config.id)
             var checkStatus = table.checkStatus(obj.config.id);
@@ -177,12 +177,16 @@
                         title: "添加权限",
                         area: ['35%', '35%'],
                         content: $("#addPermission"),
+                        cancel: function (index) {
+                            document.getElementById('addPermission').style.display = 'none';
+                            layer.close(index);
+                            return false;
+                        }
                     });
-
                     break;
                 case 'deleteData':
                     var data = checkStatus.data;
-                    console.log(JSON.stringify(data))
+                    // console.log(JSON.stringify(data))
                     layer.confirm('确定删除:' + data.length + ' 个？', function (index) {
                         layer.close(index);
                         $.ajax({
@@ -202,17 +206,31 @@
                         });
                     });
                     break;
+                case 'search':
+                    var data = $('#search_value').val();
+                    console.log(data);
+                    if (data == null) {
+                        data = '';
+                    }
+                    table.reload('testTable', {
+                        url: "/config/selectKeyPermission"
+                        , where: {
+                            keyWord: data
+                        }
+                        , page: true
+                    });
+                    break;
             }
             ;
         });
     });
 
-    //增加权限
+    //增加权限（form表单）
     layui.use('form', function () {
         var form = layui.form;
         //监听提交
         form.on('submit(formDemo)', function (data) {
-            console.log(JSON.stringify(data.field))
+            // console.log(JSON.stringify(data.field))
             $.ajax({
                 type: 'POST',
                 url: "/config/insertPermission",
@@ -222,7 +240,10 @@
                 success: function (data) {
                     // 关闭所有弹窗
                     layer.closeAll();
+                    //重置输入框
                     document.getElementById("addPermissionForm").reset();
+                    //隐藏弹出框
+                    document.getElementById('addPermission').style.display = 'none';
                     layer.msg(data.msg);
                     //重载表格
                     table.reload('testTable');

@@ -29,6 +29,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -97,6 +99,30 @@ public class PermissionController {
         PageBean<PermissionDO> pageData = new PageBean<>(page, limit, count);
         pageData.setItems(permissionDOList);
         return new JsonResult<>(pageData.getItems(), count);
+    }
+
+    @RequestMapping("/selectKeyPermission")
+    public JsonResult<List> selectPermission(int page, int limit, String keyWord) {
+        int count = CommonConstant.RESULT_STATUS_FAIL;
+        List<PermissionDO> permissionDOKeyListOne,permissionDOKeyList;
+        //统计查询结果总数
+        if (keyWord.isEmpty()) {
+           permissionDOKeyListOne = permissionService.listPermission();
+        } else {
+            permissionDOKeyListOne = permissionService.selectKeyPermission(keyWord);
+        }
+        count = permissionDOKeyListOne.size();
+        PageHelper.startPage(page, limit);
+        if(keyWord.isEmpty()){
+            permissionDOKeyList = permissionService.listPermission();
+        }else{
+            permissionDOKeyList = permissionService.selectKeyPermission(keyWord);
+        }
+        PageBean<PermissionDO> pageData = new PageBean<>(page, limit, count);
+        pageData.setItems(permissionDOKeyList);
+        return new JsonResult<>(pageData.getItems(), count);
+
+
     }
 
 

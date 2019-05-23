@@ -77,6 +77,13 @@ public interface PermissionService {
      */
     List<PermissionDO> listPermission();
 
+    /**
+     * 根据关键字搜索权限
+     * @param keyWord 关键字
+     * @return
+     */
+    List<PermissionDO> selectKeyPermission(String keyWord);
+
 
 
 

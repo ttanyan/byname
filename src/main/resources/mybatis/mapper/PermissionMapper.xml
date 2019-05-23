@@ -40,7 +40,7 @@
         WHERE id = #{id}
     </update>
 
-    <!--根据获取单个权限-->
+    <!--根据id获取单个权限-->
     <select id="get"  parameterType="Long" resultType="PermissionDO">
         SELECT <include refid="permissionFiled"/>
         FROM permission
@@ -52,6 +52,23 @@
     <select id="listPermission"  resultType="PermissionDO">
         SELECT <include refid="permissionFiled"/>
         FROM permission
+    </select>
+
+    <!--根据关键字获进行搜索-->
+    <select id="selectKeyPermission" parameterType="String" resultType="PermissionDO">
+        SELECT <include refid="permissionFiled"/>
+        FROM permission
+        <where>
+            <if test="_parameter != null">
+                id LIKE CONCAT('%',#{ _parameter },'%')
+            </if>
+            <if test="_parameter != null">
+                OR name LIKE CONCAT('%',#{ _parameter },'%')
+            </if>
+            <if test="_parameter != null">
+                OR url LIKE CONCAT('%',#{ _parameter }, '%')
+            </if>
+        </where>
     </select>
 
     <!--获取总数tetol-->
