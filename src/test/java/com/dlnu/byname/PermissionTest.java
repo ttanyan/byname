@@ -95,7 +95,7 @@ public class PermissionTest extends BaseTest{
     }
     @Test
     public void selectKeyPermissionTest(){
-        List<PermissionDO> listPermission = permissionMapper.selectKeyPermission("登");
+        List<PermissionDO> listPermission = permissionMapper.selectKeyPermission("");
        listPermission.forEach(p->{
            logger.info("权限名称:"+p.getName());
        });

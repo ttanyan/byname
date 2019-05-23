@@ -17,6 +17,9 @@
 
 package com.dlnu.byname.common;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDateTime;
 import java.util.StringJoiner;
 
@@ -34,10 +37,14 @@ public abstract class BaseDO {
     /**
      * 创建时间
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat( pattern = "yyyy-MM-dd HH:mm:ss" )
     protected LocalDateTime gmtCreate;
     /**
      * 修改时间
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat( pattern = "yyyy-MM-dd HH:mm:ss" )
     protected LocalDateTime gmtModified;
 
     public Long getId() {

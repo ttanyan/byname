@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -38,7 +39,7 @@ import java.util.List;
  * @version 1.0
  * @Description
  * @Date 2019/4/24 9:08
- * 实现权限的增删改查
+ * 实现权限、角色、用户的增删改查
  */
 @RestController
 @RequestMapping("config")
@@ -103,26 +104,16 @@ public class PermissionController {
 
     @RequestMapping("/selectKeyPermission")
     public JsonResult<List> selectPermission(int page, int limit, String keyWord) {
+        //TODO 需要优化查询总数 目前是查了两遍
         int count = CommonConstant.RESULT_STATUS_FAIL;
-        List<PermissionDO> permissionDOKeyListOne,permissionDOKeyList;
+        List<PermissionDO> permissionDOKeyListOne = permissionService.selectKeyPermission(keyWord);
         //统计查询结果总数
-        if (keyWord.isEmpty()) {
-           permissionDOKeyListOne = permissionService.listPermission();
-        } else {
-            permissionDOKeyListOne = permissionService.selectKeyPermission(keyWord);
-        }
         count = permissionDOKeyListOne.size();
         PageHelper.startPage(page, limit);
-        if(keyWord.isEmpty()){
-            permissionDOKeyList = permissionService.listPermission();
-        }else{
-            permissionDOKeyList = permissionService.selectKeyPermission(keyWord);
-        }
+        List<PermissionDO> permissionDOKeyList = permissionService.selectKeyPermission(keyWord);
         PageBean<PermissionDO> pageData = new PageBean<>(page, limit, count);
         pageData.setItems(permissionDOKeyList);
         return new JsonResult<>(pageData.getItems(), count);
-
-
     }
 
 

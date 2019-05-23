@@ -57,12 +57,9 @@
             </ul>
         </div>
     </div>
-
+    <!-- 内容主体区域 -->
     <div class="layui-body" style="bottom: 0px">
-
-        <!-- 内容主体区域 -->
         <table class="layui-hide" id="test" lay-filter="test"></table>
-
     </div>
 
     <!--弹出层-->
@@ -92,7 +89,7 @@
             </div>
         </form>
     </div>
-
+    <!--底部-->
     <%--<div class="layui-footer">--%>
         <%--© www.dlnu.com - 教师点名系统--%>
     <%--</div>--%>
@@ -223,38 +220,66 @@
             }
             ;
         });
-    });
-
-    //增加权限（form表单）
-    layui.use('form', function () {
-        var form = layui.form;
-        //监听提交
-        form.on('submit(formDemo)', function (data) {
-            // console.log(JSON.stringify(data.field))
-            $.ajax({
-                type: 'POST',
-                url: "/config/insertPermission",
-                contentType: "application/json",
-                data: JSON.stringify(data.field),
-                dataType: "json",
-                success: function (data) {
-                    // 关闭所有弹窗
-                    layer.closeAll();
-                    //重置输入框
-                    document.getElementById("addPermissionForm").reset();
-                    //隐藏弹出框
-                    document.getElementById('addPermission').style.display = 'none';
-                    layer.msg(data.msg);
-                    //重载表格
-                    table.reload('testTable');
-                },
-                error: function () {
-                    layer.msg("网络错误！");
-                }
+        //增加权限（form表单）
+        layui.use('form', function () {
+            var form = layui.form;
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                $.ajax({
+                    type: 'POST',
+                    url: "/config/insertPermission",
+                    contentType: "application/json",
+                    data: JSON.stringify(data.field),
+                    dataType: "json",
+                    success: function (data) {
+                        // 关闭所有弹窗
+                        layer.closeAll();
+                        //重置输入框
+                        document.getElementById("addPermissionForm").reset();
+                        //隐藏弹出框
+                        document.getElementById('addPermission').style.display = 'none';
+                        layer.msg(data.msg);
+                        //重载表格
+                        table.reload('testTable');
+                    },
+                    error: function () {
+                        layer.msg("网络错误！");
+                    }
+                });
+                return false;
             });
-            return false;
         });
     });
+
+    // //增加权限（form表单）
+    // layui.use('form', function () {
+    //     var form = layui.form;
+    //     //监听提交
+    //     form.on('submit(formDemo)', function (data) {
+    //         $.ajax({
+    //             type: 'POST',
+    //             url: "/config/insertPermission",
+    //             contentType: "application/json",
+    //             data: JSON.stringify(data.field),
+    //             dataType: "json",
+    //             success: function (data) {
+    //                 // 关闭所有弹窗
+    //                 layer.closeAll();
+    //                 //重置输入框
+    //                 document.getElementById("addPermissionForm").reset();
+    //                 //隐藏弹出框
+    //                 document.getElementById('addPermission').style.display = 'none';
+    //                 layer.msg(data.msg);
+    //                 //重载表格
+    //                 table.reload('testTable');
+    //             },
+    //             error: function () {
+    //                 layer.msg("网络错误！");
+    //             }
+    //         });
+    //         return false;
+    //     });
+    // });
 
 </script>
 </body>

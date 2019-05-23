@@ -68,6 +68,9 @@
             <if test="_parameter != null">
                 OR url LIKE CONCAT('%',#{ _parameter }, '%')
             </if>
+            <if test="_parameter == null">
+                OR
+            </if>
         </where>
     </select>
 
