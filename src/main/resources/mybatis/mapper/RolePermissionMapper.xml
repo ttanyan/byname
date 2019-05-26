@@ -23,8 +23,8 @@
     <!--此表无修改操作,训练使用-->
     <update id="update" parameterType="RolePermissionDO">
         UPDATE role_permission
-        <if test="roleId != null and roelId != ''">role_id != #{roleId},</if>
-        <if test="permissionId != null and permissionId != ''">permission_id != #{permissionId}</if>
+        <if test="roleId != null and roelId != ''">role_id = #{roleId},</if>
+        <if test="permissionId != null and permissionId != ''">permission_id = #{permissionId}</if>
         WHERE id = #{id}
     </update>
     

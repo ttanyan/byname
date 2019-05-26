@@ -37,10 +37,10 @@ public interface RoleMapper {
     int insert(RoleDO roleDO);
     /**
      * 删除角色
-     * @param id  角色id
+     * @param list  角色id
      * @return
      */
-    int delete(Long id);
+    int delete(List<RoleDO> list);
     /**
      * 修改角色
      * @param roleDO {@link RoleDO}
@@ -59,6 +59,13 @@ public interface RoleMapper {
      * @return List<RoleDO>
      */
     List<RoleDO> listRole();
+
+    /**
+     * 根据关键字搜索
+     * @param keyWord 关键字
+     * @return 返回结果
+     */
+    List<RoleDO> selectKeyRole(String keyWord);
     /**
      * 通过Number获取用户角色
      * @param number  用户编码
@@ -67,4 +74,10 @@ public interface RoleMapper {
      * @date 2019/4/14 19:06
      */
     Set<String> listByUserNumber(String number);
+
+    /**
+     * 获取总数
+     * @return 角色总数
+     */
+    int getCount();
 }

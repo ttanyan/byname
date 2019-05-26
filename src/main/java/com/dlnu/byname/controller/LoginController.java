@@ -70,7 +70,8 @@ public class LoginController {
             Session session = subject.getSession();
             session.setAttribute("subject",subject);
             UserDO userDO = userService.getUser(number);
-            model.addAttribute("loginUser",userDO);
+            model.addAttribute("loginUser",userDO.getName());
+            session.setAttribute("loginUser",userDO.getName());
             return "index";
 
         }catch (AuthenticationException e){

@@ -105,4 +105,9 @@ public class PermissionServiceImpl implements PermissionService {
            List<PermissionDO> permissionDOKeyList = permissionMapper.selectKeyPermission(keyWord);
            return permissionDOKeyList;
     }
+
+    @Override
+    public Integer getCount() {
+        return permissionMapper.getCount();
+    }
 }

@@ -15,10 +15,13 @@
     </insert>
 
     <!--删除角色-->
-    <delete id="delete" parameterType="Long">
+    <delete id="delete" parameterType="RoleDO">
         DELETE
         FROM role
-        WHERE id = #{id}
+        WHERE id IN
+        <foreach collection="list" open="(" separator="," close=")"  item="item">
+            #{item.id}
+        </foreach>
     </delete>
 
     <!--修改角色-->
@@ -45,6 +48,28 @@
         SELECT
         <include refid="roleFiled"/>
         FROM role
+    </select>
+
+    <!--根据关键字获进行搜索-->
+    <select id="selectKeyRole" parameterType="String" resultType="RoleDO">
+        SELECT <include refid="roleFiled"/>
+        FROM role
+        <where>
+            <if test="_parameter != null">
+                id LIKE CONCAT('%',#{ _parameter },'%')
+            </if>
+            <if test="_parameter != null">
+                OR name LIKE CONCAT('%',#{ _parameter },'%')
+            </if>
+            <if test="_parameter != null">
+                OR note LIKE CONCAT('%',#{ _parameter }, '%')
+            </if>
+        </where>
+    </select>
+
+    <!--获取总数tetol-->
+    <select id="getCount" resultType="Integer">
+        SELECT COUNT(*) FROM role
     </select>
 
     <!--根据用户number获取角色-->

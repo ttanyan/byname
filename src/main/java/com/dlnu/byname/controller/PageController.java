@@ -45,4 +45,8 @@ public class PageController {
     public String jumpListPermission(){
         return "listPermission";
     }
+    @RequestMapping("jump-listRole")
+    public String jumpListRole(){
+        return "listRole";
+    }
 }

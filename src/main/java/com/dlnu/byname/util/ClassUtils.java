@@ -83,6 +83,7 @@ public class ClassUtils {
 
     /**
      * 从type中获取类名
+     *
      * @param type {@link Type}
      * @return java.lang.String
      * @author zhangduanfeng
@@ -101,6 +102,7 @@ public class ClassUtils {
 
     /**
      * 获取类Type的class
+     *
      * @param type {@link Type}
      * @return java.lang.Class&lt;?&gt;
      * @author zhangduanfeng
@@ -157,6 +159,7 @@ public class ClassUtils {
 
     /**
      * 获取一个类所有get方法
+     *
      * @param cls {@link Class}
      * @return java.util.List&lt;java.lang.reflect.Method&gt;
      * @author zhangduanfeng
@@ -178,7 +181,8 @@ public class ClassUtils {
 
     /**
      * 获取一个类所有set方法
-     * @param cls  {@link Class}
+     *
+     * @param cls {@link Class}
      * @return java.util.List&lt;java.lang.reflect.Method&gt;
      * @author zhangduanfeng
      * @date 2019/1/18 11:37
@@ -199,7 +203,8 @@ public class ClassUtils {
 
     /**
      * 获取一个类的所有字段
-     * @param cls  {@link Class}
+     *
+     * @param cls {@link Class}
      * @return java.util.List&lt;java.lang.reflect.Field&gt;
      * @author zhangduanfeng
      * @date 2019/1/18 11:51
@@ -255,6 +260,7 @@ public class ClassUtils {
 
     /**
      * 使用java.beans中提供的工具获取一个类所有属性{@link PropertyDescriptor}
+     *
      * @param cls {@link Class}
      * @return java.beans.PropertyDescriptor[]
      * @author zhangduanfeng
@@ -335,4 +341,30 @@ public class ClassUtils {
         }
         return 0;
     }
+
+    /**
+     * 判断一个对象是否为空
+     * @param object 传入的对象
+     * @return 空-false 不为空-true
+     */
+    public static boolean ObjIsNotNull(Object object) {
+        if (null == object) {
+            return false;
+        }
+
+        try {
+            for (Field f : object.getClass().getDeclaredFields()) {
+                f.setAccessible(true);
+                if (f.get(object) != null && StringUtils.isNotBlank(f.get(object).toString())) {
+                    return true;
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 }

@@ -17,6 +17,9 @@
 
 package com.dlnu.byname.services;
 
+import com.dlnu.byname.domain.entity.RoleDO;
+
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -25,12 +28,53 @@ import java.util.Set;
  * @date 2019/4/14 18:59
  */
 public interface RoleService {
-        /** 
-         * 根据UserName获取RoleName
-         * @param number 
-         * @return java.util.List&lt;java.lang.String&gt; 
-         * @author  Tanlianwang
-         * @date 2019/4/14 19:01
-         */
+    /**
+     * 增加角色
+     * @param roleDO 角色
+     * @return 1-成功，0-失败
+     */
+    int insertRole(RoleDO roleDO);
+
+    /**
+     * 批量删除
+     * @param list 角色
+     * @return 删除数量
+     */
+    int deleteRole(List<RoleDO> list);
+
+    /**
+     * 修改角色
+     * @param roleDO 角色
+     * @return 1-成功 0-失败
+     */
+    int updateRole(RoleDO roleDO);
+
+    /**
+     * 根据用户编号获取RoleName
+     *
+     * @param number 用户编号
+     * @return java.util.List&lt;java.lang.String&gt;
+     * @author Tanlianwang
+     * @date 2019/4/14 19:01
+     */
     Set<String> listRoleName(String number);
+
+    /**
+     * 获取角色信息
+     * @return 角色信息
+     */
+    List<RoleDO> listRole();
+
+    /**
+     * 关键字搜索
+     * @param keyWord 关键字
+     * @return 搜索结果
+     */
+    List<RoleDO> selectKeyRole(String keyWord);
+
+    /**
+     * 获取总数
+     * @return 总数
+     */
+    Integer getCount();
 }

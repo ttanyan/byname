@@ -90,5 +90,5 @@ public interface PermissionMapper  {
      * 获取总数
      * @return
      */
-    Integer getCount();
+    int getCount();
 }

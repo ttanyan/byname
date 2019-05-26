@@ -51,7 +51,7 @@ public class JsonResult<T> {
     }
 
     /**
-     * 若没有数据返回，状态码为500，可以人为指定提示信息
+     * 若没有数据返回，状态码为500，人为指定提示信息
      * @param msg 响应结果
      */
     public JsonResult( String msg) {
@@ -72,7 +72,7 @@ public class JsonResult<T> {
     }
 
     /**
-     * 有数据返回，状态码为 0，人为指定总数
+     * 有数据返回，状态码为0，默认提示信息为“操作成功！”,人为指定总数
      * @param data 数据
      * @param count 总数
      */

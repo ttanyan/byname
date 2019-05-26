@@ -65,7 +65,7 @@ public interface PermissionService {
     /**
      * 修改权限
      * @param permissionDO  {@link PermissionDO}
-     * @return int
+     * @return 更新结果
      * @author  TanLianWang
      * @date 2019/4/24 9:23
      */
@@ -73,16 +73,22 @@ public interface PermissionService {
 
     /**
      * 获取权限
-     * @return
+     * @return 权限列表
      */
     List<PermissionDO> listPermission();
 
     /**
      * 根据关键字搜索权限
      * @param keyWord 关键字
-     * @return
+     * @return 搜索结果
      */
     List<PermissionDO> selectKeyPermission(String keyWord);
+
+    /**
+     * 获取权限总数
+     * @return 权限总数
+     */
+    Integer getCount();
 
 
 

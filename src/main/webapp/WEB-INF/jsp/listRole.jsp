@@ -22,7 +22,6 @@
         .right {
             float: right;
         }
-
     </style>
 </head>
 <body class="layui-layout-body">
@@ -63,20 +62,20 @@
     </div>
 
     <!--弹出层-->
-    <div id="addPermission" style="display:none;">
+    <div id="addForm" style="display:none;">
         <form class="layui-form" id="addPermissionForm" action="">
             <div class="layui-form-item">
-                <label class="layui-form-label">权限名称</label>
+                <label class="layui-form-label">角色名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="name" required lay-verify="required" placeholder="权限名称"
+                    <input type="text" name="name" required lay-verify="required" placeholder="角色名称"
                            autocomplete="off"
                            class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">权限路径</label>
+                <label class="layui-form-label">角色描述</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="url" required lay-verify="required" placeholder="权限路径"
+                    <input type="text" name="note" required lay-verify="required" placeholder="角色描述"
                            autocomplete="off"
                            class="layui-input">
                 </div>
@@ -91,7 +90,7 @@
     </div>
     <!--底部-->
     <%--<div class="layui-footer">--%>
-        <%--© www.dlnu.com - 教师点名系统--%>
+    <%--© www.dlnu.com - 教师点名系统--%>
     <%--</div>--%>
 </div>
 
@@ -108,7 +107,7 @@
         <div class="demoTable">
             <div class="layui-inline">
                  <i class="layui-icon layui-icon-search" style="position: absolute;top:5px;right: 8px;"/>
-                <input class="layui-input" name="search_value" id="search_value" placeholder="ID/权限名称/权限路径"
+                <input class="layui-input" name="search_value" id="search_value" placeholder="ID/角色名称/角色描述"
                        autocomplete="off">
             </div>
             <button class="layui-btn" ay-submit lay-event="search" id="search">搜索</button>
@@ -116,23 +115,29 @@
     </span>
 </script>
 
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
+</script>
+
 <script>
     //初始化渲染表格
     layui.use('table', function () {
         var table = layui.table;
         table.render({
-            elem: '#test'
+              elem: '#test'
             , cellMinWidth: 80
-            , url: '/config/listPermission'
+            , url: '/config/listRole'
             , toolbar: '#toolbarDemo'
             , title: '权限数据表'
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'id', title: 'ID', width: 80, fixed: 'left', unresize: true, sort: true}
-                , {field: 'name', title: '权限名称', edit: 'text', sort: true}
-                , {field: 'url', title: '权限路径', edit: 'text', sort: true}
+                , {field: 'name', title: '角色名称', edit: 'text', sort: true}
+                , {field: 'note', title: '角色描述', edit: 'text', sort: true}
                 , {field: 'gmtCreate', title: '创建时间'}
                 , {field: 'gmtModified', title: '更新时间'}
+                , {fixed: 'right', title: '操作',align:'center', toolbar: '#barDemo'}
             ]]
             , page: true
             , id: 'testTable'
@@ -145,7 +150,7 @@
             // console.log(JSON.stringify(data));
             $.ajax({
                 type: 'POST',
-                url: "/config/updatePermission",
+                url: "/config/updateRole",
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 dataType: "json",
@@ -160,8 +165,22 @@
                 }
             });
         });
+        //监听 操作框
+        table.on('tool(test)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'detail'){
+                layer.msg('ID：'+ data.id + ' 的查看操作');
+            } else if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if(obj.event === 'edit'){
+                layer.alert('编辑行：<br>'+ JSON.stringify(data))
+            }
+        });
 
-        //头工具栏事件--增加、删除、搜索
+        //头部工具栏事件--增加、删除、搜索
         table.on('toolbar(test)', function (obj) {
             // console.log(obj.config.id)
             var checkStatus = table.checkStatus(obj.config.id);
@@ -170,11 +189,11 @@
                     var data = checkStatus.data;
                     layer.open({
                         type: 1,
-                        title: "添加权限",
+                        title: "添加角色",
                         area: ['35%', '35%'],
-                        content: $("#addPermission"),
+                        content: $("#addForm"),
                         cancel: function (index) {
-                            document.getElementById('addPermission').style.display = 'none';
+                            document.getElementById('addForm').style.display = 'none';
                             layer.close(index);
                             return false;
                         }
@@ -187,7 +206,7 @@
                         layer.close(index);
                         $.ajax({
                             type: 'POST',
-                            url: "/config/deletePermission",
+                            url: "/config/deleteRole",
                             contentType: "application/json",
                             data: JSON.stringify(data),
                             dataType: "json",
@@ -204,12 +223,8 @@
                     break;
                 case 'search':
                     var data = $('#search_value').val();
-                    console.log(data);
-                    if (data == null) {
-                        data = '';
-                    }
                     table.reload('testTable', {
-                        url: "/config/selectKeyPermission"
+                        url: "/config/selectKeyRole"
                         , where: {
                             keyWord: data
                         }
@@ -226,7 +241,7 @@
             form.on('submit(formDemo)', function (data) {
                 $.ajax({
                     type: 'POST',
-                    url: "/config/insertPermission",
+                    url: "/config/insertRole",
                     contentType: "application/json",
                     data: JSON.stringify(data.field),
                     dataType: "json",
@@ -236,7 +251,7 @@
                         //重置输入框
                         document.getElementById("addPermissionForm").reset();
                         //隐藏弹出框
-                        document.getElementById('addPermission').style.display = 'none';
+                        document.getElementById('addForm').style.display = 'none';
                         layer.msg(data.msg);
                         //重载表格
                         table.reload('testTable');

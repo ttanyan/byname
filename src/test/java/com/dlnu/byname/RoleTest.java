@@ -38,12 +38,14 @@ public class RoleTest extends BaseTest {
         RoleDO roleDO = new RoleDO();
         roleDO.setName("管理员");
         roleDO.setNote("具有所有的权限");
-        int sign = roleMapper.insert(roleDO);
-        logger.info("结果"+sign);
+        for(int i = 0;i<300;i++) {
+            int sign = roleMapper.insert(roleDO);
+        }
+//        logger.info("结果"+sign);
     }
     @Test
     public void deleteRoleTest(){
-        roleMapper.delete(2L);
+//        roleMapper.delete();
 
     }
     @Test

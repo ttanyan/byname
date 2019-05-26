@@ -17,11 +17,15 @@
 
 package com.dlnu.byname.services.impl;
 
+import com.dlnu.byname.constant.CommonConstant;
+import com.dlnu.byname.domain.entity.RoleDO;
 import com.dlnu.byname.mapper.RoleMapper;
 import com.dlnu.byname.services.RoleService;
+import com.dlnu.byname.util.ClassUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -33,6 +37,33 @@ import java.util.Set;
 public class RoleServiceImpl implements RoleService {
     @Resource
     RoleMapper roleMapper;
+
+    @Override
+    public int insertRole(RoleDO roleDO) {
+        if(ClassUtils.ObjIsNotNull(roleDO)){
+            return roleMapper.insert(roleDO);
+        }else{
+            return CommonConstant.RESULT_STATUS_FAIL;
+        }
+    }
+
+    @Override
+    public int deleteRole(List<RoleDO> list) {
+        if(!list.isEmpty()){
+            return roleMapper.delete(list);
+        }
+        return CommonConstant.RESULT_STATUS_FAIL;
+    }
+
+    @Override
+    public int updateRole(RoleDO roleDO) {
+       if(ClassUtils.ObjIsNotNull(roleDO)){
+           return roleMapper.update(roleDO);
+       }else{
+           return  CommonConstant.RESULT_STATUS_FAIL;
+       }
+    }
+
     @Override
     public Set<String> listRoleName(String number) {
         Set<String> listRoleName = roleMapper.listByUserNumber(number);
@@ -42,5 +73,21 @@ public class RoleServiceImpl implements RoleService {
         return listRoleName;
 
         }
+    }
+
+    @Override
+    public List<RoleDO> listRole() {
+        List<RoleDO> roleDOList = roleMapper.listRole();
+        return roleDOList;
+    }
+
+    @Override
+    public List<RoleDO> selectKeyRole(String keyWord) {
+         return roleMapper.selectKeyRole(keyWord);
+    }
+
+    @Override
+    public Integer getCount() {
+        return roleMapper.getCount();
     }
 }

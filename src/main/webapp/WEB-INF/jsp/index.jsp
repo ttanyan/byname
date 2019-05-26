@@ -24,7 +24,7 @@
                 <a href="javascript:;">
                     <img src="${pageContext.request.contextPath}/resources/layui/images/logo/dlnu1.jpg"
                          class="layui-nav-img">
-                    ${loginUser.name}
+                    ${loginUser}
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
@@ -49,7 +49,7 @@
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <div style="padding: 15px;">
-            <h1>${loginUser.name},欢迎您！</h1>
+            <h1>${loginUser},欢迎您！</h1>
         </div>
     </div>
 
