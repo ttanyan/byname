@@ -29,38 +29,41 @@ import java.util.List;
 public interface RolePermissionMapper {
     /**
      * 增加角色权限
-     * @return int 返回结果
-     * @author  Tanlianwang
-     * @date 2019/4/14 12:56
+     * @param rolePermissionDO  {@link RolePermissionDO}
+     * @return 影响数量
      */
     int insert(RolePermissionDO rolePermissionDO);
 
     /**
-     * 删除角色权限
-     * @return int 返回结果
-     * @author  Tanlianwang
-     * @date 2019/4/14 12:58
+     * 批量添加角色权限
+     * @param list {@link RolePermissionDO}
+     * @return 影响数量
      */
-    int delete(RolePermissionDO rolePermissionDO);
+    int batchInsert(List<RolePermissionDO> list);
 
     /**
-     * 修改角色权限
-     * @param rolePermissionDO  {@link RolePermissionDO}
-     * @return int  返回结果
-     * @author  Tanlianwang
-     * @date 2019/4/14 12:57
+     * 批量删除角色权限
+     * @param list {@link RolePermissionDO}
+     * @return 影响数量
+     */
+    int delete(List<RolePermissionDO> list);
+
+    /**
+     * 更新角色权限
+     * @param rolePermissionDO {@link RolePermissionDO}
+     * @return 影响数量
      */
     int update(RolePermissionDO rolePermissionDO);
+
     /**
-     * 根据角色ID查询该角色的所有权限
-     * @return java.util.List&lt;com.dlnu.byname.domain.entity.UserRoleDO&gt;
-     * @author  Tanlianwang
-     * @date 2019/4/14 13:26
+     * 获取指定角色的权限
+     * @param roleId 角色id
+     * @return 角色权限数组
      */
     List<RolePermissionDO> get(Long roleId);
     /**
      * 查询所有角色的所有权限
-     * @return java.util.List&lt;com.dlnu.byname.domain.entity.UserRoleDO&gt;
+     * @return java.util.List&lt;com.dlnu.byname.domain.entity.RolePermissionDO&gt;
      * @author  Tanlianwang
      * @date 2019/4/14 12:58
      */

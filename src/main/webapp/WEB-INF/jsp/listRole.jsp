@@ -96,6 +96,8 @@
 
 <script src="${pageContext.request.contextPath}/resources/layui/layui.all.js" charset="utf-8"></script>
 <script src="${pageContext.request.contextPath}/resources/jquery-3.4.1.min.js" charset="utf-8"></script>
+
+<!--头部工具栏-->
 <script type="text/html" id="toolbarDemo">
     <span class="left">
       <div class="layui-btn-container">
@@ -115,8 +117,9 @@
     </span>
 </script>
 
+<!--数据操作框-->
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="detail">查看</a>
+    <%--<a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="detail">查看</a>--%>
     <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
 </script>
 
@@ -132,12 +135,12 @@
             , title: '权限数据表'
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'id', title: 'ID', width: 80, fixed: 'left', unresize: true, sort: true}
+                , {field: 'id', title: '角色ID', width: 90, fixed: 'left', unresize: true, sort: true}
                 , {field: 'name', title: '角色名称', edit: 'text', sort: true}
                 , {field: 'note', title: '角色描述', edit: 'text', sort: true}
                 , {field: 'gmtCreate', title: '创建时间'}
                 , {field: 'gmtModified', title: '更新时间'}
-                , {fixed: 'right', title: '操作',align:'center', toolbar: '#barDemo'}
+                , {fixed: 'right', title: '权限操作',align:'center', toolbar: '#barDemo'}
             ]]
             , page: true
             , id: 'testTable'
@@ -157,8 +160,6 @@
                 success: function (data) {
                     //TODO 优化提示
                     layer.msg(data.msg);
-                    //重载表格
-                    table.reload('testTable');
                 },
                 error: function () {
                     layer.msg("网络错误！");
@@ -168,15 +169,18 @@
         //监听 操作框
         table.on('tool(test)', function(obj){
             var data = obj.data;
-            if(obj.event === 'detail'){
-                layer.msg('ID：'+ data.id + ' 的查看操作');
-            } else if(obj.event === 'del'){
-                layer.confirm('真的删除行么', function(index){
-                    obj.del();
-                    layer.close(index);
+            // if(obj.event === 'detail'){
+            //     layer.msg('ID：'+ data.id + ' 的查看操作');
+            // } else
+            if(obj.event === 'edit'){
+                // console.log(data.name);
+                layer.open({
+                    type: 2,
+                    title: "【"+data.name+"】"+"角色权限关联",
+                    area: ['78%', '78%'],
+                    content: 'jump-popupsPermission?roleId='+data.id
+
                 });
-            } else if(obj.event === 'edit'){
-                layer.alert('编辑行：<br>'+ JSON.stringify(data))
             }
         });
 
@@ -231,8 +235,7 @@
                         , page: true
                     });
                     break;
-            }
-            ;
+            };
         });
         //增加权限（form表单）
         layui.use('form', function () {

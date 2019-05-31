@@ -23,6 +23,7 @@ import com.dlnu.byname.services.RolePermissionService;
 import org.junit.Test;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,18 +41,22 @@ public class RolePermissionTest extends BaseTest {
         //权限 2，3，4 角色  3 4 5
         RolePermissionDO rolePermissionDO = new RolePermissionDO();
 //        for (Long i = 2L; i < 5L; i++) {
-            rolePermissionDO.setPermissionId(4L);
-            rolePermissionDO.setRoleId(5L);
+            rolePermissionDO.setPermissionId(8L);
+            rolePermissionDO.setRoleId(90L);
             rolePermissionMapper.insert(rolePermissionDO);
 
 //        }
     }
     @Test
     public void deleteRolePermissionTest(){
-        RolePermissionDO rolePermissionDO = new RolePermissionDO();
-        rolePermissionDO.setRoleId(5L);
-        rolePermissionDO.setPermissionId(2L);
-        rolePermissionMapper.delete(rolePermissionDO);
+        List<RolePermissionDO> list = new ArrayList<>();
+        for(long i = 102;i<120;i++){
+            RolePermissionDO rolePermissionDO = new RolePermissionDO();
+            rolePermissionDO.setRoleId(100L);
+            rolePermissionDO.setPermissionId(i);
+            list.add(rolePermissionDO);
+        }
+        rolePermissionMapper.delete(list);
     }
     @Test
     public void getRolePermissionTest(){
@@ -73,6 +78,17 @@ public class RolePermissionTest extends BaseTest {
         list.forEach(p->{
             logger.info("角色 "+p.getRoleId()+"权限 "+p.getPermissionId());
         });
+    }
+    @Test
+    public void batchInsertTest(){
+        List<RolePermissionDO> list = new ArrayList<>();
+        for(long i = 102;i<120;i++){
+            RolePermissionDO rolePermissionDO = new RolePermissionDO();
+            rolePermissionDO.setRoleId(100L);
+            rolePermissionDO.setPermissionId(i);
+            list.add(rolePermissionDO);
+        }
+        rolePermissionMapper.batchInsert(list);
     }
 
 }

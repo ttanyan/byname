@@ -26,73 +26,9 @@
     </style>
 </head>
 <body class="layui-layout-body">
-<div class="layui-layout layui-layout-admin">
-    <div class="layui-header">
-        <div class="layui-logo">
-            大连民族大学-点名系统
-        </div>
-        <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item">
-                <a href="javascript:;">
-                    <img src="${pageContext.request.contextPath}/resources/layui/images/logo/dlnu1.jpg"
-                         class="layui-nav-img">
-                    ${loginUser}
-                </a>
-                <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
-                    <dd><a href="/logout">安全退出</a></dd>
-                </dl>
-            </li>
-        </ul>
-    </div>
-    <div class="layui-side layui-bg-black">
-        <div class="layui-side-scroll">
-            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                <li class="layui-nav-item"><a href="/jump-listPermission">权限管理</a></li>
-                <li class="layui-nav-item"><a href="/jump-listRole">角色管理</a></li>
-                <li class="layui-nav-item"><a href="/jump-listPermission">用户管理</a></li>
-                <li class="layui-nav-item"><a href="https://blog.csdn.net/tingfengqianqu">关于作者</a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- 内容主体区域 -->
-    <div class="layui-body" style="bottom: 0px">
-        <table class="layui-hide" id="test" lay-filter="test"></table>
-    </div>
-
-    <!--弹出层-->
-    <div id="addPermission" style="display:none;">
-        <form class="layui-form" id="addPermissionForm" action="">
-            <div class="layui-form-item">
-                <label class="layui-form-label">权限名称</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="name" required lay-verify="required" placeholder="权限名称"
-                           autocomplete="off"
-                           class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">权限路径</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="url" required lay-verify="required" placeholder="权限路径"
-                           autocomplete="off"
-                           class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit lay-filter="formDemo">添加</button>
-                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                </div>
-            </div>
-        </form>
-    </div>
-    <!--底部-->
-    <%--<div class="layui-footer">--%>
-        <%--© www.dlnu.com - 教师点名系统--%>
-    <%--</div>--%>
+<!-- 内容主体区域 -->
+<div style="bottom: 0px;">
+    <table class="layui-hide" id="test" lay-filter="test"></table>
 </div>
 
 <script src="${pageContext.request.contextPath}/resources/layui/layui.all.js" charset="utf-8"></script>
@@ -100,8 +36,8 @@
 <script type="text/html" id="toolbarDemo">
     <span class="left">
       <div class="layui-btn-container">
-        <button class="layui-btn " lay-event="addData" data-method="offset" data-type="auto">新增</button>
-        <button class="layui-btn " lay-event="deleteData">删除</button>
+          <button class="layui-btn " lay-event="addRolePemission">添加</button>
+          <button class="layui-btn " lay-event="deleteData" data-method="offset" data-type="auto">取消</button>
       </div>
     </span>
     <span class="right">
@@ -124,8 +60,24 @@
             elem: '#test'
             , cellMinWidth: 80
             , url: '/config/listPermission'
+            ,parseData: function(res){ //res 即为原始返回的数据 对其进行预处理 动态添加复选框状态
+                //TODO 在遍历JSON数据的时候很不认真所以导致在这个地方卡了很久 希望以后切记
+                console.log(res.data);
+                console.log(res.data[1].id);
+                var listRole = ${RolePermission};
+                var data = res.data;
+                for(var i = 0,len = data.length; i < len; i++){
+                    for(var j = 0,len = listRole.length; j < len; j++){
+                        if(data[i].id == listRole[j]){
+                            //添加复选框选中的状态
+                            data[i].LAY_CHECKED = true;
+                        }
+                    }
+                }
+            }
             , toolbar: '#toolbarDemo'
             , title: '权限数据表'
+            , size: 'sm'
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'id', title: '权限ID', width: 90, fixed: 'left', unresize: true, sort: true}
@@ -159,44 +111,48 @@
             });
         });
 
-        //头工具栏事件--增加、删除、搜索
+        //头工具栏事件--删除权限、增加权限、搜索
         table.on('toolbar(test)', function (obj) {
             // console.log(obj.config.id)
             var checkStatus = table.checkStatus(obj.config.id);
             switch (obj.event) {
-                case 'addData':
-                    var data = checkStatus.data;
-                    layer.open({
-                        type: 1,
-                        title: "添加权限",
-                        area: ['35%', '35%'],
-                        content: $("#addPermission"),
-                        cancel: function (index) {
-                            document.getElementById('addPermission').style.display = 'none';
-                            layer.close(index);
-                            return false;
-                        },
-                        yes: function(index, layero){
-                            //do something
-                            layer.close(index); //如果设定了yes回调，需进行手工关闭
-                        }
-                    });
-                    break;
                 case 'deleteData':
                     var data = checkStatus.data;
                     // console.log(JSON.stringify(data))
-                    layer.confirm('确定删除:' + data.length + ' 个？', function (index) {
+                    layer.confirm('确定删除:' + data.length + ' 个权限？', function (index) {
                         layer.close(index);
                         $.ajax({
                             type: 'POST',
-                            url: "/config/deletePermission",
+                            url: "/config/deleteRolePermission?roleId=${roleId}",
                             contentType: "application/json",
                             data: JSON.stringify(data),
                             dataType: "json",
                             success: function (data) {
                                 layer.msg(data.msg);
-                                //重载表格
-                                table.reload('testTable');
+                                // //重载表格
+                                // table.reload('testTable');
+                            },
+                            error: function () {
+                                layer.msg("网络错误！");
+                            }
+                        });
+                    });
+                    break;
+                case 'addRolePemission':
+                    var data = checkStatus.data;
+                    // console.log(JSON.stringify(data))
+                    layer.confirm('确定添加:' + data.length + ' 个权限？', function (index) {
+                        layer.close(index);
+                        $.ajax({
+                            type: 'POST',
+                            url: "/config/addRolePermission?roleId=${roleId}",
+                            contentType: "application/json",
+                            data: JSON.stringify(data),
+                            dataType: "json",
+                            success: function (data) {
+                                layer.msg(data.msg);
+                                // //重载表格
+                                // table.reload('testTable');
                             },
                             error: function () {
                                 layer.msg("网络错误！");

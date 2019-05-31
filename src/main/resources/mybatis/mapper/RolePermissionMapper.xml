@@ -13,12 +13,34 @@
         (<include refid="RolePermissionFiled"/>)
         VALUES (#{roleId},#{permissionId})
     </insert>
-    <!--删除用户角色-->
+
+    <!--批量添加-->
+    <insert id="batchInsert" parameterType="RolePermissionDO">
+        INSERT IGNORE
+        INTO role_permission
+        (<include refid="RolePermissionFiled"/>)
+        VALUES
+        <foreach collection="list"  separator=","  item="item">
+            (
+            #{item.roleId},
+            #{item.permissionId}
+            )
+        </foreach>
+    </insert>
+
+
+    <!--批量删除用户角色 //TODO 需要优化不能两次foreach-->
     <delete id="delete" parameterType="RolePermissionDO">
         DELETE
         FROM role_permission
-        WHERE
-        role_id = #{roleId} AND permission_id = #{permissionId}
+        WHERE role_id IN
+        <foreach collection="list" open="(" separator="," close=")" item="item">
+            #{item.roleId}
+        </foreach>
+         AND permission_id IN
+        <foreach collection="list" open="(" separator="," close=")" item="item">
+                #{item.permissionId}
+        </foreach>
     </delete>
     <!--此表无修改操作,训练使用-->
     <update id="update" parameterType="RolePermissionDO">
@@ -27,7 +49,7 @@
         <if test="permissionId != null and permissionId != ''">permission_id = #{permissionId}</if>
         WHERE id = #{id}
     </update>
-    
+
     <!--根据roleId查询单个角色的权限-->
     <select id="get" parameterType="Long" resultType="RolePermissionDO">
         SELECT

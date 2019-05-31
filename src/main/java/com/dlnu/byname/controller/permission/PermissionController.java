@@ -101,10 +101,9 @@ public class PermissionController {
     @RequestMapping("selectKeyPermission")
     public JsonResult<List> selectPermission(int page, int limit, String keyWord) {
         //TODO 需要优化查询总数 目前是查了两遍
-        int count = CommonConstant.RESULT_STATUS_FAIL;
         List<PermissionDO> permissionDOKeyListOne = permissionService.selectKeyPermission(keyWord);
         //统计查询结果总数
-        count = permissionDOKeyListOne.size();
+        int count = permissionDOKeyListOne.size();
         PageHelper.startPage(page, limit);
         List<PermissionDO> permissionDOKeyList = permissionService.selectKeyPermission(keyWord);
         PageBean<PermissionDO> pageData = new PageBean<>(page, limit, count);

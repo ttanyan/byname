@@ -31,7 +31,7 @@ public class JsonResult<T> {
     /**
      * 状态码
      */
-    private String code;
+    private Integer code;
     /**
      * 响应结果
      */
@@ -45,7 +45,7 @@ public class JsonResult<T> {
      * 若没有数据返回，默认状态码为0，总数为0。提示信息为“操作成功！”
      */
     public JsonResult() {
-        this.code = "0";
+        this.code = 0;
         this.msg = "操作成功！";
         this.count = 0;
     }
@@ -55,7 +55,7 @@ public class JsonResult<T> {
      * @param msg 响应结果
      */
     public JsonResult( String msg) {
-        this.code = "400";
+        this.code = 500;
         this.msg = msg;
         this.count = 0;
     }
@@ -66,7 +66,7 @@ public class JsonResult<T> {
      */
     public JsonResult(T data) {
         this.data = data;
-        this.code = "0";
+        this.code = 0;
         this.msg = "操作成功！";
         this.count = 0;
     }
@@ -78,7 +78,7 @@ public class JsonResult<T> {
      */
     public JsonResult(T data, Integer count) {
         this.data = data;
-        this.code = "0";
+        this.code = 0;
         this.msg = "操作成功！";
         this.count = count;
     }
@@ -91,11 +91,11 @@ public class JsonResult<T> {
         this.data = data;
     }
 
-    public String getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 

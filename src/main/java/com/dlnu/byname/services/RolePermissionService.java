@@ -35,4 +35,24 @@ public interface RolePermissionService {
      * @date 2019/4/14 17:29
      */ 
     List<RolePermissionDO> listByRoleId(Long roleId);
+
+    /**
+     * 批量插入角色权限ID
+     * @param list 角色权限集合
+     * @return 插入数量
+     */
+    int batchInsertByRolePermission(List<RolePermissionDO> list);
+
+    /**
+     * 批量删除角色权限ID
+     * @param list 角色权限集合
+     * @return 删除数量
+     */
+    int batchDeleteByRolePermission(List<RolePermissionDO> list);
+    /**
+     * 根据roleID获取角色权限ID
+     * @param roleId 角色ID
+     * @return {@link RolePermissionDO}
+     */
+    List<RolePermissionDO> getRolePermission(Long roleId);
 }

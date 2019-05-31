@@ -17,6 +17,7 @@
 
 package com.dlnu.byname.services.impl;
 
+import com.dlnu.byname.constant.CommonConstant;
 import com.dlnu.byname.domain.entity.RolePermissionDO;
 import com.dlnu.byname.mapper.RolePermissionMapper;
 import com.dlnu.byname.services.RolePermissionService;
@@ -41,6 +42,35 @@ public class RolePermissionServiceImpl implements RolePermissionService {
             return null;
         }else{
             return listRolePermissionDO;
+        }
+    }
+
+    @Override
+    public int batchInsertByRolePermission(List<RolePermissionDO> list) {
+        if(!list.isEmpty()){
+            int sign = rolePermissionMapper.batchInsert(list);
+            return sign;
+        }else{
+            return CommonConstant.RESULT_STATUS_FAIL;
+        }
+    }
+
+    @Override
+    public int batchDeleteByRolePermission(List<RolePermissionDO> list) {
+        if(!list.isEmpty()){
+            int sign = rolePermissionMapper.delete(list);
+            return sign;
+        }else{
+            return CommonConstant.RESULT_STATUS_FAIL;
+        }
+    }
+
+    @Override
+    public List<RolePermissionDO> getRolePermission(Long roleId) {
+        if(!roleId.equals("")){
+            return rolePermissionMapper.get(roleId);
+        }else {
+            return null;
         }
     }
 }
