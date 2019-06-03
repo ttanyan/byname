@@ -50,8 +50,8 @@ public interface RolePermissionService {
      */
     int batchDeleteByRolePermission(List<RolePermissionDO> list);
     /**
-     * 根据roleID获取角色权限ID
-     * @param roleId 角色ID
+     * 根据roleID获取权限ID
+     * @param roleId roleID
      * @return {@link RolePermissionDO}
      */
     List<RolePermissionDO> getRolePermission(Long roleId);

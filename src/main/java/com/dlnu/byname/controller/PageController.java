@@ -17,10 +17,13 @@
 
 package com.dlnu.byname.controller;
 
+import com.dlnu.byname.constant.CommonConstant;
 import com.dlnu.byname.constant.JsonResult;
 import com.dlnu.byname.domain.entity.RolePermissionDO;
+import com.dlnu.byname.domain.entity.UserRoleDO;
 import com.dlnu.byname.services.PermissionService;
 import com.dlnu.byname.services.RolePermissionService;
+import com.dlnu.byname.services.UserRoleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +45,8 @@ import java.util.List;
 public class PageController {
     @Resource
     RolePermissionService rolePermissionService;
+    @Resource
+    UserRoleService userRoleService;
 
     @RequestMapping(value = "byname")
     public ModelAndView jumpLogin() {
@@ -69,7 +74,7 @@ public class PageController {
         //传递角色id到弹出界面，然后传到对应的控制层
         model.addAttribute("roleId",roleId);
         //获取指定角色id的PermissionId
-        if(!roleId.equals("")){
+        if(!roleId.equals(CommonConstant.EMPTY_STRING)){
             List<RolePermissionDO> list = rolePermissionService.getRolePermission(roleId);
             //转换为String数组
             List<Long> permissionIds = new ArrayList<>();
@@ -82,4 +87,28 @@ public class PageController {
         }
         return "popupsPermission";
     }
+
+    @RequestMapping("jump-listUser")
+    public String jumpUser(){
+        return "listUser";
+    }
+
+    @RequestMapping("jump-popupsRole")
+    public String jumpPopupsRole(Model model,Long userId){
+        model.addAttribute("userId",userId);
+        if(!userId.equals(CommonConstant.EMPTY_STRING)){
+            //TODO 判断list是否为空
+            List<UserRoleDO> list = userRoleService.getUserRole(userId);
+            //转换为String数组
+            List<Long> roleIds = new ArrayList<>();
+            list.forEach(p->{
+                roleIds.add(p.getRoleId());
+            });
+            model.addAttribute("RoleIds",roleIds);
+        }else{
+            model.addAttribute("RoleIds",null);
+        }
+        return "popupsRole";
+    }
+
 }

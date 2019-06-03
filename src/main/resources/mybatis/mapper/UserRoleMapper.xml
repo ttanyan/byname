@@ -13,6 +13,33 @@
         (<include refid="userRoleFiled"/>)
         VALUES (#{userId},#{roleId})
     </insert>
+    <!--批量添加-->
+    <insert id="batchInsert" parameterType="UserRoleDO">
+        INSERT IGNORE
+        INTO user_role
+        (<include refid="userRoleFiled"/>)
+        VALUES
+        <foreach collection="list"  separator=","  item="item">
+            (
+            #{item.userId},
+            #{item.roleId}
+            )
+        </foreach>
+    </insert>
+
+    <!--批量删除用户角色 //TODO 需要优化不能两次foreach-->
+    <delete id="batchDelete" parameterType="UserRoleDO">
+        DELETE
+        FROM user_role
+        WHERE user_id IN
+        <foreach collection="list" open="(" separator="," close=")" item="item">
+            #{item.userId}
+        </foreach>
+        AND role_id IN
+        <foreach collection="list" open="(" separator="," close=")" item="item">
+            #{item.roleId}
+        </foreach>
+    </delete>
     <!--删除用户角色-->
     <delete id="delete" parameterType="UserRoleDO">
         DELETE

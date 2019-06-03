@@ -67,7 +67,7 @@ public class RolePermissionServiceImpl implements RolePermissionService {
 
     @Override
     public List<RolePermissionDO> getRolePermission(Long roleId) {
-        if(!roleId.equals("")){
+        if(!roleId.equals(CommonConstant.EMPTY_STRING)){
             return rolePermissionMapper.get(roleId);
         }else {
             return null;

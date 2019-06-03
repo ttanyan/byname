@@ -21,9 +21,11 @@ import com.dlnu.byname.constant.CommonConstant;
 import com.dlnu.byname.domain.entity.UserDO;
 import com.dlnu.byname.mapper.UserMapper;
 import com.dlnu.byname.services.UserService;
+import com.dlnu.byname.util.ClassUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author Tanlianwang
@@ -35,11 +37,31 @@ public class UserServiceImpl implements UserService {
     @Resource
     UserMapper userMapper;
 
+    int sign = CommonConstant.RESULT_STATUS_FAIL;
 
     @Override
     public int addUser(UserDO userDO) {
-        int status = userMapper.insert(userDO);
-        return status;
+        int sign = userMapper.insert(userDO);
+        return sign;
+    }
+
+    @Override
+    public int deleteUser(List<UserDO> list) {
+       if(!list.isEmpty()){
+           return userMapper.delete(list);
+       }
+       return CommonConstant.RESULT_STATUS_FAIL;
+    }
+
+    @Override
+    public int updateUser(UserDO userDO) {
+        if(ClassUtils.ObjIsNotNull(userDO)) {
+            return userMapper.update(userDO);
+        }else{
+            return CommonConstant.RESULT_STATUS_FAIL;
+        }
+
+
     }
 
     @Override
@@ -51,4 +73,21 @@ public class UserServiceImpl implements UserService {
             return null;
         }
     }
+
+    @Override
+    public List<UserDO> listUser() {
+        List<UserDO> list = userMapper.listUser();
+        return list;
+    }
+
+    @Override
+    public List<UserDO> selectKeyUser(String keyWord) {
+        return userMapper.selectKeyUser(keyWord);
+    }
+
+    @Override
+    public Integer getCount() {
+        return userMapper.getCount();
+    }
+
 }

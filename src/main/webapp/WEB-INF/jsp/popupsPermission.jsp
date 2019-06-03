@@ -61,16 +61,16 @@
             , cellMinWidth: 80
             , url: '/config/listPermission'
             ,parseData: function(res){ //res 即为原始返回的数据 对其进行预处理 动态添加复选框状态
-                //TODO 在遍历JSON数据的时候很不认真所以导致在这个地方卡了很久 希望以后切记
-                console.log(res.data);
-                console.log(res.data[1].id);
+                /**
+                 *  在遍历JSON数据的时候很不认真所以导致在这个地方卡了很久 希望以后切记
+                 *  两个for循环用了一个变量----len，导致每次遍历的都只能遍历十个，巨坑
+                 */
                 var listRole = ${RolePermission};
-                var data = res.data;
-                for(var i = 0,len = data.length; i < len; i++){
-                    for(var j = 0,len = listRole.length; j < len; j++){
-                        if(data[i].id == listRole[j]){
+                for(var j = 0,lengRole = listRole.length; j < lengRole; j++){
+                    for(var i = 0,len = res.data.length; i < len; i++){
+                        if(listRole[j] == res.data[i].id){
                             //添加复选框选中的状态
-                            data[i].LAY_CHECKED = true;
+                            res.data[i].LAY_CHECKED = true;
                         }
                     }
                 }
@@ -119,7 +119,7 @@
                 case 'deleteData':
                     var data = checkStatus.data;
                     // console.log(JSON.stringify(data))
-                    layer.confirm('确定删除:' + data.length + ' 个权限？', function (index) {
+                    layer.confirm('确定取消:' + data.length + ' 个权限？', function (index) {
                         layer.close(index);
                         $.ajax({
                             type: 'POST',
@@ -129,8 +129,9 @@
                             dataType: "json",
                             success: function (data) {
                                 layer.msg(data.msg);
-                                // //重载表格
-                                // table.reload('testTable');
+                              //重载表格 获取新的listRole
+                                window.location.href="jump-popupsPermission?roleId=${roleId}";
+
                             },
                             error: function () {
                                 layer.msg("网络错误！");
@@ -151,8 +152,9 @@
                             dataType: "json",
                             success: function (data) {
                                 layer.msg(data.msg);
-                                // //重载表格
-                                // table.reload('testTable');
+                               //重载表格 获取新的listRole
+                                window.location.href="jump-popupsPermission?roleId=${roleId}";
+
                             },
                             error: function () {
                                 layer.msg("网络错误！");

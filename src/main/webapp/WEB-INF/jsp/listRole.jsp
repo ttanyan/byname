@@ -51,7 +51,7 @@
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item"><a href="/jump-listPermission">权限管理</a></li>
                 <li class="layui-nav-item"><a href="/jump-listRole">角色管理</a></li>
-                <li class="layui-nav-item"><a href="/jump-listPermission">用户管理</a></li>
+                <li class="layui-nav-item"><a href="/jump-listUser">用户管理</a></li>
                 <li class="layui-nav-item"><a href="https://blog.csdn.net/tingfengqianqu">关于作者</a></li>
             </ul>
         </div>
@@ -132,7 +132,7 @@
             , cellMinWidth: 80
             , url: '/config/listRole'
             , toolbar: '#toolbarDemo'
-            , title: '权限数据表'
+            , title: '角色数据表'
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'id', title: '角色ID', width: 90, fixed: 'left', unresize: true, sort: true}
@@ -140,7 +140,7 @@
                 , {field: 'note', title: '角色描述', edit: 'text', sort: true}
                 , {field: 'gmtCreate', title: '创建时间'}
                 , {field: 'gmtModified', title: '更新时间'}
-                , {fixed: 'right', title: '权限操作',align:'center', toolbar: '#barDemo'}
+                , {fixed: 'right', title: '关联权限',align:'center', toolbar: '#barDemo'}
             ]]
             , page: true
             , id: 'testTable'
@@ -176,8 +176,8 @@
                 // console.log(data.name);
                 layer.open({
                     type: 2,
-                    title: "【"+data.name+"】"+"角色权限关联",
-                    area: ['78%', '78%'],
+                    title: "【"+data.name+"】"+"角色的权限关联",
+                    area: ['88%', '100%'],
                     content: 'jump-popupsPermission?roleId='+data.id
 
                 });

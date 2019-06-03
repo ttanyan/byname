@@ -351,19 +351,16 @@ public class ClassUtils {
         if (null == object) {
             return false;
         }
-
         try {
             for (Field f : object.getClass().getDeclaredFields()) {
                 f.setAccessible(true);
                 if (f.get(object) != null && StringUtils.isNotBlank(f.get(object).toString())) {
                     return true;
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return false;
     }
 

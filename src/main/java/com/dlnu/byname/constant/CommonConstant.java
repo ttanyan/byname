@@ -25,41 +25,32 @@ package com.dlnu.byname.constant;
 public class CommonConstant {
     /** 
      * 加密次数 2
-     * @param null 
-     * @return null 
-     * @author  Tanlianwang
-     * @date 2019/4/13 14:21
      */ 
     public static final  int ENCRYPTION_TIME = 2;
     /** 
      * 加密方法 md5
-     * @return null 
-     * @author  Tanlianwang
-     * @date 2019/4/13 16:28
      */ 
     public static final  String ENCRYPTION_METHOD = "md5";
     /**
      * 结果状态 1 成功
-     * @return null
-     * @author  Tanlianwang
-     * @date 2019/4/13 16:46
      */
     public static final int RESULT_STATUS_SUCCESS = 1;
     /**
      * 结果状态 0 失败
-     * @param null
-     * @return null
-     * @author  TanLianWang
-     * @date 2019/4/24 9:33
      */
     public static final int RESULT_STATUS_FAIL = 0;
 
     /** 
      * 用户编号的长度
-     * @return null 
-     * @author  Tanlianwang
-     * @date 2019/4/14 15:19
      */ 
     public static final  int STRING_LENGTH = 10;
+    /**
+     * 初始密码
+     */
+    public static final  String  INIT_PASSWORD = "123456";
+    /**
+     * 空字符
+     */
+    public static final String EMPTY_STRING = "";
 
 }

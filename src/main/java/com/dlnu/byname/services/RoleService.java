@@ -18,7 +18,6 @@
 package com.dlnu.byname.services;
 
 import com.dlnu.byname.domain.entity.RoleDO;
-
 import java.util.List;
 import java.util.Set;
 
@@ -51,7 +50,6 @@ public interface RoleService {
 
     /**
      * 根据用户编号获取RoleName
-     *
      * @param number 用户编号
      * @return java.util.List&lt;java.lang.String&gt;
      * @author Tanlianwang

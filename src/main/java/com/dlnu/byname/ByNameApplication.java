@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import java.util.Properties;
 /**
  * 启动类
- * @param null
+ * @param
  * @return null
  * @author  TanLianWang
  * @date 2019/5/13 22:00

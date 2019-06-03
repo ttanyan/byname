@@ -37,7 +37,6 @@ public class UserTest extends  BaseTest{
     @Test
     public void insertUserTest(){
         UserDO userDO = new UserDO();
-        userDO.setNumber("2015132118");
         userDO.setName("小明");
         userDO.setCollege("物联151");
         userDO.setMajory("信息与通信工程专业");
@@ -46,11 +45,14 @@ public class UserTest extends  BaseTest{
         userDO.setSex("女");
         userDO.setTel("13029409628");
         userDO.setSalt("4343");
-        userMapper.insert(userDO);
+        for(int i = 2015100100; i<2015100200;i++) {
+            userDO.setNumber(""+i);
+            userMapper.insert(userDO);
+        }
     }
     @Test
     public void deleteUserTest(){
-        userMapper.delete("2015132111");
+//        userMapper.delete("2015132111");
     }
     @Test
     public void updateUserTest(){

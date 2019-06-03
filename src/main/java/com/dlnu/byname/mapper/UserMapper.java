@@ -36,10 +36,10 @@ public interface UserMapper {
 
     /**
      * 删除用户
-     * @param number 用户编号
+     * @param list {@link UserDO}
      * @return  java.Integer
      */
-    int delete(String number);
+    int delete(List<UserDO> list);
 
     /**
      * 更新用户
@@ -60,6 +60,19 @@ public interface UserMapper {
      * @return List<UserDO)
      */
     List<UserDO> listUser();
+
+    /**
+     * 模糊查询
+     * @param keyWord 关键字
+     * @return  用户列表
+     */
+    List<UserDO> selectKeyUser(String keyWord);
+
+    /**
+     * 获取用户总数
+     * @return 总数
+     */
+    int getCount();
 
 
 

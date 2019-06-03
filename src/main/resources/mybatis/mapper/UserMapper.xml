@@ -16,8 +16,13 @@
     </insert>
 
     <!--删除用户-->
-    <delete id="delete" parameterType="String">
-        DELETE FROM user WHERE number = #{number}
+    <delete id="delete" parameterType="UserDO">
+        DELETE
+        FROM user
+        WHERE number IN
+        <foreach collection="list" open="(" separator="," close=")"  item="item">
+            #{item.number}
+        </foreach>
     </delete>
 
     <!--修改用户-->
@@ -49,6 +54,44 @@
         SELECT id,
         <include refid="userField"/>,gmt_create,gmt_modified
         FROM user
+    </select>
+
+    <!--根据关键字查询-->
+    <select id="selectKeyUser" parameterType="String" resultType="UserDO">
+        SELECT id,
+        <include refid="userField"/>,gmt_create,gmt_modified
+        FROM user
+        <where>
+            <if test="_parameter != null">
+                id LIKE CONCAT('%',#{ _parameter },'%')
+            </if>
+            <if test="_parameter != null">
+                OR name LIKE CONCAT('%',#{ _parameter },'%')
+            </if>
+            <if test="_parameter != null">
+                OR number LIKE CONCAT('%',#{ _parameter }, '%')
+            </if>
+            <if test="_parameter != null">
+                OR college LIKE CONCAT('%',#{ _parameter }, '%')
+            </if>
+            <if test="_parameter != null">
+                OR majory LIKE CONCAT('%',#{ _parameter }, '%')
+            </if>
+            <if test="_parameter != null">
+                OR sex LIKE CONCAT('%',#{ _parameter }, '%')
+            </if>
+            <if test="_parameter != null">
+                OR email LIKE CONCAT('%',#{ _parameter }, '%')
+            </if>
+            <if test="_parameter != null">
+                OR tel LIKE CONCAT('%',#{ _parameter }, '%')
+            </if>
+        </where>
+
+    </select>
+    <!--获取用户总数-->
+    <select id="getCount" resultType="Integer">
+        SELECT COUNT(*) FROM user
     </select>
 
 </mapper>

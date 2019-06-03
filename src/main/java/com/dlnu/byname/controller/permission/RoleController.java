@@ -43,7 +43,7 @@ import java.util.List;
  * 实现角色的基本操作以及与权限的关联
  */
 @RestController
-@RequestMapping("/config")
+@RequestMapping("config")
 public class RoleController {
     @Resource
     RolePermissionService rolePermissionService;
@@ -58,10 +58,13 @@ public class RoleController {
     @RequestMapping("insertRole")
     public JsonResult<List> insertRole(@RequestBody RoleDO roleDO) {
         if (ClassUtils.ObjIsNotNull(roleDO)) {
-            roleService.insertRole(roleDO);
-            return new JsonResult<>();
+           sign = roleService.insertRole(roleDO);
+           if(sign != CommonConstant.RESULT_STATUS_FAIL){
+               return new JsonResult<>("添加角色成功");
+           }
+
         }
-        return new JsonResult<>("操作失败！");
+        return new JsonResult<>("添加角色失败！");
     }
 
     @RequestMapping("addRolePermission")
@@ -119,7 +122,7 @@ public class RoleController {
     public JsonResult<List> updateRole(@RequestBody RoleDO roleDO) {
         if (ClassUtils.ObjIsNotNull(roleDO)) {
             roleService.updateRole(roleDO);
-            return new JsonResult<>();
+            return new JsonResult<>("修改成功");
         }
         return new JsonResult<>("修改失败");
     }

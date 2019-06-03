@@ -40,7 +40,7 @@
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item"><a href="/jump-listPermission">权限管理</a></li>
                 <li class="layui-nav-item"><a href="jump-listRole">角色管理</a></li>
-                <li class="layui-nav-item"><a href="/jump-listPermission">用户管理</a></li>
+                <li class="layui-nav-item"><a href="/jump-listUser">用户管理</a></li>
                 <li class="layui-nav-item"><a href="https://blog.csdn.net/tingfengqianqu">关于作者</a></li>
             </ul>
         </div>

@@ -22,7 +22,6 @@
         .right {
             float: right;
         }
-
     </style>
 </head>
 <body class="layui-layout-body">
@@ -63,21 +62,55 @@
     </div>
 
     <!--弹出层-->
-    <div id="addPermission" style="display:none;">
+    <div id="addForm" style="display:none;">
         <form class="layui-form" id="addPermissionForm" action="">
+            <div class="message">${registerMessage }</div>
             <div class="layui-form-item">
-                <label class="layui-form-label">权限名称</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="name" required lay-verify="required" placeholder="权限名称"
-                           autocomplete="off"
+                <label class="layui-form-label label">学号</label>
+                <div class="layui-input-block">
+                    <input type="number" name="number" required lay-verify="required|number"
+                           placeholder="请输入学号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label label">姓名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" required lay-verify="required"
+                           placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label label">学院</label>
+                <div class="layui-input-block">
+                    <input type="text" name="college" required lay-verify="required"
+                           placeholder="请输入学院" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label label">专业</label>
+                <div class="layui-input-block">
+                    <input type="text" name="majory" required lay-verify="required"
+                           placeholder="请输入专业" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="sex" value="男" title="男" checked="">
+                    <input type="radio" name="sex" value="女" title="女">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">邮箱</label>
+                <div class="layui-input-block">
+                    <input type="text" name="email" lay-verify="email"  placeholder="请输入正确的邮箱" autocomplete="off"
                            class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">权限路径</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="url" required lay-verify="required" placeholder="权限路径"
-                           autocomplete="off"
+                <label class="layui-form-label">手机号</label>
+                <div class="layui-input-block">
+                    <input type="tel" name="tel" lay-verify="required|phone"  placeholder="请输入手机号码" autocomplete="off"
                            class="layui-input">
                 </div>
             </div>
@@ -91,12 +124,14 @@
     </div>
     <!--底部-->
     <%--<div class="layui-footer">--%>
-        <%--© www.dlnu.com - 教师点名系统--%>
+    <%--© www.dlnu.com - 教师点名系统--%>
     <%--</div>--%>
 </div>
 
 <script src="${pageContext.request.contextPath}/resources/layui/layui.all.js" charset="utf-8"></script>
 <script src="${pageContext.request.contextPath}/resources/jquery-3.4.1.min.js" charset="utf-8"></script>
+
+<!--头部工具栏-->
 <script type="text/html" id="toolbarDemo">
     <span class="left">
       <div class="layui-btn-container">
@@ -108,12 +143,17 @@
         <div class="demoTable">
             <div class="layui-inline">
                  <i class="layui-icon layui-icon-search" style="position: absolute;top:5px;right: 8px;"/>
-                <input class="layui-input" name="search_value" id="search_value" placeholder="ID/权限名称/权限路径"
+                <input class="layui-input" name="search_value" id="search_value" placeholder="ID/学号/姓名/专业/....."
                        autocomplete="off">
             </div>
             <button class="layui-btn" ay-submit lay-event="search" id="search">搜索</button>
         </div>
     </span>
+</script>
+
+<!--数据操作框-->
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
 </script>
 
 <script>
@@ -123,16 +163,22 @@
         table.render({
             elem: '#test'
             , cellMinWidth: 80
-            , url: '/config/listPermission'
+            , url: '/config/listUser'
             , toolbar: '#toolbarDemo'
-            , title: '权限数据表'
+            , title: '用户数据表'
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'id', title: '权限ID', width: 90, fixed: 'left', unresize: true, sort: true}
-                , {field: 'name', title: '权限名称', edit: 'text', sort: true}
-                , {field: 'url', title: '权限路径', edit: 'text', sort: true}
+                , {field: 'id', title: '序号', width: 70, fixed: 'left', unresize: true, sort: true}
+                , {field: 'number', title: '学号', width: 108, sort: true}
+                , {field: 'name', title: '姓名', width: 75, edit: 'text', sort: true}
+                , {field: 'college', title: '学院', edit: 'text', sort: true}
+                , {field: 'majory', title: '专业班级', edit: 'text', sort: true}
+                , {field: 'sex', title: '性别', edit: 'text', sort: true}
+                , {field: 'email', title: '邮箱', edit: 'text', sort: true}
+                , {field: 'tel', title: '电话', edit: 'text', sort: true}
                 , {field: 'gmtCreate', title: '创建时间'}
                 , {field: 'gmtModified', title: '更新时间'}
+                , {fixed: 'right', title: '关联角色', align: 'center', toolbar: '#barDemo'}
             ]]
             , page: true
             , id: 'testTable'
@@ -145,7 +191,7 @@
             // console.log(JSON.stringify(data));
             $.ajax({
                 type: 'POST',
-                url: "/config/updatePermission",
+                url: "/config/updateUser",
                 contentType: "application/json",
                 data: JSON.stringify(data),
                 dataType: "json",
@@ -158,8 +204,25 @@
                 }
             });
         });
+        //监听 操作框
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            // if(obj.event === 'detail'){
+            //     layer.msg('ID：'+ data.id + ' 的查看操作');
+            // } else
+            if (obj.event === 'edit') {
+                // console.log(data.number);
+                layer.open({
+                    type: 2,
+                    title: "【" + data.name + "】" + "用户的角色关联",
+                    area: ['90%', '100%'],
+                    content: 'jump-popupsRole?userId=' + data.id
 
-        //头工具栏事件--增加、删除、搜索
+                });
+            }
+        });
+
+        //头部工具栏事件--增加、删除、搜索
         table.on('toolbar(test)', function (obj) {
             // console.log(obj.config.id)
             var checkStatus = table.checkStatus(obj.config.id);
@@ -168,17 +231,13 @@
                     var data = checkStatus.data;
                     layer.open({
                         type: 1,
-                        title: "添加权限",
-                        area: ['35%', '35%'],
-                        content: $("#addPermission"),
+                        title: "添加用户【初始密码为123456】",
+                        area: ['30%', '75%'],
+                        content: $("#addForm"),
                         cancel: function (index) {
-                            document.getElementById('addPermission').style.display = 'none';
+                            document.getElementById('addForm').style.display = 'none';
                             layer.close(index);
                             return false;
-                        },
-                        yes: function(index, layero){
-                            //do something
-                            layer.close(index); //如果设定了yes回调，需进行手工关闭
                         }
                     });
                     break;
@@ -189,13 +248,12 @@
                         layer.close(index);
                         $.ajax({
                             type: 'POST',
-                            url: "/config/deletePermission",
+                            url: "/config/deleteUser",
                             contentType: "application/json",
                             data: JSON.stringify(data),
                             dataType: "json",
                             success: function (data) {
                                 layer.msg(data.msg);
-                                //重载表格
                                 table.reload('testTable');
                             },
                             error: function () {
@@ -206,12 +264,8 @@
                     break;
                 case 'search':
                     var data = $('#search_value').val();
-                    // console.log(data);
-                    if (data == null) {
-                        data = '';
-                    }
                     table.reload('testTable', {
-                        url: "/config/selectKeyPermission"
+                        url: "/config/selectKeyUser"
                         , where: {
                             keyWord: data
                         }
@@ -221,14 +275,22 @@
             }
             ;
         });
+
         //增加权限（form表单）
         layui.use('form', function () {
             var form = layui.form;
+            //学号验证-自定义
+            form.verify({
+                number: [
+                    /^[2-9]([0-9]){9}$/
+                    ,'学号格式不正确'
+                ]
+            });
             //监听提交
             form.on('submit(formDemo)', function (data) {
                 $.ajax({
                     type: 'POST',
-                    url: "/config/insertPermission",
+                    url: "/config/insertUser",
                     contentType: "application/json",
                     data: JSON.stringify(data.field),
                     dataType: "json",
@@ -238,7 +300,7 @@
                         //重置输入框
                         document.getElementById("addPermissionForm").reset();
                         //隐藏弹出框
-                        document.getElementById('addPermission').style.display = 'none';
+                        document.getElementById('addForm').style.display = 'none';
                         layer.msg(data.msg);
                         //重载表格
                         table.reload('testTable');
@@ -251,6 +313,7 @@
             });
         });
     });
+
 
 </script>
 </body>

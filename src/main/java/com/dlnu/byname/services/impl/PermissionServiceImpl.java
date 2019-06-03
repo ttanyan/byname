@@ -24,6 +24,7 @@ import com.dlnu.byname.domain.entity.UserRoleDO;
 import com.dlnu.byname.mapper.PermissionMapper;
 import com.dlnu.byname.services.PermissionService;
 import com.dlnu.byname.services.UserRoleService;
+import com.dlnu.byname.util.ClassUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -88,7 +89,7 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Override
     public int updatePermission(PermissionDO permissionDO) {
-        if(permissionDO != null){
+        if(ClassUtils.ObjIsNotNull(permissionDO)){
             sign = permissionMapper.update(permissionDO);
         }
         return sign;

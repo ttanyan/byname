@@ -27,43 +27,57 @@ import java.util.List;
  * @date 2019/4/12 20:55
  */
 public interface UserRoleMapper {
-        /** 
-         * 增加用户角色 
-         * @return int 返回结果
-         * @author  Tanlianwang
-         * @date 2019/4/14 12:56
-         */ 
-        int insert(UserRoleDO userRoleDO);
-        
-       /** 
-        * 删除用户角色 
-        * @return int 返回结果
-        * @author  Tanlianwang
-        * @date 2019/4/14 12:58
-        */ 
-        int delete(UserRoleDO userRoleDO);
-        
-        /** 
-         * 修改用户角色
-         * @param userRoleDO  {@link UserRoleDO}
-         * @return int  返回结果
-         * @author  Tanlianwang
-         * @date 2019/4/14 12:57
-         */ 
-        int update(UserRoleDO userRoleDO);
-        /** 
-         * 根据用户ID查询该用户的所有角色
-         * @return java.util.List&lt;com.dlnu.byname.domain.entity.UserRoleDO&gt; 
-         * @author  Tanlianwang
-         * @date 2019/4/14 13:26
-         */ 
-        List<UserRoleDO> get(Long id);
-        /** 
-         * 查询所有用户所有角色
-         * @return java.util.List&lt;com.dlnu.byname.domain.entity.UserRoleDO&gt; 
-         * @author  Tanlianwang
-         * @date 2019/4/14 12:58
-         */ 
-        List<UserRoleDO> list();
+    /**
+     * 增加用户角色
+     * @param userRoleDO
+     * @return
+     */
+    int insert(UserRoleDO userRoleDO);
+
+    /**
+     * 批量添加角色权限
+     *
+     * @param list {@link UserRoleDO}
+     * @return 影响数量
+     */
+    int batchInsert(List<UserRoleDO> list);
+
+    /**
+     * 批量删除角色权限
+     *
+     * @param list {@link UserRoleDO}
+     * @return 影响数量
+     */
+    int batchDelete(List<UserRoleDO> list);
+
+    /**
+     * 删除用户角色
+     * @param userRoleDO {@link UserRoleDO}
+     * @return
+     */
+    int delete(UserRoleDO userRoleDO);
+
+    /**
+     * 修改用户角色
+     *
+     * @param userRoleDO {@link UserRoleDO}
+     * @return int  返回结果
+     * @author Tanlianwang
+     * @date 2019/4/14 12:57
+     */
+    int update(UserRoleDO userRoleDO);
+
+    /**
+     *根据用户id获取userRole
+     * @param id 用户id
+     * @return list
+     */
+    List<UserRoleDO> get(Long id);
+
+    /**
+     * 查询所有用户角色
+     * @return list
+     */
+    List<UserRoleDO> list();
 
 }

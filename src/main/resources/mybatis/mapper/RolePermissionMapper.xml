@@ -29,7 +29,7 @@
     </insert>
 
 
-    <!--批量删除用户角色 //TODO 需要优化不能两次foreach-->
+    <!--批量删除角色权限 //TODO 需要优化不能两次foreach-->
     <delete id="delete" parameterType="RolePermissionDO">
         DELETE
         FROM role_permission

@@ -42,6 +42,22 @@ public class UserRoleServiceImpl implements UserRoleService {
 
 
     @Override
+    public Integer batchInsert(List<UserRoleDO> list) {
+       if(list.isEmpty()){
+           return null;
+       }
+       return userRoleMapper.batchInsert(list);
+    }
+
+    @Override
+    public Integer batchDelete(List<UserRoleDO> list) {
+        if(list.isEmpty()){
+            return null;
+        }
+        return userRoleMapper.batchDelete(list);
+    }
+
+    @Override
     public List<UserRoleDO> listUserRole(String number) {
         if(number.trim().length() == CommonConstant.STRING_LENGTH) {
             UserDO userDO = userMapper.get(number);
@@ -50,6 +66,16 @@ public class UserRoleServiceImpl implements UserRoleService {
             return listUserRole;
         }else {
             return null;
+        }
+    }
+
+    @Override
+    public List<UserRoleDO> getUserRole(Long id) {
+        if(!id.equals(CommonConstant.EMPTY_STRING)){
+            return userRoleMapper.get(id);
+        }else{
+            //TODO 需要优化 返回空则会出现空指针异常
+            return  null;
         }
     }
 }
