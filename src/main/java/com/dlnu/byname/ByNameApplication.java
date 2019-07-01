@@ -28,7 +28,7 @@ public class ByNameApplication {
         properties.setProperty("offsetAsPageNum","true");
         properties.setProperty("rowBoundsWithCount","true");
         properties.setProperty("reasonable","true");
-        //配置mysql数据库的方言
+        //配置mysql数据库的分页
         properties.setProperty("dialect","mysql");
         pageHelper.setProperties(properties);
         return pageHelper;
