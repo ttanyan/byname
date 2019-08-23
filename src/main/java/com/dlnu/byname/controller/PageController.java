@@ -58,6 +58,11 @@ public class PageController {
     public String jumpRegister() {
         return "register";
     }
+    @RequestMapping(value = "jump-home")
+    public ModelAndView jumpHome(){
+        ModelAndView modelAndView = new ModelAndView("home");
+        return modelAndView;
+    }
 
     @RequestMapping("jump-listPermission")
     public String jumpListPermission() {
