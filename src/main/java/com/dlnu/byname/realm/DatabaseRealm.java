@@ -20,7 +20,6 @@ package com.dlnu.byname.realm;
 import com.dlnu.byname.domain.bo.UserPermissionBO;
 import com.dlnu.byname.domain.entity.UserDO;
 import com.dlnu.byname.services.PermissionService;
-import com.dlnu.byname.services.RolePermissionService;
 import com.dlnu.byname.services.RoleService;
 import com.dlnu.byname.services.UserService;
 import org.apache.shiro.authc.*;

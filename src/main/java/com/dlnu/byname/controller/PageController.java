@@ -18,10 +18,8 @@
 package com.dlnu.byname.controller;
 
 import com.dlnu.byname.constant.CommonConstant;
-import com.dlnu.byname.constant.JsonResult;
 import com.dlnu.byname.domain.entity.RolePermissionDO;
 import com.dlnu.byname.domain.entity.UserRoleDO;
-import com.dlnu.byname.services.PermissionService;
 import com.dlnu.byname.services.RolePermissionService;
 import com.dlnu.byname.services.UserRoleService;
 import org.springframework.stereotype.Controller;
