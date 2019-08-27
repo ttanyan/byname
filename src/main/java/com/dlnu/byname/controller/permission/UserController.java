@@ -20,7 +20,6 @@ package com.dlnu.byname.controller.permission;
 import com.dlnu.byname.constant.CommonConstant;
 import com.dlnu.byname.constant.JsonResult;
 import com.dlnu.byname.domain.entity.RoleDO;
-import com.dlnu.byname.domain.entity.RolePermissionDO;
 import com.dlnu.byname.domain.entity.UserDO;
 import com.dlnu.byname.domain.entity.UserRoleDO;
 import com.dlnu.byname.services.UserRoleService;
