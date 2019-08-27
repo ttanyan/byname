@@ -12,7 +12,9 @@
         INTO user
         (<include refid="userField"/> )
         VALUES
-        (#{number},#{name},#{college},#{majory},#{sex},#{email},#{tel},#{password},#{salt})
+        (#{number},#{name},#{college},#{majory},#{sex},#{email},#{tel},#{password},#{
+
+        })
     </insert>
 
     <!--删除用户-->

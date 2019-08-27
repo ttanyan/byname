@@ -38,13 +38,14 @@
         </ul>
     </div>
 
-    <div class="layui-carousel" id="test1">
+    <div class="layui-carousel" style="margin: 0 auto" id="test1">
         <div carousel-item>
-            <div><p class="layui-bg-green demo-carousel">在这里，你将以最直观的形式体验 layui！</p></div>
-            <div><p class="layui-bg-red demo-carousel">在编辑器中可以执行 layui 相关的一切代码</p></div>
-            <div><p class="layui-bg-blue demo-carousel">你也可以点击左侧导航针对性地试验我们提供的示例</p></div>
-            <div><p class="layui-bg-orange demo-carousel">如果最左侧的导航的高度超出了你的屏幕</p></div>
-            <div><p class="layui-bg-cyan demo-carousel">你可以将鼠标移入导航区域，然后滑动鼠标滚轮即可</p></div>
+            <div><img src="${pageContext.request.contextPath}/resources/layui/images/logo/lun1.jpg"></div>
+            <div><img src="${pageContext.request.contextPath}/resources/layui/images/logo/lun2.jpg"></div>
+            <div><img src="${pageContext.request.contextPath}/resources/layui/images/logo/lun3.jpg"></div>
+            <div><img src="${pageContext.request.contextPath}/resources/layui/images/logo/lun4.jpg"></div>
+            <div><img src="${pageContext.request.contextPath}/resources/layui/images/logo/lun5.jpg"></div>
+
         </div>
     </div>
 
@@ -57,23 +58,20 @@
 
     </div>
 
-    <div class="layui-footer">
-        © www.jimi.com - ATM系统
-    </div>
 </div>
 <script src="${pageContext.request.contextPath}/resources/layui/layui.all.js" charset="utf-8"></script>
-
 <script>
     layui.use('carousel', function(){
-        var carousel = layui.carousel
-            ,form = layui.form;
-
-        //常规轮播
+        var carousel = layui.carousel;
+        //建造实例
         carousel.render({
-            elem: '#test1'
+             elem: '#test1'
+            ,width: '1311px' //设置容器宽度
             ,arrow: 'always'
+            ,anim: 'fade' //切换动画方式
+            ,indicator:"inside"
+            ,height:"400px"
         });
-
     });
 </script>
 </body>
