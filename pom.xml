@@ -10,8 +10,8 @@
     </parent>
     <groupId>com.dlnu</groupId>
     <artifactId>byname</artifactId>
-    <version>1</version>
-    <name>byname</name>
+    <version>dlnu</version>
+    <name>nbyname</name>
     <description>ByName System</description>
 
     <properties>
