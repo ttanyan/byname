@@ -114,15 +114,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <dependencies>
-                    <!-- spring热部署 -->
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>springloaded</artifactId>
-                        <version>1.2.6.RELEASE</version>
-                    </dependency>
-                </dependencies>
+                <!-- 高版本打包的jsp访问不到 -->
+                <version>1.4.2.RELEASE</version>
+                <configuration>
+                    <!-- 指定该Main Class为全局的唯一入口 -->
+                    <mainClass>com.dlnu.byname.ByNameApplication</mainClass>
+                </configuration>
             </plugin>
+
             <!--Maven 打包跳过测试-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
