@@ -44,8 +44,13 @@ public class MessageTest extends BaseTest {
     public void MessageOutTest(){
         //默认语言
         logger.info(messageSource.getMessage("hello",null,"", null));
-        logger.info(messageUtils.getMessage("hello"));
+        logger.info(messageUtils.getMessage("et"));
         logger.info(LocaleContextHolder.getLocale().toString());
+        Locale[] ls = Locale.getAvailableLocales();
+
+        for (Locale locale:ls) {
+            System.out.println("locale :"+locale);
+        }
 
 
     }

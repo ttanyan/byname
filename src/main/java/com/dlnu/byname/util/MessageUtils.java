@@ -17,6 +17,7 @@
 
 package com.dlnu.byname.util;
 
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContext;
@@ -47,6 +48,8 @@ public class MessageUtils {
     }
     public String getMessage(String key,Object[] args,String defaultMsg){
         Locale locale = LocaleContextHolder.getLocale();
-        return messageSource.getMessage(key,args,defaultMsg,locale);
+        //构造英文
+        Locale local = new Locale("en","US");
+        return messageSource.getMessage(key,args,defaultMsg,local);
     }
 }
