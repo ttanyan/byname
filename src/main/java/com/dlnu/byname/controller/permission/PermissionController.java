@@ -34,9 +34,8 @@ import java.util.List;
 /**
  * @author TanLianWang
  * @version 1.0
- * @Description
+ * @Description 实现权限、角色、用户的增删改查
  * @Date 2019/4/24 9:08
- * 实现权限、角色、用户的增删改查
  */
 @RestController
 @RequestMapping("config")
