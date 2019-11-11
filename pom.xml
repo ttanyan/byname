@@ -125,7 +125,6 @@
                     <mainClass>com.dlnu.byname.ByNameApplication</mainClass>
                 </configuration>
             </plugin>
-
             <!--Maven 打包跳过测试-->
 <!--            <plugin>-->
 <!--                <groupId>org.apache.maven.plugins</groupId>-->
