@@ -90,7 +90,7 @@ public class ConfigProperties {
                 '}';
     }
 
-    @ConfigurationProperties(prefix = "MQ")
+    @ConfigurationProperties(prefix = "mq")
     public static class MqProperties {
         private String url;
         private String username;
