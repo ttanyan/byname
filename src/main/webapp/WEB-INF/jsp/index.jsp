@@ -17,7 +17,7 @@
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo">
-            大连民族大学-点名系统
+            民大-点名系统
         </div>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
