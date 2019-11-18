@@ -17,6 +17,11 @@
 
 package com.dlnu.byname.constant;
 
+import com.dlnu.byname.domain.entity.PermissionDO;
+import com.github.pagehelper.PageInfo;
+
+import java.util.List;
+
 /**
  * @author TanLianWang
  * @version 1.0
@@ -39,7 +44,7 @@ public class JsonResult<T> {
     /**
      * 返回总数
      */
-    private Integer count;
+    private Long count;
 
     /**
      * 若没有数据返回，默认状态码为0，总数为0。提示信息为“操作成功！”
@@ -47,7 +52,7 @@ public class JsonResult<T> {
     public JsonResult() {
         this.code = 0;
         this.msg = "操作成功！";
-        this.count = 0;
+        this.count = 0L;
     }
 
     /**
@@ -57,7 +62,7 @@ public class JsonResult<T> {
     public JsonResult( String msg) {
         this.code = 500;
         this.msg = msg;
-        this.count = 0;
+        this.count = 0L;
     }
 
     /**
@@ -68,7 +73,8 @@ public class JsonResult<T> {
         this.data = data;
         this.code = 0;
         this.msg = "操作成功！";
-        this.count = 0;
+        this.count=0L;
+
     }
 
     /**
@@ -76,12 +82,14 @@ public class JsonResult<T> {
      * @param data 数据
      * @param count 总数
      */
-    public JsonResult(T data, Integer count) {
+    public JsonResult(T data, Long count) {
         this.data = data;
         this.code = 0;
         this.msg = "操作成功！";
         this.count = count;
     }
+
+
 
     public T getData() {
         return data;
@@ -107,11 +115,11 @@ public class JsonResult<T> {
         this.msg = msg;
     }
 
-    public Integer getCount() {
+    public Long getCount() {
         return count;
     }
 
-    public void setCount(Integer count) {
+    public void setCount(Long count) {
         this.count = count;
     }
 }

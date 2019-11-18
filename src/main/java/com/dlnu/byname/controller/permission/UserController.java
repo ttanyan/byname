@@ -25,8 +25,8 @@ import com.dlnu.byname.domain.entity.UserRoleDO;
 import com.dlnu.byname.services.UserRoleService;
 import com.dlnu.byname.services.UserService;
 import com.dlnu.byname.util.ClassUtils;
-import com.dlnu.byname.util.PageBean;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -139,25 +139,18 @@ public class UserController {
     }
 
     @RequestMapping("listUser")
-    public JsonResult<List> listUser(int page, int limit) {
+    public JsonResult<List<UserDO>> listUser(int page, int limit) {
         PageHelper.startPage(page, limit);
         List<UserDO> userDOList = userService.listUser();
-        int count = userService.getCount();
-        PageBean<UserDO> pageData = new PageBean<>(page, limit, count);
-        pageData.setItems(userDOList);
-        return new JsonResult<>(pageData.getItems(), count);
+        PageInfo<UserDO> pageInfo = new PageInfo<>(userDOList);
+        return new JsonResult<>((List<UserDO>)userDOList,pageInfo.getTotal());
     }
 
     @RequestMapping("selectKeyUser")
-    public JsonResult<List> selectKeyRole(int page, int limit, String keyWord) {
-//        //TODO 需要优化查询总数 目前是查了两遍
-        List<UserDO> userDOListOne = userService.selectKeyUser(keyWord);
-        int count = userDOListOne.size();
+    public JsonResult<List<UserDO>> selectKeyRole(int page, int limit, String keyWord) {
         PageHelper.startPage(page, limit);
         List<UserDO> userDOList = userService.selectKeyUser(keyWord);
-        PageBean<UserDO> pageData = new PageBean<>(page, limit, count);
-        pageData.setItems(userDOList);
-        return new JsonResult<>(pageData.getItems(), count);
-
+        PageInfo<UserDO> pageInfo = new PageInfo<>(userDOList);
+        return new JsonResult<>((List<UserDO>)userDOList,pageInfo.getTotal());
     }
 }

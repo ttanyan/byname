@@ -22,13 +22,14 @@ import com.dlnu.byname.constant.JsonResult;
 import com.dlnu.byname.domain.entity.PermissionDO;
 import com.dlnu.byname.services.PermissionService;
 import com.dlnu.byname.util.ClassUtils;
-import com.dlnu.byname.util.PageBean;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.security.Permission;
 import java.util.List;
 
 /**
@@ -88,26 +89,19 @@ public class PermissionController {
     }
 
     @RequestMapping("listPermission")
-    public JsonResult<List> getListPermission(int page, int limit) {
+    public JsonResult<List<PermissionDO>> getListPermission(int page, int limit) {
         PageHelper.startPage(page, limit);
         List<PermissionDO> permissionDOList = permissionService.listPermission();
-        int count = permissionService.getCount();
-        PageBean<PermissionDO> pageData = new PageBean<>(page, limit, count);
-        pageData.setItems(permissionDOList);
-        return new JsonResult<>(pageData.getItems(), count);
+        PageInfo<PermissionDO> pageInfo = new PageInfo<>(permissionDOList);
+        return new JsonResult<>((List<PermissionDO>)permissionDOList,pageInfo.getTotal());
     }
 
     @RequestMapping("selectKeyPermission")
-    public JsonResult<List> selectPermission(int page, int limit, String keyWord) {
-        //TODO 需要优化查询总数 目前是查了两遍
-        List<PermissionDO> permissionDOKeyListOne = permissionService.selectKeyPermission(keyWord);
-        //统计查询结果总数
-        int count = permissionDOKeyListOne.size();
+    public JsonResult<List<PermissionDO>> selectPermission(int page, int limit, String keyWord) {
         PageHelper.startPage(page, limit);
-        List<PermissionDO> permissionDOKeyList = permissionService.selectKeyPermission(keyWord);
-        PageBean<PermissionDO> pageData = new PageBean<>(page, limit, count);
-        pageData.setItems(permissionDOKeyList);
-        return new JsonResult<>(pageData.getItems(), count);
+        List<PermissionDO> PermissionDOKeyList = permissionService.selectKeyPermission(keyWord);
+        PageInfo<PermissionDO> pageInfo = new PageInfo<>(PermissionDOKeyList);
+        return new JsonResult<>((List<PermissionDO>)PermissionDOKeyList,pageInfo.getTotal());
     }
 
 

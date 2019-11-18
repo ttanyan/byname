@@ -25,8 +25,8 @@ import com.dlnu.byname.domain.entity.RolePermissionDO;
 import com.dlnu.byname.services.RolePermissionService;
 import com.dlnu.byname.services.RoleService;
 import com.dlnu.byname.util.ClassUtils;
-import com.dlnu.byname.util.PageBean;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -128,24 +128,18 @@ public class RoleController {
     }
 
     @RequestMapping("listRole")
-    public JsonResult<List> getListRole(int page, int limit) {
+    public JsonResult<List<RoleDO>> getListRole(int page, int limit) {
         PageHelper.startPage(page, limit);
         List<RoleDO> roleDOList = roleService.listRole();
-        int count = roleService.getCount();
-        PageBean<RoleDO> pageData = new PageBean<>(page, limit, count);
-        pageData.setItems(roleDOList);
-        return new JsonResult<>(pageData.getItems(), count);
+        PageInfo<RoleDO> pageInfo = new PageInfo<>(roleDOList);
+        return new JsonResult<>((List<RoleDO>)roleDOList,pageInfo.getTotal());
     }
 
     @RequestMapping("selectKeyRole")
-    public JsonResult<List> selectKeyRole(int page, int limit, String keyWord) {
-        //TODO 需要优化查询总数 目前是查了两遍
-        List<RoleDO> roleDOListOne = roleService.selectKeyRole(keyWord);
-        int count = roleDOListOne.size();
+    public JsonResult<List<RoleDO>> selectKeyRole(int page, int limit, String keyWord) {
         PageHelper.startPage(page, limit);
         List<RoleDO> roleDOList = roleService.selectKeyRole(keyWord);
-        PageBean<RoleDO> pageData = new PageBean<>(page, limit, count);
-        pageData.setItems(roleDOList);
-        return new JsonResult<>(pageData.getItems(), count);
+        PageInfo<RoleDO> pageInfo = new PageInfo<>(roleDOList);
+        return new JsonResult<>((List<RoleDO>)roleDOList,pageInfo.getTotal());
     }
 }
