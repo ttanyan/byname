@@ -21,16 +21,16 @@ public class ByNameApplication {
 
     @Bean
     public PageHelper pageHelper(){
-        //配置mybatis的分页插件pageHelper
-        PageHelper pageHelper = new PageHelper();
-        Properties properties = new Properties();
-        properties.setProperty("offsetAsPageNum","true");
-        properties.setProperty("rowBoundsWithCount","true");
-        properties.setProperty("reasonable","true");
-        //配置mysql数据库的分页
-        properties.setProperty("dialect","mysql");
-        pageHelper.setProperties(properties);
-        return pageHelper;
+            //配置mybatis的分页插件pageHelper
+            PageHelper pageHelper = new PageHelper();
+            Properties properties = new Properties();
+            properties.setProperty("offsetAsPageNum","true");
+            properties.setProperty("rowBoundsWithCount","true");
+            properties.setProperty("reasonable","true");
+            //配置mysql数据库的分页
+            properties.setProperty("dialect","mysql");
+            pageHelper.setProperties(properties);
+            return pageHelper;
     }
     public static void main(String[] args) {
         Logger logger = LoggerFactory.getLogger(ByNameApplication.class);
