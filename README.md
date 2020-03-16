@@ -1,4 +1,4 @@
-![LOGO](https://api.neweb.top/bing.php?type=future)
+![LOGO](http://area.sinaapp.com/bingImg)
 # byname
 ## 教师点名系统
 
