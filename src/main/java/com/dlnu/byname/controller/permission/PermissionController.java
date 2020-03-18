@@ -93,7 +93,7 @@ public class PermissionController {
         PageHelper.startPage(page, limit);
         List<PermissionDO> permissionDOList = permissionService.listPermission();
         PageInfo<PermissionDO> pageInfo = new PageInfo<>(permissionDOList);
-        return new JsonResult<>((List<PermissionDO>)permissionDOList,pageInfo.getTotal());
+        return new JsonResult<>(permissionDOList,pageInfo.getTotal());
     }
 
     @RequestMapping("selectKeyPermission")
@@ -101,7 +101,7 @@ public class PermissionController {
         PageHelper.startPage(page, limit);
         List<PermissionDO> PermissionDOKeyList = permissionService.selectKeyPermission(keyWord);
         PageInfo<PermissionDO> pageInfo = new PageInfo<>(PermissionDOKeyList);
-        return new JsonResult<>((List<PermissionDO>)PermissionDOKeyList,pageInfo.getTotal());
+        return new JsonResult<>(PermissionDOKeyList,pageInfo.getTotal());
     }
 
 
