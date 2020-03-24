@@ -55,11 +55,11 @@ public class ShiroConfiguration {
         // 设置SecurityManager
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         // 默认寻找login
-        shiroFilterFactoryBean.setLoginUrl("/login");
+        shiroFilterFactoryBean.setLoginUrl("/byname");
         // 登录成功后跳转
         shiroFilterFactoryBean.setSuccessUrl("/index");
         // 权限未通过跳转
-        shiroFilterFactoryBean.setUnauthorizedUrl("/unauthorizdurl");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/byname");
         // 拦截器
         Map<String,String> filterChainDefinitionMap = new LinkedHashMap<>();
         //自定义拦截器
@@ -72,7 +72,20 @@ public class ShiroConfiguration {
          */
         filterChainDefinitionMap.put("/login","anon");
         filterChainDefinitionMap.put("/index","anon");
+        filterChainDefinitionMap.put("/byname","anon");
+        filterChainDefinitionMap.put("/logout","anon");
+
+
+        filterChainDefinitionMap.put("/jump-/**","anon");
+        filterChainDefinitionMap.put("/logout","anon");
+        filterChainDefinitionMap.put("/logout","anon");
+        filterChainDefinitionMap.put("/logout","anon");
+
+
+
+
         filterChainDefinitionMap.put("/resources/**","anon");
+        filterChainDefinitionMap.put("/**", "url");
         shiroFilterFactoryBean.setFilters(customizationFilter);
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;

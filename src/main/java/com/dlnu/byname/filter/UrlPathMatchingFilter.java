@@ -54,10 +54,10 @@ public class UrlPathMatchingFilter extends PathMatchingFilter {
         Subject subject = SecurityUtils.getSubject();
         // 如果没有登录，就跳转到登录页面
         if (!subject.isAuthenticated()) {
-            WebUtils.issueRedirect(request, response, "/login");
+            WebUtils.issueRedirect(request, response, "/byname");
             return false;
         }
-        // 判断访问的注释是否需要认证
+        // 判断访问的路径是否需要认证
         boolean needInterceptor = permissionService.needInterceptor(requestURI);
         //不需要认证--放行（可以考虑拦截？）
         if (!needInterceptor) {
