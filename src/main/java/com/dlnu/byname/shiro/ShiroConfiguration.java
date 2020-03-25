@@ -50,16 +50,16 @@ public class ShiroConfiguration {
 
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager){
-
+        System.out.println("ShiroConfiguration.shirFilter()===========================");
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         // 设置SecurityManager
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         // 默认寻找login
-        shiroFilterFactoryBean.setLoginUrl("/byname");
+        shiroFilterFactoryBean.setLoginUrl("/login");
         // 登录成功后跳转
         shiroFilterFactoryBean.setSuccessUrl("/index");
         // 权限未通过跳转
-        shiroFilterFactoryBean.setUnauthorizedUrl("/byname");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/unauthorizdurl");
         // 拦截器
         Map<String,String> filterChainDefinitionMap = new LinkedHashMap<>();
         //自定义拦截器
@@ -73,20 +73,13 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/login","anon");
         filterChainDefinitionMap.put("/index","anon");
         filterChainDefinitionMap.put("/byname","anon");
-        filterChainDefinitionMap.put("/logout","anon");
-
-
-        filterChainDefinitionMap.put("/jump-/**","anon");
-        filterChainDefinitionMap.put("/logout","anon");
-        filterChainDefinitionMap.put("/logout","anon");
-        filterChainDefinitionMap.put("/logout","anon");
-
-
-
-
+        filterChainDefinitionMap.put("/jump-register","anon");
+        filterChainDefinitionMap.put("/unauthorized","anon");
         filterChainDefinitionMap.put("/resources/**","anon");
-        filterChainDefinitionMap.put("/**", "url");
+
+        filterChainDefinitionMap.put("/**","url");
         shiroFilterFactoryBean.setFilters(customizationFilter);
+
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }

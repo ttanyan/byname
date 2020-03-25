@@ -51,6 +51,10 @@ public class PageController {
         ModelAndView modelAndView = new ModelAndView("login");
         return modelAndView;
     }
+    @RequestMapping(value = "/unauthorized")
+    public String jumpUnauthorized(){
+        return  "unauthorized";
+    }
 
     @RequestMapping(value = "jump-register")
     public String jumpRegister() {
