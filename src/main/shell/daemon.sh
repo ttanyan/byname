@@ -22,7 +22,6 @@ function startApp()
         -XX:+UseConcMarkSweepGC
 		-Xloggc:log/gc.log
 		-Denv=DEV
-        -Ddev_meta=http://120.76.24.28:9060
 	"
 
     nohup java -DGID=$BASE_DIR $JVM_PARAM -jar "$APP_NAME".jar --spring.profiles.active=$APP_ACTIVE > "$APP_NAME".log 2>&1 &
