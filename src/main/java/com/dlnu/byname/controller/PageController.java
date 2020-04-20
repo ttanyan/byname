@@ -118,4 +118,9 @@ public class PageController {
         return "popupsRole";
     }
 
+    @RequestMapping("Tanlianwang")
+    public String jumpJianli(){
+        return "tanlianwang";
+    }
+
 }

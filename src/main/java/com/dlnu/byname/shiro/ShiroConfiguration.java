@@ -50,7 +50,7 @@ public class ShiroConfiguration {
 
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager){
-        System.out.println("ShiroConfiguration.shirFilter()===========================");
+        System.out.println("--------------------------------------ShiroConfiguration.shirFilter()初始化---------------------------------");
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         // 设置SecurityManager
         shiroFilterFactoryBean.setSecurityManager(securityManager);
@@ -70,6 +70,7 @@ public class ShiroConfiguration {
          * 配置映射关系
          * anon 表示不需要任何权限都可以访问
          */
+        filterChainDefinitionMap.put("/Tanlianwang","anon");
         filterChainDefinitionMap.put("/login","anon");
         filterChainDefinitionMap.put("/index","anon");
         filterChainDefinitionMap.put("/byname","anon");

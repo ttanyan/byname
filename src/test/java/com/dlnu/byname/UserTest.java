@@ -67,13 +67,13 @@ public class UserTest extends  BaseTest{
     public void getUserTest(){
 
         UserDO userDO = userMapper.get("2015132114");
-       logger.info(userDO.getName()+userDO.getId());
+       logger.info(userDO.toString());
     }
     @Test
     public void listUserTest(){
         List<UserDO> listUser = userMapper.listUser();
         listUser.forEach(p ->{
-            logger.info(p.getName());
+            logger.info(""+p.getGmtCreate());
 
         });
     }
