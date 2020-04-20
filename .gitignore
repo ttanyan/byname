@@ -24,4 +24,4 @@
 /dist/
 /nbdist/
 /.nb-gradle/
-/WEB-INF/tanlianwang.jsp
+/WEB-INF/jsp/tanlianwang.jsp
