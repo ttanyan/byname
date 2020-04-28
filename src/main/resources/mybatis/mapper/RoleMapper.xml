@@ -67,7 +67,7 @@
         </where>
     </select>
 
-    <!--获取总数tetol-->
+    <!--获取总数total-->
     <select id="getCount" resultType="Integer">
         SELECT COUNT(*) FROM role
     </select>

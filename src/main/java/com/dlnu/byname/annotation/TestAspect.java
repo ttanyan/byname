@@ -64,6 +64,7 @@ public class TestAspect {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         Object result = null;
         String number = null;
+        //得到切点参数
         Object[] object = pJoinPoint.getArgs();
         for (Object o : object) {
             if (o instanceof UserDO) {

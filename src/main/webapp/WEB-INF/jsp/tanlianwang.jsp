@@ -33,6 +33,7 @@
     .column .plate1 .f12{font-size:12px;font-weight:normal;color:#999999}
     .column .keys,.column .keys2{width:85px;line-height:28px;color:#666666}
     .column .keys2{width:110px}
+
     .column .txt1,.column .txt2,.column .txt3{width:815px;line-height:28px;color:#333333;word-break:break-all}
     .column .txt2{width:345px}
     .column .txt3{width:auto;max-width:815px;font-size:14px;font-weight:bold}

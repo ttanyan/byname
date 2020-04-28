@@ -29,6 +29,7 @@ import java.util.List;
 public interface UserMapper {
     /**
      * 新增用户
+     *
      * @param userDO {@link UserDO}
      * @return java.Integer
      */
@@ -36,13 +37,15 @@ public interface UserMapper {
 
     /**
      * 删除用户
+     *
      * @param list {@link UserDO}
-     * @return  java.Integer
+     * @return java.Integer
      */
     int delete(List<UserDO> list);
 
     /**
      * 更新用户
+     *
      * @param userDO {@link UserDO}
      * @return java.Integer
      */
@@ -50,6 +53,7 @@ public interface UserMapper {
 
     /**
      * 获取单个用户
+     *
      * @param number 用户编号
      * @return UserDO
      */
@@ -57,23 +61,25 @@ public interface UserMapper {
 
     /**
      * 获取所有用户
-     * @return List<UserDO)
+     *
+     * @return List<UserDO )
      */
     List<UserDO> listUser();
 
     /**
      * 模糊查询
+     *
      * @param keyWord 关键字
-     * @return  用户列表
+     * @return 用户列表
      */
     List<UserDO> selectKeyUser(String keyWord);
 
     /**
      * 获取用户总数
+     *
      * @return 总数
      */
     int getCount();
-
 
 
 }
