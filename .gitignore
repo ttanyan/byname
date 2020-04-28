@@ -25,4 +25,3 @@
 /nbdist/
 /.nb-gradle/
 src/main/webapp/WEB-INF/jsp/tanlianwang.jsp
-src/main/resources/*.properties
