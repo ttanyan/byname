@@ -65,6 +65,7 @@
                  *  在遍历JSON数据的时候很不认真所以导致在这个地方卡了很久 希望以后切记
                  *  两个for循环用了一个变量----len，导致每次遍历的都只能遍历十个，巨坑
                  */
+                //获取这个角色已添加的权限
                 var listRole = ${RolePermission};
                 for(var j = 0,lengRole = listRole.length; j < lengRole; j++){
                     for(var i = 0,len = res.data.length; i < len; i++){

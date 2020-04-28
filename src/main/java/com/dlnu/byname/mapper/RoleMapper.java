@@ -41,6 +41,7 @@ public interface RoleMapper {
      * @return
      */
     int delete(List<RoleDO> list);
+
     /**
      * 修改角色
      * @param roleDO {@link RoleDO}

@@ -1,5 +1,5 @@
 ![LOGO](http://area.sinaapp.com/bingImg)
-# Byname
+# byname
 ## 教师点名系统
 
 **整体框架**：SpringBoot+MyBatis+MySQL

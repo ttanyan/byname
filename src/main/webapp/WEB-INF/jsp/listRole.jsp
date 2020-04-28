@@ -119,7 +119,6 @@
 
 <!--数据操作框-->
 <script type="text/html" id="barDemo">
-    <%--<a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="detail">查看</a>--%>
     <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
 </script>
 
@@ -173,7 +172,6 @@
             //     layer.msg('ID：'+ data.id + ' 的查看操作');
             // } else
             if(obj.event === 'edit'){
-                // console.log(data.name);
                 layer.open({
                     type: 2,
                     title: "【"+data.name+"】"+"角色的权限关联",

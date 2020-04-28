@@ -51,6 +51,10 @@ public class PageController {
         ModelAndView modelAndView = new ModelAndView("login");
         return modelAndView;
     }
+    @RequestMapping(value = "/unauthorized")
+    public String jumpUnauthorized(){
+        return  "unauthorized";
+    }
 
     @RequestMapping(value = "jump-register")
     public String jumpRegister() {
@@ -112,6 +116,11 @@ public class PageController {
             model.addAttribute("RoleIds",null);
         }
         return "popupsRole";
+    }
+
+    @RequestMapping("Tanlianwang")
+    public String jumpJianli(){
+        return "tanlianwang";
     }
 
 }
