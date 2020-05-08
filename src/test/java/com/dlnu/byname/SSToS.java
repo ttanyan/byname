@@ -21,11 +21,11 @@ package com.dlnu.byname;
  * @author anyant
  * @version 1.0
  * @ProjectName byname
- * @Description  输入字符串自动去重
+ * @Description  输入字符串自动去重并算个数
  * @Date 2020/3/11 8:20 下午
  */
 import java.util.*;
-public class TestDemo {
+public class SSToS {
         public static int charNum(){
             Scanner in = new Scanner(System.in);
             String inString = in.nextLine();
