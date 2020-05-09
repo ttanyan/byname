@@ -30,8 +30,8 @@ import java.time.LocalDateTime;
  */
 public class StringAndStringBufferAndStringBuilder {
     public static void main(String[] args) {
-//StringBuffer与StringBuilder都很快  Stri
-//        StringBuilder s = new StringBuilder(ng很慢并且内存消耗很大"s");
+//StringBuffer与StringBuilder都很快  String很慢并且内存消耗很大
+//        StringBuilder s = new StringBuilder("s");
 //        String  s = "s";
         StringBuffer s = new StringBuffer("s");
         System.out.println(LocalDateTime.now());
