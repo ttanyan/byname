@@ -17,8 +17,6 @@
 package com.dlnu.byname.Collection;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.CountDownLatch;
 
@@ -63,7 +61,6 @@ public class CountDownTest {
             }
         }
     }
-
     public static void main(String[] args) throws InterruptedException {
         CountDownLatch countDownLatch = new CountDownLatch(2);
         Vector<String> vector = new Vector<>();
@@ -100,31 +97,5 @@ public class CountDownTest {
 
     }
 
-//    public static void main(String[] args) {
-//        /**
-//         * 1.ArrayList集合：
-//         * 1）底层数据结构是数组，查找快，增删慢。
-//         * 2） 线程不安全，效率高
-//         */
-//        List<Integer> list = new ArrayList<>();
-//        for (int i = 0; i < 10; i++) {
-//            list.add(i);
-//        }
-//        for (int i = 0; i < 10; i++) {
-//            list.remove(1); //将后面的所有元素移除了 抛出下标越界异常
-//            return;
-//        }
-//        /**
-//         * 2.Vector集合：
-//         * 1） 底层数据结构是数组，查询快，增删慢
-//         * 2）线程安全，效率低
-//         */
-//        Vector<Integer> vector = new Vector<>();
-//        for (int i = 0; i < 100; i++) {
-//            vector.add(i);
-//        }
-//        for (int i = 0; i < vector.size(); i++) {
-//            System.out.println(vector.get(i));
-//        }
-//    }
+
 }
