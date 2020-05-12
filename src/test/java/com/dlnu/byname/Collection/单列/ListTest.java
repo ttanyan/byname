@@ -15,7 +15,7 @@
  */
 
 
-package com.dlnu.byname.Collection;
+package com.dlnu.byname.Collection.单列;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
