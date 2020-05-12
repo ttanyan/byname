@@ -199,7 +199,9 @@
                                 table.reload('testTable');
                             },
                             error: function () {
-                                layer.msg("网络错误！");
+                                // layer.msg("网络错误");
+                                window.location.href="/unauthorized";
+
                             }
                         });
                     });

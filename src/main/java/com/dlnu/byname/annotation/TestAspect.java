@@ -59,13 +59,14 @@ public class TestAspect {
      * @date 2019/3/30 10:23
      */
     @Around("addAdvice()")
-    public Object InterCeptor(ProceedingJoinPoint pJoinPoint) {
+    public Object interCaptor(ProceedingJoinPoint pJoinPoint) {
         //返回结果
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         Object result = null;
         String number = null;
         //得到切点参数
         Object[] object = pJoinPoint.getArgs();
+//        Object[] objects = pJoinPoint.getArgs();
         for (Object o : object) {
             if (o instanceof UserDO) {
                 UserDO userDO = (UserDO) o;

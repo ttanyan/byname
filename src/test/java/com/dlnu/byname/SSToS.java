@@ -44,4 +44,5 @@ public class SSToS {
             }
             System.out.println(list);
         }
+
 }

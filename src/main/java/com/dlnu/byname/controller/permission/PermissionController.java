@@ -89,7 +89,7 @@ public class PermissionController {
     }
 
     @RequestMapping("listPermission")
-    public JsonResult<List<PermissionDO>> getListPermission(int page, int limit) {
+    public JsonResult<List<PermissionDO>> getListPermission(Integer page, Integer limit) {
         PageHelper.startPage(page, limit);
         List<PermissionDO> permissionDOList = permissionService.listPermission();
         PageInfo<PermissionDO> pageInfo = new PageInfo<>(permissionDOList);
@@ -97,6 +97,10 @@ public class PermissionController {
     }
 
     @RequestMapping("selectKeyPermission")
+    /**
+     *
+     *SpringMVC在接受参数的时候，如果不存在，那么会将这个值设置为null，如果你用基本数据类型，就无法设置为null
+     */
     public JsonResult<List<PermissionDO>> selectPermission(int page, int limit, String keyWord) {
         PageHelper.startPage(page, limit);
         List<PermissionDO> PermissionDOKeyList = permissionService.selectKeyPermission(keyWord);
