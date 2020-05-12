@@ -14,7 +14,7 @@
  * http://www.jimilab.com/
  */
 
-package com.dlnu.byname.annotation;
+package com.dlnu.byname.aspect;
 
 import com.dlnu.byname.domain.entity.UserDO;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -39,14 +39,14 @@ import java.util.regex.Pattern;
  */
 @Aspect
 @Component
-public class TestAspect {
+public class LoginAspect {
 
     /**
      * 切到Controller层  匹配LoginController下的所有带有自定义注解的方法
      * TODO 增加切点
      */
     @Pointcut("execution(* com.dlnu.byname.controller.LoginController.*(..)) && @annotation(com.dlnu.byname." +
-            "annotation.MyAnnotation)")
+            "annotation.LoginVerify)")
     public void addAdvice() {
 
     }
@@ -66,7 +66,6 @@ public class TestAspect {
         String number = null;
         //得到切点参数
         Object[] object = pJoinPoint.getArgs();
-//        Object[] objects = pJoinPoint.getArgs();
         for (Object o : object) {
             if (o instanceof UserDO) {
                 UserDO userDO = (UserDO) o;
