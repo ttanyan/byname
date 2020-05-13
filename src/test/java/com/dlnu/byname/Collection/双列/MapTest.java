@@ -67,8 +67,10 @@ public class MapTest {
             System.out.println("通过迭代key遍历======="+key+"="+value);
         }
 
-        //  4、通过map.values()获得所有值，但是不能获得键
+        //      4、通过map.values()获得所有值，但是不能获得键
         System.out.println(map.values());
+
+
 
 
 
