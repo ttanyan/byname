@@ -83,6 +83,7 @@ public class ParamAspect {
     /**
      * 获取请求参数
      */
+    //TODO 传入为类的时候无法验证参数
     public static Map<String, String> getAllRequestParam(HttpServletRequest request) {
         Map<String, String> res = new HashMap<>(16);
         Enumeration<?> temp = request.getParameterNames();
