@@ -25,6 +25,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDateTime;
+
 /**
  * @author Tanlianwang
  * @version 1.0
@@ -37,12 +39,12 @@ public class BaseTest {
 
     @Before
     public void init() {
-        System.out.println("===================Test Begin===================");
+        System.out.println("===================Test Begin "+ LocalDateTime.now() +"===================");
     }
 
     @After
     public void after() {
-        System.out.println("===================Test End===================");
+        System.out.println("===================Test End"+LocalDateTime.now()+"===================");
     }
 
 }

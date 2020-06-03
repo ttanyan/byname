@@ -17,11 +17,6 @@
 
 package com.dlnu.byname.constant;
 
-import com.dlnu.byname.domain.entity.PermissionDO;
-import com.github.pagehelper.PageInfo;
-
-import java.util.List;
-
 /**
  * @author TanLianWang
  * @version 1.0

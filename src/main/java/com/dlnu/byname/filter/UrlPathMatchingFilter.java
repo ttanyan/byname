@@ -49,7 +49,7 @@ public class UrlPathMatchingFilter extends PathMatchingFilter {
             permissionService = SpringContextUtils.getContext().getBean(PermissionService.class);
         }
         String requestURI = getPathWithinApplication(request);
-        System.out.println("requestURI:" + requestURI);
+        System.out.println("请求路径:" + requestURI);
         Subject subject = SecurityUtils.getSubject();
         // 如果没有登录，就跳转到登录页面
         if (!subject.isAuthenticated()) {
@@ -88,8 +88,8 @@ public class UrlPathMatchingFilter extends PathMatchingFilter {
             else {
                 UnauthorizedException ex = new UnauthorizedException("当前用户没有访问路径 " + requestURI + " 的权限");
                 subject.getSession().setAttribute("ex", ex);
+                //应该return参数，根据参数判断是否跳转到相应的页面
                 WebUtils.issueRedirect(request, response, "/unauthorized");
-                System.out.println("这个是没有跳转的========================================");
                 return false;
             }
         }

@@ -19,7 +19,7 @@ public class ByNameApplication {
     public static void main(String[] args) {
         Logger logger = LoggerFactory.getLogger(ByNameApplication.class);
         SpringApplication.run(ByNameApplication.class, args);
-        logger.info("............My ByName 启动成功.......");
+        logger.info("===============My ByName 启动成功==============");
 
     }
 

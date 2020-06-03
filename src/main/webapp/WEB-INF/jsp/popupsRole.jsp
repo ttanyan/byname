@@ -101,11 +101,11 @@
             elem: '#test'
             , cellMinWidth: 80
             , url: '/config/listRole'
-            ,parseData: function(res){ //res 即为原始返回的数据 对其进行预处理 动态添加复选框状态
+            , parseData: function (res) { //res 即为原始返回的数据 对其进行预处理 动态添加复选框状态
                 var roleIds = ${RoleIds};
-                for(var j = 0,lengRole = roleIds.length; j < lengRole; j++){
-                    for(var i = 0,len = res.data.length; i < len; i++){
-                        if(roleIds[j] == res.data[i].id){
+                for (var j = 0, lengRole = roleIds.length; j < lengRole; j++) {
+                    for (var i = 0, len = res.data.length; i < len; i++) {
+                        if (roleIds[j] == res.data[i].id) {
                             //添加复选框选中的状态
                             res.data[i].LAY_CHECKED = true;
                         }
@@ -121,7 +121,7 @@
                 , {field: 'note', title: '角色描述', edit: 'text', sort: true}
                 , {field: 'gmtCreate', title: '创建时间'}
                 , {field: 'gmtModified', title: '更新时间'}
-                , {fixed: 'right', title: '关联权限',align:'center', toolbar: '#barDemo'}
+                , {fixed: 'right', title: '关联权限', align: 'center', toolbar: '#barDemo'}
             ]]
             , page: true
             , id: 'testTable'
@@ -148,18 +148,18 @@
             });
         });
         //监听 操作框
-        table.on('tool(test)', function(obj){
+        table.on('tool(test)', function (obj) {
             var data = obj.data;
             // if(obj.event === 'detail'){
             //     layer.msg('ID：'+ data.id + ' 的查看操作');
             // } else
-            if(obj.event === 'edit'){
+            if (obj.event === 'edit') {
                 // console.log(data.name);
                 layer.open({
                     type: 2,
-                    title: "【"+data.name+"】"+"角色的权限关联",
+                    title: "【" + data.name + "】" + "角色的权限关联",
                     area: ['78%', '78%'],
-                    content: 'jump-popupsPermission?roleId='+data.id
+                    content: 'jump-popupsPermission?roleId=' + data.id
 
                 });
             }
@@ -184,7 +184,7 @@
                             success: function (data) {
                                 layer.msg(data.msg);
                                 //重载表格 获取新的roleIds
-                                window.location.href="jump-popupsRole?userId=${userId}";
+                                window.location.href = "jump-popupsRole?userId=${userId}";
 
                             },
                             error: function () {
@@ -207,7 +207,7 @@
                             success: function (data) {
                                 layer.msg(data.msg);
                                 //重载表格
-                                window.location.href="jump-popupsRole?userId=${userId}";
+                                window.location.href = "jump-popupsRole?userId=${userId}";
                             },
                             error: function () {
                                 layer.msg("网络错误！");
@@ -225,7 +225,8 @@
                         , page: true
                     });
                     break;
-            };
+            }
+            ;
         });
         //增加权限（form表单）
         layui.use('form', function () {

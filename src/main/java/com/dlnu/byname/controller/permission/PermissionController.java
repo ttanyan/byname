@@ -17,6 +17,7 @@
 
 package com.dlnu.byname.controller.permission;
 
+import com.dlnu.byname.annotation.ParamVerify;
 import com.dlnu.byname.constant.CommonConstant;
 import com.dlnu.byname.constant.JsonResult;
 import com.dlnu.byname.domain.entity.PermissionDO;
@@ -89,7 +90,7 @@ public class PermissionController {
     }
 
     @RequestMapping("listPermission")
-    public JsonResult<List<PermissionDO>> getListPermission(int page, int limit) {
+    public JsonResult<List<PermissionDO>> getListPermission(Integer page, Integer limit) {
         PageHelper.startPage(page, limit);
         List<PermissionDO> permissionDOList = permissionService.listPermission();
         PageInfo<PermissionDO> pageInfo = new PageInfo<>(permissionDOList);
@@ -97,7 +98,13 @@ public class PermissionController {
     }
 
     @RequestMapping("selectKeyPermission")
-    public JsonResult<List<PermissionDO>> selectPermission(int page, int limit, String keyWord) {
+    /**
+     *
+     *SpringMVC在接受参数的时候，如果不存在，那么会将这个值设置为null，如果你用基本数据类型，就无法设置为null
+     * 将接收参数用基本类型的话切面无法切到。因为基本类型的话在上一层就抛出异常了不会进入Controllers所以无法进行处理 但是ControllerAdvice无法捕获不能获取
+     */
+    @ParamVerify(params = {"page","limit"})
+    public JsonResult<List<PermissionDO>> selectPermission(Integer page, Integer limit, String keyWord){
         PageHelper.startPage(page, limit);
         List<PermissionDO> PermissionDOKeyList = permissionService.selectKeyPermission(keyWord);
         PageInfo<PermissionDO> pageInfo = new PageInfo<>(PermissionDOKeyList);
