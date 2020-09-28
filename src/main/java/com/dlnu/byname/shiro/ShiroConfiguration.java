@@ -93,6 +93,7 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/Tanlianwang","anon");
         filterChainDefinitionMap.put("/unauthorized","anon");
         filterChainDefinitionMap.put("/resources/**","anon");
+        filterChainDefinitionMap.put("/resources/static","anon");
         //其他请求都需通过自定义拦截器去处理
  //      filterChainDefinitionMap.put("/**","url");
         shiroFilterFactoryBean.setFilters(customizationFilter);

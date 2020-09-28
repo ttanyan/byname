@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>ByName System Config</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/layui/css/layui.css" media="all">
+    <link rel="shortcut icon" href="../resources/static/favicon.ico">
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">

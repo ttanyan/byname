@@ -49,9 +49,9 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                <li class="layui-nav-item"><a href="/jump-listPermission">权限管理</a></li>
-                <li class="layui-nav-item"><a href="/jump-listRole">角色管理</a></li>
-                <li class="layui-nav-item"><a href="/jump-listUser">用户管理</a></li>
+                <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/jump-listPermission">权限管理</a></li>
+                <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/jump-listRole">角色管理</a></li>
+                <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/jump-listUser">用户管理</a></li>
                 <li class="layui-nav-item"><a href="https://blog.csdn.net/tingfengqianqu">关于作者</a></li>
             </ul>
         </div>
@@ -188,7 +188,7 @@
         table.on('edit(test)', function (obj) {
             var value = obj.value //得到修改后的值
                 , data = obj.data //得到所在行所有键值
-            // console.log(JSON.stringify(data));
+            console.log(JSON.stringify(data));
             $.ajax({
                 type: 'POST',
                 url: "/config/updateUser",
