@@ -60,6 +60,7 @@ public class UserRoleTest extends BaseTest{
     public void getUserRoleTest(){
         List<UserRoleDO> userRoleDOList = userRoleMapper.get(10L);
         for(UserRoleDO u:userRoleDOList){
+
             logger.info("roleId:"+u.getRoleId()+"  userId"+u.getUserId());
         }
     }
