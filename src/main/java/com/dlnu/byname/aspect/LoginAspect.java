@@ -26,6 +26,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,8 +43,8 @@ import java.util.regex.Pattern;
 public class LoginAspect {
 
     /**
+     * 指定切点
      * 切到Controller层  匹配LoginController下的所有带有自定义注解的方法
-     * TODO 增加切点
      */
     @Pointcut("execution(* com.dlnu.byname.controller.LoginController.*(..)) && @annotation(com.dlnu.byname." +
             "annotation.LoginVerify)")
@@ -60,8 +61,9 @@ public class LoginAspect {
      */
     @Around("addAdvice()")
     public Object interCaptor(ProceedingJoinPoint pJoinPoint) {
-        //返回结果
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        //得到请求属性
+        HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
+
         Object result = null;
         String number = null;
         //得到切点参数
@@ -74,9 +76,11 @@ public class LoginAspect {
         }
         String regex = "^[2-9]([0-9]){9}$";
         Pattern pattern = Pattern.compile(regex);
+        assert number != null;
         Matcher matcher = pattern.matcher(number);
         boolean isMatch = matcher.matches();
         if (!isMatch) {
+            //封装请求提示
             request.getSession().setAttribute("registerMessage", "请检查学号输入是否正确！");
             return "register";
         }

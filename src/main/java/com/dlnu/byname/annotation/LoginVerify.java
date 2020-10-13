@@ -31,4 +31,6 @@ import java.lang.annotation.*;
 @Target(ElementType.METHOD)
 public @interface LoginVerify {
 
+    int value() default 0;
+
 }
