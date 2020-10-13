@@ -35,7 +35,6 @@ public class MqListener {
 
     /**
      *监听消息
-     *
      */
     @JmsListener(destination = "MONITORING_ALARM", containerFactory = "jmsListenerContainerQueue")
     public void receive(MapMessage message) throws JMSException {

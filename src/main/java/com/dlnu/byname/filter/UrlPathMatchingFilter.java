@@ -48,8 +48,8 @@ public class UrlPathMatchingFilter extends PathMatchingFilter {
         if(null==permissionService) {
             permissionService = SpringContextUtils.getContext().getBean(PermissionService.class);
         }
-        String requestURI = getPathWithinApplication(request);
-        System.out.println("请求路径:" + requestURI);
+        String pathWithinApplication = getPathWithinApplication(request);
+        System.out.println("请求路径:" + pathWithinApplication);
         Subject subject = SecurityUtils.getSubject();
         // 如果没有登录，就跳转到登录页面
         if (!subject.isAuthenticated()) {
@@ -57,7 +57,7 @@ public class UrlPathMatchingFilter extends PathMatchingFilter {
                 return false;
         }
         // 判断访问的路径是否需要认证
-        boolean needInterceptor = permissionService.needInterceptor(requestURI);
+        boolean needInterceptor = permissionService.needInterceptor(pathWithinApplication);
         //不需要认证--放行（可以考虑拦截？）
         if (!needInterceptor) {
             return true;
@@ -77,7 +77,7 @@ public class UrlPathMatchingFilter extends PathMatchingFilter {
 
             //判断当前用户是否具有访问权限
             for (String url : permissionUrls) {
-                if (url.equals(requestURI)) {
+                if (url.equals(pathWithinApplication)) {
                     hasPermission = true;
                     break;
                 }
@@ -86,7 +86,7 @@ public class UrlPathMatchingFilter extends PathMatchingFilter {
                 return true;
             }
             else {
-                UnauthorizedException ex = new UnauthorizedException("当前用户没有访问路径 " + requestURI + " 的权限");
+                UnauthorizedException ex = new UnauthorizedException("当前用户没有访问路径 " + pathWithinApplication + " 的权限");
                 subject.getSession().setAttribute("ex", ex);
                 //应该return参数，根据参数判断是否跳转到相应的页面
                 WebUtils.issueRedirect(request, response, "/unauthorized");

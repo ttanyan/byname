@@ -29,7 +29,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date 2017年10月11日 下午4:02:50
  */
 @Configuration
-public class SpringContextHolder implements ApplicationContextAware {
+public class SpringContextHandle implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
 
@@ -38,7 +38,7 @@ public class SpringContextHolder implements ApplicationContextAware {
      */
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
-        SpringContextHolder.applicationContext = applicationContext;
+        SpringContextHandle.applicationContext = applicationContext;
     }
 
     /**
