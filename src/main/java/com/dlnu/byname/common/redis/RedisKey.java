@@ -14,7 +14,7 @@
  * http://www.chinautech.com/
  */
 
-package com.dlnu.byname.common;
+package com.dlnu.byname.common.redis;
 
 /**
  * 
