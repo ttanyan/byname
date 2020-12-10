@@ -14,7 +14,7 @@
  * http://www.chinautech.com/
  */
 
-package com.dlnu.byname.common;
+package com.dlnu.byname.common.activemq;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.annotation.JmsListener;
@@ -29,17 +29,24 @@ import javax.jms.MapMessage;
  * @version 1.0 
  * @date 2020/4/15 9:21
  */
-//@Component
+@Component
 @Slf4j
-public class MqListener {
+public class MessageListener {
 
     /**
      *监听消息
      */
-    @JmsListener(destination = "MONITORING_ALARM", containerFactory = "jmsListenerContainerQueue")
+    @JmsListener(destination = "queue.BYNAME.ActiveMQ.AlarmInfo", containerFactory = "queueListenerFactory")
     public void receive(MapMessage message) throws JMSException {
         String data = message.getString("content");
-        log.info("接收到的消息:"+data);
+        log.info("==========================接收到的消息:"+data+"============================");
     }
+
+    @JmsListener(destination = "topic.BYNAME.ActiveMQ.AlarmInfo",containerFactory = "topicListenerFactory")
+    public void topicListener(MapMessage mapMessage) throws JMSException{
+        String data = mapMessage.getString("content");
+        log.info("=============接收到的消息："+data+"=================");
+    }
+
     
 }
