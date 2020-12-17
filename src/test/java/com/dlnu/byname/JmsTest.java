@@ -36,12 +36,12 @@ public class JmsTest extends BaseTest {
 
     @Test
     public void queueTest(){
-       sendMessage.sendQueue("amq消息队列发送");
+       sendMessage.sendQueue("amqQueue消息队列发送");
 
     }
 
     @Test
     public void topicTest(){
-        sendMessage.sendTopic("amq消息订阅和发布");
+        sendMessage.sendTopic("amqTopic消息订阅和发布");
     }
 }

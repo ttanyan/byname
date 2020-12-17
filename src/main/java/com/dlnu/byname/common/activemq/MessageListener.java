@@ -24,9 +24,8 @@ import javax.jms.JMSException;
 import javax.jms.MapMessage;
 
 /**
- * 
- * @author TanLianWang 
- * @version 1.0 
+ * @author TanLianWang
+ * @version 1.0
  * @date 2020/4/15 9:21
  */
 @Component
@@ -34,19 +33,22 @@ import javax.jms.MapMessage;
 public class MessageListener {
 
     /**
-     *监听消息
+     * 监听消息
      */
     @JmsListener(destination = "queue.BYNAME.ActiveMQ.AlarmInfo", containerFactory = "queueListenerFactory")
-    public void receive(MapMessage message) throws JMSException {
-        String data = message.getString("content");
-        log.info("==========================接收到的消息:"+data+"============================");
+    public void queueReceive(String message) throws JMSException {
+        try {
+
+            log.info("==========================接收到的消息Queue消息:" + message + "============================");
+        } catch (Exception e){
+            log.info("消息接收错误");
+        }
     }
 
-    @JmsListener(destination = "topic.BYNAME.ActiveMQ.AlarmInfo",containerFactory = "topicListenerFactory")
-    public void topicListener(MapMessage mapMessage) throws JMSException{
+    @JmsListener(destination = "topic.BYNAME.ActiveMQ.AlarmInfo", concurrency = "20",containerFactory = "topicListenerFactory")
+    public void topicReceive(MapMessage mapMessage) throws JMSException {
         String data = mapMessage.getString("content");
-        log.info("=============接收到的消息："+data+"=================");
+        log.info("=============接收到的消息topic消息：" + data + "=================");
     }
 
-    
 }

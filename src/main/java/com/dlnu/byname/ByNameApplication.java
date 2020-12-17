@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2019/5/13 22:00
  */
 @SpringBootApplication
+//@EnableFeignClients
 @MapperScan(basePackages = "com.dlnu.byname.mapper")
 public class ByNameApplication {
 

@@ -17,6 +17,7 @@
 package com.dlnu.byname.aspect;
 
 import com.dlnu.byname.domain.entity.UserDO;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -40,6 +41,7 @@ import java.util.regex.Pattern;
  */
 @Aspect
 @Component
+@Slf4j
 public class LoginAspect {
 
     /**
@@ -90,6 +92,7 @@ public class LoginAspect {
         } catch (Throwable e) {
             e.printStackTrace();
         }
+        log.info("执行结果是{}",result);
         return result;
     }
 }

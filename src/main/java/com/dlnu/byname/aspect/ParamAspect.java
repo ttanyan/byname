@@ -109,10 +109,6 @@ public class ParamAspect {
      */
     private Boolean validParams(Map<String, String> params, String[] requiredFields) {
         if (requiredFields.length != 0) {
-//            //参数
-//            if(params.size()==0){
-//                return false;
-//            }
             for (String field : requiredFields) {
                 if (StringUtils.isEmpty(params.get(field))) {
                     return false;

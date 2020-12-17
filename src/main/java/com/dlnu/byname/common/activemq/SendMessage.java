@@ -49,23 +49,15 @@ public class SendMessage {
         MessageCreator messageCreator = session -> {
             MapMessage mapMessage = session.createMapMessage();
             mapMessage.setString("content", message);
-            return mapMessage;
-        };
+            return mapMessage; };
         jmsTemplate.send(topic,messageCreator);
+
         log.info("============Topic消息推送成功"+message+"=================");
     }
 
     public void sendQueue(String message){
-        MessageCreator messageCreator = session -> {
-            MapMessage mapMessage = session.createMapMessage();
-            mapMessage.setString("content",message);
-            return  mapMessage;
-        };
-        jmsTemplate.send(queue,messageCreator);
+        jmsTemplate.convertAndSend(queue,message);
         log.info("============Queue消息推送成功"+message+"=================");
     }
-
-
-
 
 }
