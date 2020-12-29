@@ -61,7 +61,7 @@ public class StudentFactory implements BeanPostProcessor {
     public void getAllBean(){
         for (int i = 0; i < hashMap.size(); i++) {
 
-            log.info(hashMap.get(i)+"销毁之前的bean");
+            log.info("容器销毁之前的bean"+hashMap.get(i));
         }
     }
 }
