@@ -8,4 +8,5 @@
 **前端界面**：LayUI+Js+Ajax（就几个增删改查界面，已经很久没更新了）
 
 ### 特别说明：
-         练习技术使用，很乱很杂！有不对的地方欢迎指正!email:tanlianwang323@gmail.com
+         练习技术使用，很乱很杂！有不对的地方欢迎指正!
+         Email:tanlianwang323@gmail.com
