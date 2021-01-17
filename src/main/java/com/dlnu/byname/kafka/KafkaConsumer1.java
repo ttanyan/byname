@@ -1,6 +1,6 @@
 /*
- * COPYRIGHT. AnyanT. 2020.
- * ALL RIGHTS RESERVED.
+ * COPYRIGHT. AnyanT tanlianwang@qq.com
+ * ALL RIGHTS RESERVED
  *
  * No part of this publication may be reproduced, stored in a retrieval system, or transmitted,
  * on any form or by any means, electronic, mechanical, photocopying, recording,
@@ -10,25 +10,21 @@
  *
  * Date                   By              Description
  * -------------------    -----------     -------------------------------------------
- * 2012.12.30 00:17$                 anyant$           Create the class
+ * 2021/1/18                 anyant           Create the class
  * https://blog.csdn.net/tingfengqianqu
  */
 
 
-package com.dlnu.byname.config.kafka;
+package com.dlnu.byname.kafka;
 
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.kafka.annotation.EnableKafka;
+import java.util.Map;
 
 /**
  * @author anyant
  * @version 1.0
- * @ProjectName byname
  * @Description
- * @Date 2020/12/30 00:16
+ * @Date 2021/1/18 00:52
  */
-@EnableKafka
-@Configurable
-public class KafkaProducerConfig {
+public class KafkaConsumer1 {
 
 }
