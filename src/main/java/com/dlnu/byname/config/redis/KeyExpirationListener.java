@@ -15,7 +15,7 @@
  */
 
 
-package com.dlnu.byname.common.redis;
+package com.dlnu.byname.config.redis;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.connection.Message;

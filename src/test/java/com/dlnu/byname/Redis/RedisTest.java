@@ -18,7 +18,7 @@
 package com.dlnu.byname.Redis;
 
 import com.dlnu.byname.BaseTest;
-import com.dlnu.byname.common.redis.RedisUtils;
+import com.dlnu.byname.config.redis.RedisUtils;
 import org.junit.Test;
 import org.springframework.data.redis.core.StringRedisTemplate;
 

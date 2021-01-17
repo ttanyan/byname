@@ -15,7 +15,7 @@
  */
 
 
-package com.dlnu.byname.common.redis;
+package com.dlnu.byname.config.redis;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

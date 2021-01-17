@@ -15,7 +15,7 @@
  */
 
 
-package com.dlnu.byname.common.activemq;
+package com.dlnu.byname.config.activemq;
 
 import com.dlnu.byname.constant.ActiveMqConstant;
 import org.apache.activemq.ActiveMQConnectionFactory;

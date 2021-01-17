@@ -15,7 +15,7 @@
  */
 
 
-package com.dlnu.byname.common.redis;
+package com.dlnu.byname.config.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.kafka.server.port",
+      "type": "java.lang.String",
+      "description": "Description for spring.kafka.server.port."
+  }
+] }

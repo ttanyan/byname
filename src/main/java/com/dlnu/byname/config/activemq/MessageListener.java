@@ -14,7 +14,7 @@
  * http://www.chinautech.com/
  */
 
-package com.dlnu.byname.common.activemq;
+package com.dlnu.byname.config.activemq;
 
 import jdk.internal.instrumentation.Logger;
 import lombok.extern.slf4j.Slf4j;

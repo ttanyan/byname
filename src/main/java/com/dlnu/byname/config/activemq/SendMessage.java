@@ -15,7 +15,7 @@
  */
 
 
-package com.dlnu.byname.common.activemq;
+package com.dlnu.byname.config.activemq;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.core.JmsTemplate;

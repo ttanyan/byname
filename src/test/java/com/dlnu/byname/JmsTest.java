@@ -17,7 +17,7 @@
 
 package com.dlnu.byname;
 
-import com.dlnu.byname.common.activemq.SendMessage;
+import com.dlnu.byname.config.activemq.SendMessage;
 import org.junit.Test;
 
 import javax.annotation.Resource;
