@@ -15,13 +15,27 @@
  */
 
 
-package com.dlnu.byname.kafka;
+package com.dlnu.byname.consumerkafka.services.impl;
+
+import com.dlnu.byname.consumerkafka.services.MessageProcessorService;
+import org.springframework.stereotype.Service;
 
 /**
  * @author anyant
  * @version 1.0
  * @Description
- * @Date 2021/1/18 00:51
+ * @Date 2021/1/18 22:44
  */
-public class KafkaProducter {
+@Service
+public class MessageProcessorServiceImpl implements MessageProcessorService {
+
+    @Override
+    public String beforeMessageProcessor(String value) {
+        return value+"hello";
+    }
+
+    @Override
+    public String afterMessageProcessor(String value) {
+        return null;
+    }
 }

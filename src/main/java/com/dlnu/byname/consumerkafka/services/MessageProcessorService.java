@@ -15,16 +15,27 @@
  */
 
 
-package com.dlnu.byname.kafka;
-
-import java.util.Map;
+package com.dlnu.byname.consumerkafka.services;
 
 /**
  * @author anyant
  * @version 1.0
  * @Description
- * @Date 2021/1/18 00:52
+ * @Date 2021/1/18 22:38
  */
-public class KafkaConsumer1 {
+public interface MessageProcessorService {
 
+    /**
+     * 消息前置处理
+     * @param value
+     * @return
+     */
+    String beforeMessageProcessor(String value);
+
+    /**
+     * 消息后置操作
+     * @param value
+     * @return
+     */
+    String afterMessageProcessor(String value);
 }

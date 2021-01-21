@@ -15,7 +15,7 @@
  */
 
 
-package com.dlnu.byname.kafka;
+package com.dlnu.byname.consumerkafka;
 
 import com.dlnu.byname.util.MessageProcessor;
 import com.dlnu.byname.util.SpringContextUtils;

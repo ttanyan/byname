@@ -35,7 +35,7 @@ import java.util.HashMap;
  */
 @Component
 @Slf4j
-public class StudentFactory implements BeanPostProcessor {
+public class BeanFactory implements BeanPostProcessor {
 
     private int i;
     HashMap<Integer,String> hashMap = new HashMap<>();
@@ -52,7 +52,8 @@ public class StudentFactory implements BeanPostProcessor {
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         if(!Strings.isNullOrEmpty(beanName)){
             i++;
-            log.info(hashMap.put(i,beanName)+beanName+"：这是项目第"+i+"个Bean");
+            hashMap.put(i,beanName);
+            log.info(beanName+"：这是项目第"+i+"个Bean");
         }
         return bean;
     }
