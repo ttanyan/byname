@@ -15,20 +15,29 @@
  */
 
 
-package com.dlnu.byname.util;
+package com.dlnu.byname.kafkaproducer.services;
+
+import org.apache.kafka.clients.consumer.ConsumerRecords;
 
 /**
  * @author anyant
  * @version 1.0
  * @Description
- * @Date 2021/1/18 01:01
+ * @Date 2021/1/18 22:38
  */
-public class MessageProcessor {
-    public String beforeProcess(String value) {
-        return value;
-    }
+public interface MessageProcessorService {
 
-    public String afterProcess(String value) {
-        return value;
-    }
+    /**
+     * 消息前置处理
+     * @param value
+     * @return
+     */
+    String beforeMessageProcessor(ConsumerRecords value);
+
+    /**
+     * 消息后置操作
+     * @param value
+     * @return
+     */
+    String afterMessageProcessor(ConsumerRecords value);
 }

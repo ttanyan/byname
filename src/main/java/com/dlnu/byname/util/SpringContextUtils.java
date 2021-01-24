@@ -33,10 +33,6 @@ public class SpringContextUtils implements ApplicationContextAware {
     private static ApplicationContext context;
 
 
-    public static Object getBean(String className, Class<MessageProcessor> object) {
-        return  context.getBean(className,object);
-    }
-
     @Override
     public void setApplicationContext(ApplicationContext context)
             throws BeansException {
