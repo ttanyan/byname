@@ -47,7 +47,7 @@ public class MessageProcessorServiceImpl implements MessageProcessorService {
        Iterator iterator = records.iterator();
        while (iterator.hasNext()){
            ConsumerRecord consumerRecord = (ConsumerRecord) iterator.next();
-           log.info("topic {} value {} consumer {}",consumerRecord.topic(),consumerRecord.value(),consumerRecord.toString());
+           log.info("topic是 {} value值 {}",consumerRecord.topic(),consumerRecord.value());
 
        }
 

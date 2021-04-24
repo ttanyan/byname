@@ -32,16 +32,16 @@ public class Producer {
 
 
     public static void main(String[] args) {
-        Properties kafkaPropertie = new Properties();
+        Properties kafkaProperties = new Properties();
         //配置broker地址，配置多个容错
-        kafkaPropertie.put("bootstrap.servers", "localhost:9092");
+        kafkaProperties.put("bootstrap.servers", "localhost:9092");
         //配置key-value允许使用参数化类型
-        kafkaPropertie.put("key.serializer","org.apache.kafka.common.serialization.StringSerializer");
-        kafkaPropertie.put("value.serializer","org.apache.kafka.common.serialization.StringSerializer");
-        KafkaProducer<String, String> kafkaProducer = new KafkaProducer<String, String>(kafkaPropertie);
+        kafkaProperties.put("key.serializer","org.apache.kafka.common.serialization.StringSerializer");
+        kafkaProperties.put("value.serializer","org.apache.kafka.common.serialization.StringSerializer");
+        KafkaProducer<String, String> kafkaProducer = new KafkaProducer<String, String>(kafkaProperties);
         int sum = 0;
         while (sum<100){
-            ProducerRecord<String, String> record = new ProducerRecord<String, String>("hello","key1","hello world"+sum);
+            ProducerRecord<String, String> record = new ProducerRecord<String, String>("hello","hello world"+sum);
             kafkaProducer.send(record);
             sum++;
         }

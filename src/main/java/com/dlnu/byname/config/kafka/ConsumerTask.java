@@ -21,12 +21,10 @@ import com.dlnu.byname.kafkaproducer.services.MessageProcessorService;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.Resource;
-import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
@@ -37,7 +35,7 @@ import java.util.Properties;
  * @Description
  * @Date 2021/1/25 00:26
  */
-@Component
+@Configuration
 public class ConsumerTask {
 
     @Resource
@@ -46,6 +44,7 @@ public class ConsumerTask {
     KafkaConsumerConfig kafkaConsumerConfig;
 
 
+    @Bean
     public KafkaConsumer getKafkaConsumer() {
         Properties properties = new Properties();
         //设置kafka集群
@@ -61,7 +60,7 @@ public class ConsumerTask {
         properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
         //设置单次拉去数量
         properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, kafkaConsumerConfig.getConsumerPollNumbers());
-        KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<String,String>(properties);
+        KafkaConsumer<String, String> kafkaConsumer = new KafkaConsumer<>(properties);
         return kafkaConsumer;
     }
 
@@ -72,8 +71,10 @@ public class ConsumerTask {
         kafkaConsumer.subscribe(list);
         //设置消费间隙 单位 秒
         while (true){
-            ConsumerRecords consumerRecords = kafkaConsumer.poll(Duration.ofSeconds(kafkaConsumerConfig.getPollDelay()));
-            messageProcessor.afterMessageProcessor(consumerRecords);
+
+        ConsumerRecords consumerRecords = kafkaConsumer.poll(kafkaConsumerConfig.getPollDelay());
+        //kafka定时任务拉取数量
+        messageProcessor.afterMessageProcessor(consumerRecords);
         }
 
     }
