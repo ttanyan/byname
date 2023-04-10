@@ -35,12 +35,12 @@ import java.util.Properties;
  * @Description
  * @Date 2021/1/25 00:26
  */
-@Configuration
+//@Configuration
 public class ConsumerTask {
 
     @Resource
     MessageProcessorService messageProcessor;
-    @Resource
+//    @Resource
     KafkaConsumerConfig kafkaConsumerConfig;
 
 

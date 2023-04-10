@@ -28,7 +28,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date 2021/1/25 00:12
  */
 @Data
-@Configuration
+//@Configuration
 public class KafkaConsumerConfig {
     /**
      * 消费者topics；

@@ -1,15 +1,19 @@
 package com.dlnu.byname;
 
+import com.dlnu.byname.shiro.ShiroConfiguration;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 /**
  * 启动类
+ *
  * @param
+ * @author TanLianWang
  * @return null
- * @author  TanLianWang
  * @date 2019/5/13 22:00
  */
 @SpringBootApplication
@@ -22,7 +26,6 @@ public class ByNameApplication {
         SpringApplication.run(ByNameApplication.class, args);
         logger.info("===============My ByName 启动成功==============");
     }
-
 
 
 }

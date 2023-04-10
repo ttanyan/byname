@@ -39,7 +39,6 @@ public class BaseTest {
 
     @Before
     public void init() {
-        System.out.println("===================Test Begin "+ LocalDateTime.now() +"===================");
     }
 
     @After

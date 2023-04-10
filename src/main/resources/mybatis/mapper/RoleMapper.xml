@@ -6,7 +6,7 @@
         id,name,note,gmt_create,gmt_modified
     </sql>
     <!--新增角色-->
-    <insert id="insert" parameterType="RoleDO">
+    <insert id="insert" parameterType="comRoleDO">
             INSERT
             INTO role
             (name,note)
