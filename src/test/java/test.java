@@ -21,8 +21,9 @@ public class test {
 
             System.out.println("-----分割线-----");
             for(String map1 : map.keySet()){
-                String string = map.keySet().toString();
-                System.out.println(string);
+                System.out.println(map1);
+
+
             }
         }
 

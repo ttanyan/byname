@@ -16,7 +16,7 @@
 
 package com.dlnu.byname.config.activemq;
 
-import jdk.internal.instrumentation.Logger;
+//import jdk.internal.instrumentation.Logger;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;

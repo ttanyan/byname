@@ -20,7 +20,8 @@ import com.dlnu.byname.annotation.ParamVerify;
 import com.dlnu.byname.expetion.ParamException;
 import com.dlnu.byname.util.CollectionUtils;
 import com.dlnu.byname.util.StringUtils;
-import jdk.nashorn.internal.runtime.logging.Logger;
+//import jdk.nashorn.internal.runtime.logging.Logger;
+import lombok.extern.flogger.Flogger;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -44,7 +45,7 @@ import java.util.Map;
 @Component
 @Aspect
 @Slf4j
-@Logger
+@Flogger
 public class ParamAspect {
 
     @Pointcut("execution(public * com.dlnu.byname.controller..*Controller.*(..))&&@annotation(com.dlnu.byname.annotation.ParamVerify)")
