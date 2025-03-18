@@ -34,7 +34,7 @@ public class Producer {
     public static void main(String[] args) {
         Properties kafkaProperties = new Properties();
         //配置broker地址，配置多个容错
-        kafkaProperties.put("bootstrap.servers", "localhost:9092");
+        kafkaProperties.put("bootstrap.servers", "127.0.0.1:9092");
         //配置key-value允许使用参数化类型
         kafkaProperties.put("key.serializer","org.apache.kafka.common.serialization.StringSerializer");
         kafkaProperties.put("value.serializer","org.apache.kafka.common.serialization.StringSerializer");
