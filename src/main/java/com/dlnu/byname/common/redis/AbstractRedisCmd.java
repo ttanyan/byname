@@ -17,7 +17,10 @@
 
 package com.dlnu.byname.common.redis;
 
+import com.dlnu.byname.ByNameApplication;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.util.CollectionUtils;
@@ -36,7 +39,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 public abstract class AbstractRedisCmd {
-
+    Logger log = LoggerFactory.getLogger(AbstractRedisCmd.class);
     /**
      * 必须实现方法，返回对应redisTemplate
      *

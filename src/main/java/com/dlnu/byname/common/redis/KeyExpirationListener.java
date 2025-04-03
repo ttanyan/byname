@@ -17,7 +17,11 @@
 
 package com.dlnu.byname.common.redis;
 
+import com.dlnu.byname.ByNameApplication;
+import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.listener.KeyExpirationEventMessageListener;
 import org.springframework.data.redis.listener.PatternTopic;
@@ -31,7 +35,7 @@ import org.springframework.data.redis.listener.RedisMessageListenerContainer;
  */
 @Slf4j
 public class KeyExpirationListener extends KeyExpirationEventMessageListener {
-
+    Logger log = LoggerFactory.getLogger(KeyExpirationListener.class);
     /**
      * 订阅频道
      */

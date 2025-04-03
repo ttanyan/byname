@@ -45,7 +45,7 @@ public class ControllerExceptionHandler {
         if(e instanceof ParamException){
             return new JsonResult("参数错误");
         }else{
-            log.error("exception:{}", e.getMessage(), e);
+//            log.error("exception:{}", e.getMessage(), e);
             return new JsonResult("请求失败");
         }
 

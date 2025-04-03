@@ -17,7 +17,10 @@
 
 package com.dlnu.byname.common.activemq;
 
+import com.dlnu.byname.ByNameApplication;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Component;
@@ -37,7 +40,7 @@ import javax.jms.Topic;
 @Slf4j
 @Component
 public class SendMessage {
-
+    Logger log = LoggerFactory.getLogger(SendMessage.class);
     @Resource
     private Topic topic;
     @Resource
