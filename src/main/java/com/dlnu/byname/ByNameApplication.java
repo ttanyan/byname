@@ -25,6 +25,8 @@ public class ByNameApplication {
         Logger logger = LoggerFactory.getLogger(ByNameApplication.class);
         SpringApplication.run(ByNameApplication.class, args);
         logger.info("===============My ByName 启动成功==============");
+
+
     }
 
 
