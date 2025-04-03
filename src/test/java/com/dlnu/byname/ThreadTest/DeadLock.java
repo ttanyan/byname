@@ -59,6 +59,7 @@ public class DeadLock  implements Runnable{
 
     public static void main(String[] args) {
 
+        InheritableThreadLocal<Object> objectInheritableThreadLocal = new InheritableThreadLocal<>();
         DeadLock td1 = new DeadLock();
         DeadLock td2 = new DeadLock();
         td1.flag = 1;

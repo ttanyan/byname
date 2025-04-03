@@ -1,3 +1,4 @@
+import javax.swing.text.html.parser.Entity;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,6 +58,17 @@ public class test {
     public static void main(String[] args) {
         int n = 5; // 假设我们要计算5阶台阶的走法
         System.out.println("Number of ways to reach " + n + " steps: " + countWaysOptimized(n));
+
+        ThreadLocal<String> stringThreadLocal = new ThreadLocal<>();
+
+
+        stringThreadLocal.set("hello");
+        System.out.println(stringThreadLocal.get());
+        stringThreadLocal.remove();
+        System.out.println(stringThreadLocal.get());
+
     }
+
+
 
 }
